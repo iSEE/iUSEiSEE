@@ -1,0 +1,16 @@
+url: https://imbeimainz.github.io/iUSEiSEE
+
+template:
+  params:
+    bootswatch: cosmo
+    #ganalytics: UA-99999999-9
+
+home:
+  title: "iUSEiSEE"
+  type: inverse
+
+
+navbar:
+  right:
+   - icon: fa-github
+     href: https://github.com/imbeimainz/iUSEiSEE

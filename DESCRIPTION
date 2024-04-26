@@ -1,0 +1,40 @@
+Package: iUSEiSEE
+Title: A Workshop to learn how to use the iSEE package
+Version: 1.0.0
+Authors@R: 
+    c(person(given = "Federico",
+             family = "Marini",
+             role = c("aut", "cre"),
+             email = "marinif@uni-mainz.de",
+             comment = c(ORCID = "0000-0003-3252-7758"))
+     )
+Description: This package provides the material for a fully fledged one-day 
+    workshop on the iSEE package. 
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Imports: 
+    iSEE,
+    SingleCellExperiment,
+    scater
+Suggests: 
+    knitr,
+    rmarkdown,
+    pkgdown,
+    TENxPBMCData,
+    Seurat,
+    zellkonverter,
+    scran,
+    BiocSingular,
+    iSEEu,
+    iSEEde,
+    iSEEpathways, 
+    iSEEhub,
+    iSEEindex,
+    iSEEfier,
+    BiocStyle
+URL: https://imbeimainz.github.io/iUSEiSEE/
+BugReports: https://github.com/imbeimainz/iUSEiSEE/issues
+VignetteBuilder: knitr

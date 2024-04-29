@@ -23,6 +23,7 @@ Suggests:
     knitr,
     rmarkdown,
     pkgdown,
+    htmltools,
     TENxPBMCData,
     Seurat,
     zellkonverter,

@@ -70,7 +70,7 @@ shiny::runApp(app)
 ```
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-initial.png", delay=20)
+SCREENSHOT("images/isee-initial.png", delay=40)
 ```
 
 The main argument to the `iSEE()` function is a `SummarizedExperiment` object, or an object of any class extending `SummarizedExperiment` (such as `SingleCellExperiment`, in this case).

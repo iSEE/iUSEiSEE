@@ -1,0 +1,87 @@
+---
+title: "iUSEiSEE - Bonus content"
+author: Federico Marini^[marinif@uni-mainz.de]
+output: 
+    html_document:
+      theme: cosmo
+      toc: yes
+      toc_float: yes
+      number_sections: true
+vignette: >
+  %\VignetteIndexEntry{04. Bonus content}
+  %\VignettePackage{iUSEiSEE}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+editor_options: 
+  chunk_output_type: console
+bibliography: iUSEiSEErefs.bib
+---
+
+<img src="iSEE.png" align="right" alt="" width="120" />
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  cache = FALSE,
+  collapse = TRUE,
+  comment = "#>",
+  crop = NA
+)
+suppressPackageStartupMessages({
+  library("BiocStyle")
+  library("iSEE")
+})
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+```{r, eval=!exists("SCREENSHOT"), include=FALSE}
+SCREENSHOT <- function(x, ...) knitr::include_graphics(x)
+```
+
+
+# Moar iSEE things
+
+This vignette contains some examples on even more `iSEE`-things.
+
+We will use the following packages throughout its content (make sure to have them installed if you want to run it interactively)
+
+```{r pkgs}
+library("iSEE")
+library("iSEEfier")
+library("iSEEu")
+library("iSEEindex")
+```
+
+
+
+## iSEE a challenge: let's reproduce any figure!
+
+TODO
+
+## iSEEfier
+
+TODO
+
+Najla :)
+
+## iSEEindex
+
+TODO
+
+## iSEEde and iSEEpathways
+
+TODO
+
+This one is from the demo of the 2023 workshop
+
+## Tours: help and storytelling
+
+TODO
+
+# Session info {-}
+
+```{r}
+sessionInfo()
+```
+
+# References {-}

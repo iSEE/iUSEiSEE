@@ -1,0 +1,86 @@
+---
+title: "iUSEiSEE - About this workshop"
+author: Federico Marini^[marinif@uni-mainz.de]
+output: 
+    html_document:
+      theme: cosmo
+      toc: yes
+      toc_float: yes
+      number_sections: true
+vignette: >
+  %\VignetteIndexEntry{00. About this workshop}
+  %\VignettePackage{iUSEiSEE}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+editor_options: 
+  chunk_output_type: console
+bibliography: iUSEiSEErefs.bib
+---
+
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+suppressPackageStartupMessages({
+    library("BiocStyle")
+})
+```
+
+
+<img src="iSEE.png" align="right" alt="" width="120" />
+
+# Description
+
+The iSEE package is a flexible, powerful and extendible application to explore any dataset stored in SummarizedExperiment objects, including single cell and spatially resolved data. 
+
+iSEE enables a multitude of panels to gain in-depth insight in your data; it does so combining interactivity and reproducibility, and providing an ideal companion to CELLxGENE for deeper dives into data.
+
+This package demo provides an overview of the functionality of the `r Biocpkg("iSEE")` Bioconductor package, and is intended as an appetizer to more.
+
+# Pre-requisites
+
+* Familiarity with single-cell sequencing data (ideally scRNA-seq)
+* Familiarity with the SummarizedExperiment/SingleCellExperiment class, or 
+alternatively the Seurat or AnnData frameworks - basically, any of the widely used 
+ecosystem for working with/storing/processing single cell data
+* Familiarity with single-cell data visualizations and representations
+
+# Participation
+
+Participants will be able to follow along in the live coding parts of the demo.
+
+# _R_ / _Bioconductor_ packages used
+
+* `iSEE`: https://bioconductor.org/packages/iSEE
+* `iSEEde`: https://bioconductor.org/packages/iSEEde
+* `iSEEindex`: https://bioconductor.org/packages/iSEEindex
+* `iSEEpathways`: https://bioconductor.org/packages/iSEEpathways
+* `iSEEhub`: https://bioconductor.org/packages/iSEEhub
+
+<!-- ## Time outline -->
+
+<!-- | Activity                                        | Time | -->
+<!-- |-------------------------------------------------|------| -->
+<!-- | Overview of iSEE                                | 20m  | -->
+<!-- | Building up your own iSEE instance              | 10m  | -->
+<!-- | New and extra features in the iSEE ecosystem    | 15m  | -->
+
+# Workshop goals and objectives
+
+## Learning goals
+
+* Outline the features of iSEE, built upon the RStudio Shiny framework
+* Utilize interactive GUI components and layouts to efficiently extract information from biological data sets
+* Describe how to construct interactive apps and custom panels
+* Demonstrate how these package can smoothly be integrated into and enhance existing workflows for the datasets at hand
+
+## Learning objectives
+
+* Set up a local environment for running iSEE apps
+* Interact with components of the iSEE user interface to visually inspect and discuss various data sets
+* Identify and locate configurable aspects of iSEE apps
+* Practice interactive visualization over a single-cell RNA-sequencing workflow
+* Imagine use cases and future developments for interactive visualization as part of computational workflows
+* Design and create iSEE instances for collections of datasets

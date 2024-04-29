@@ -502,7 +502,7 @@ app <- iSEE(sce, initial = list(
                    YAxis = "labels_main", 
                    XAxisColumnData = "Cluster",
                    ColumnSelectionSource = "FeatureAssayPlot1",
-                   SelectionEffect = "Color")
+                   ColumnSelectionRestrict = FALSE)
 ))
 ```
 </details>

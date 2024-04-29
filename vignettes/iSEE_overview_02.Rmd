@@ -1,6 +1,8 @@
 ---
 title: "iUSEiSEE - An overview of iSEE"
-author: Federico Marini^[marinif@uni-mainz.de]
+author: "Federico Marini^[marinif@uni-mainz.de], Najla Abassi^[abassina@uni-mainz.de] <br><hr>
+  Collection of material developed by the iSEE core dev team <br>
+  (Kevin Rue-Albrecht, Federico Marini, Charlotte Soneson, Aaron Lun)"
 output: 
     html_document:
       theme: cosmo

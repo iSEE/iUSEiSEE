@@ -8,10 +8,10 @@ The `iSEE` package is a flexible, powerful and extendible application to explore
 
 <p align="center">
 https://iSEE.github.io/iSEEdemo
-<img src="vignettes/qrcode_iSEEdemo_rendered.png" alt="" width="200" />
+<img src="vignettes/images/qrcode_iSEEdemo_rendered.png" alt="" width="200" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 https://github.com/iSEE/iSEEdemo
-<img src="vignettes/qrcode_iSEEdemo.png" alt="" width="200" />
+<img src="vignettes/images/qrcode_iSEEdemo.png" alt="" width="200" />
 </p>
 
 ## How to install

@@ -48,7 +48,7 @@ We will use the following packages throughout its content (make sure to have the
 ```{r pkgs}
 library("iSEE")
 library("iSEEfier")
-library("iSEEu")
+# library("iSEEu")
 library("iSEEindex")
 ```
 
@@ -72,13 +72,16 @@ Najla :)
 The `r Biocpkg("iSEEhub")` package provides a custom landing page for an `r Biocpkg("iSEE")` application interfacing with the Bioconductor `r Biocpkg("ExperimentHub")`. 
 The landing page allows users to browse the ExperimentHub, select a data set, download and cache it, and import it directly into an iSEE app.
 
-```{r, eval=FALSE}
+```{r}
 library("iSEE")
 library("iSEEhub")
 
 ehub <- ExperimentHub()
 app <- iSEEhub(ehub)
-app
+```
+
+```{r, echo=FALSE}
+SCREENSHOT("images/iseehub.png", delay=20)
 ```
 
 <!-- Possible actions: -->
@@ -91,7 +94,7 @@ app
 The main functionality of this package is to define a custom landing page allowing app maintainers to list a custom collection of data sets that users can select from and directly load objects into an iSEE web application.
 To see how to configure such an app, we will create a small example:
 
-```{r, eval=FALSE}
+```{r}
 bfc <- BiocFileCache(cache = tempdir())
 
 dataset_fun <- function() {
@@ -103,8 +106,12 @@ initial_fun <- function() {
     x$initial
 }
 app <- iSEEindex(bfc, dataset_fun, initial_fun)
-app
 ```
+
+```{r, echo=FALSE}
+SCREENSHOT("images/iseeindex.png", delay=20)
+```
+
 
 A more elaborate example is available at [https://rehwinkellab.shinyapps.io/ifnresource/](https://rehwinkellab.shinyapps.io/ifnresource/). 
 The source can be found at [https://github.com/kevinrue/IFNresource](https://github.com/kevinrue/IFNresource). 
@@ -144,15 +151,19 @@ More precisely, `r Biocpkg("iSEEde")` provides the `VolcanoPlot`, `MAPlot`, `Log
 These panels can be configured to extract data that was added via the `embedContrastResults()` function above. 
 Let's look at an example:
 
-```{r, eval=FALSE}
+```{r}
 app <- iSEE(sce_macrophage, initial = list(
     DETable(ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2", 
             HiddenColumns = c("baseMean", "lfcSE", "stat")),
     VolcanoPlot(ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2"),
     MAPlot(ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2")
 ))
-app
 ```
+
+```{r, echo=FALSE}
+SCREENSHOT("images/isee_de_setup1.png", delay=20)
+```
+
 
 <!-- Possible actions: -->
 <!-- select some genes from any panel and pass the selection to others -->
@@ -162,7 +173,7 @@ app
 
 Note how it is easy to switch to a different contrast in any of the panels. 
 
-```{r, eval=FALSE}
+```{r}
 app <- iSEE(sce_macrophage, initial = list(
     DETable(ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2", 
             HiddenColumns = c("baseMean", "lfcSE", "stat")),
@@ -176,7 +187,10 @@ app <- iSEE(sce_macrophage, initial = list(
     FgseaEnrichmentPlot(ResultName = "IFNgTRUE.SL1344TRUE.limma.fgsea",
                         PathwayId = "GO:0046324")
 ))
-app
+```
+
+```{r, echo=FALSE}
+SCREENSHOT("images/isee_de_setup2.png", delay=30)
 ```
 
 <!-- Possible actions: -->
@@ -187,8 +201,6 @@ app
 <!-- select alternative contrast and see all dependencies updated -->
 <!-- usual iSEE magic: export code for the plots -->
 <!-- usual iSEE magic: export code for the panel configuration -->
-
-This one is from the demo of the 2023 workshop
 
 ## Tours: help and storytelling
 

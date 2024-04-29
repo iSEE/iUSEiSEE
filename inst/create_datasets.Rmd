@@ -1,4 +1,6 @@
-# Preparation of example scRNAseq data
+# Working with the `pbmc3k` dataset
+
+## Preparation of example scRNAseq data
 
 ```{r}
 library("BiocStyle")
@@ -141,6 +143,72 @@ for (i in names(markers)) {
 sce
 ```
 
+
+Finally, we assign a label to each cell, based on their individual transcriptome profiles, using the `SingleR` method and the Monaco immune data (https://doi.org/10.1016/j.celrep.2019.01.041) as a reference.  
+For each prediction, we assign the labels values to a specific `colData` element
+
+```{r message=FALSE}
+library("SingleR")
+library("celldex")
+ref_monaco <- MonacoImmuneData()
+```
+
+Here we assign the cell type according to the main classification scheme 
+(this includes `r knitr::combine_words(names(table(ref_monaco$label.main)))`)
+
+```{r}
+pred_monaco_main <- SingleR(test = sce, 
+                            ref = ref_monaco, 
+                            labels = ref_monaco$label.main)
+table(pred_monaco_main$labels)
+sce$labels_main <- pred_monaco_main$labels
+```
+
+We do something similar with a more fine-grained classification, this time including the cell subtypes (e.g., for `r sort(unique(ref_monaco$label.main))[1]`, the subtypes would include `r knitr::combine_words(names(table((ref_monaco$label.main), (ref_monaco$label.fine))[1, ])[which(table((ref_monaco$label.main), (ref_monaco$label.fine))[1,] > 0)])`)
+
+```{r}
+pred_monaco_fine <- SingleR(test = sce, 
+                            ref = ref_monaco, 
+                            labels = ref_monaco$label.fine)
+table(pred_monaco_fine$labels)
+sce$labels_fine <- pred_monaco_fine$labels
+```
+
+Similarly, we use the information contained in the cell ontology labels.
+
+```{r}
+pred_monaco_ont <- SingleR(test = sce, 
+                           ref = ref_monaco, 
+                           labels = ref_monaco$label.ont)
+table(pred_monaco_ont$labels)
+sce$labels_ont <- pred_monaco_ont$labels
+```
+
+We can add that info in a more readable way with this set of commands
+
+```{r}
+library("ontoProc")
+cl <- getOnto("cellOnto")
+cl
+
+translated <- cl$name[ref_monaco$label.ont]
+head(translated)
+
+sce$cell_ontology_labels <- cl$name[pred_monaco_ont$labels]
+```
+
+
+The next table shows the relationship between the coarse and fine grained assignments in the data at hand.
+
+```{r}
+table(sce$labels_main,
+      sce$labels_fine)
+
+table(sce$labels_main,
+      sce$cell_ontology_labels)
+```
+
+
 This concludes the preparation of the data.
 We have now a `SingleCellExperiment` object that contains different types of abundance values, representations in reduced dimensions, as well as a range of row (feature) and column (cell) metadata.
 
@@ -155,15 +223,15 @@ if(interactive())
 
 ```{r}
 saveRDS(sce, 
-        file = "datasets/sce_pbmc3k_new.RDS")
+        file = "datasets/sce_pbmc3k.RDS")
 
 sce_pbmc3k <- readRDS("datasets/sce_pbmc3k.RDS")
 ```
 
 
-# Interoperability
+## Interoperability
 
-## What about the same dataset, but for Seurat?
+### What about the same dataset, but for Seurat?
 
 ```{r eval=FALSE}
 library("Seurat")
@@ -203,9 +271,9 @@ if(interactive())
   iSEE(sce_from_seurat)
 ```
 
-## And where is my AnnData object?
+### And where is my AnnData object?
 
-```{r eval=FALSE}
+```{r}
 library("zellkonverter")
 
 sce$Tissue_status <- NULL
@@ -220,6 +288,15 @@ sce_from_anndata
 if(interactive())
   iSEE(sce_from_anndata)
 ```
+
+
+# Another dataset, from Bartneck et al.
+
+To obtain a preprocessed version of this dataset, navigate to
+
+https://seafile.rlp.net/d/c7f1335a6248427d97da/
+
+then navigate to the `sce_objects` folder, and from there select the `sce_merged_allsets.RDS` file, and download it locally.
 
 # Session info {-}
 

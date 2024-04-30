@@ -63,7 +63,6 @@ To run the content presented in this demo, run this following chunk in your R en
 ```{r eval = FALSE}
 library("BiocManager")
 BiocManager::install("imbeimainz/iUSEiSEE")
-
 ```
 
 We start by loading the packages that will be used during the demo. 

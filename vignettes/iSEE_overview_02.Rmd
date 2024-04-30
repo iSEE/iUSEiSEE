@@ -72,7 +72,7 @@ shiny::runApp(app)
 ```
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-initial.png", delay=40)
+SCREENSHOT("images/isee-initial.png", delay = 40)
 ```
 
 The main argument to the `iSEE()` function is a `SummarizedExperiment` object, or an object of any class extending `SummarizedExperiment` (such as `SingleCellExperiment`, in this case).
@@ -93,7 +93,7 @@ shiny::runApp(app)
 ```
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-no-se.png", delay=10)
+SCREENSHOT("images/isee-no-se.png", delay = 10)
 ```
 
 # The built-in panel types {#user-interface}
@@ -131,14 +131,14 @@ Note that this slot is not defined for the base `SummarizedExperiment` class, in
  
 ```{r, message=FALSE, echo = FALSE}
 app <- iSEE(sce, initial = list(ReducedDimensionPlot(
-  PanelWidth = 12L, 
-  Type = "TSNE", ColorBy = "Column data", 
+  PanelWidth = 12L,
+  Type = "TSNE", ColorBy = "Column data",
   ColorByColumnData = "Cluster"
 )))
 ```
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-reduceddimensionplot.png", delay=10)
+SCREENSHOT("images/isee-reduceddimensionplot.png", delay = 10)
 ```
 
 ## `r .fullName(ColumnDataPlot())` {#coldataplot}
@@ -148,14 +148,14 @@ Depending on the class of the selected annotations, the panel shows either a sca
 
 ```{r, message=FALSE, echo = FALSE}
 app <- iSEE(sce, initial = list(ColumnDataPlot(
-  PanelWidth = 12L, 
+  PanelWidth = 12L,
   XAxis = "Column data", XAxisColumnData = "Cluster",
   YAxis = "log10_total"
 )))
 ```
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-columndataplot.png", delay=10)
+SCREENSHOT("images/isee-columndataplot.png", delay = 10)
 ```
 
 ## `r .fullName(RowDataPlot())` {#rowdataplot}
@@ -171,7 +171,7 @@ app <- iSEE(sce, initial = list(RowDataPlot(
 ```
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-rowdataplot.png", delay=10)
+SCREENSHOT("images/isee-rowdataplot.png", delay = 10)
 ```
 
 ## `r .fullName(ComplexHeatmapPlot())` {#heatmap}
@@ -187,7 +187,7 @@ app <- iSEE(sce, initial = list(ComplexHeatmapPlot(
 ```
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-complexheatmapplot.png", delay=10)
+SCREENSHOT("images/isee-complexheatmapplot.png", delay = 10)
 ```
 
 ## `r .fullName(FeatureAssayPlot())` {#featassayplot}
@@ -205,7 +205,7 @@ app <- iSEE(sce, initial = list(FeatureAssayPlot(
 ```
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-featureassayplot.png", delay=10)
+SCREENSHOT("images/isee-featureassayplot.png", delay = 10)
 ```
 
 ## `r .fullName(SampleAssayPlot())` {#sampassayplot}
@@ -222,7 +222,7 @@ app <- iSEE(sce, initial = list(SampleAssayPlot(
 ```
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-sampleassayplot.png", delay=10)
+SCREENSHOT("images/isee-sampleassayplot.png", delay = 10)
 ```
 
 ## `r .fullName(RowDataTable())` {#rowdatatable}
@@ -234,7 +234,7 @@ app <- iSEE(sce, initial = list(RowDataTable(PanelWidth = 12L)))
 ```
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-rowdatatable.png", delay=10)
+SCREENSHOT("images/isee-rowdatatable.png", delay = 10)
 ```
 
 ## `r .fullName(ColumnDataTable())` {#coldatatable}
@@ -246,7 +246,7 @@ app <- iSEE(sce, initial = list(ColumnDataTable(PanelWidth = 12L)))
 ```
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-columndatatable.png", delay=10)
+SCREENSHOT("images/isee-columndatatable.png", delay = 10)
 ```
 
 # Collapsible boxes with display controls {#collapsible-boxes}
@@ -265,7 +265,7 @@ app <- iSEE(sce, initial = list(ColumnDataPlot(
 ```
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-columndataplot-dataparameters.png", delay=10)
+SCREENSHOT("images/isee-columndataplot-dataparameters.png", delay = 10)
 ```
 
 ## Visual parameters {#visual-parameters-box}
@@ -278,13 +278,13 @@ This collapsible box contains the controls to change the size, shape, opacity, a
 app <- iSEE(sce, initial = list(ColumnDataPlot(
   PanelWidth = 12L, VisualBoxOpen = TRUE,
   XAxis = "Column data", XAxisColumnData = "Cluster",
-  YAxis = "log10_total", 
+  YAxis = "log10_total",
   VisualChoices = c("Color", "Point", "Facet", "Shape", "Size", "Text")
 )))
 ```
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-columndataplot-visualparameters.png", delay=10)
+SCREENSHOT("images/isee-columndataplot-visualparameters.png", delay = 10)
 ```
 
 ## Selection parameters {#selection-parameter-box}
@@ -296,13 +296,13 @@ We demonstrate examples of point transmission in the separate vignette of [works
 ```{r, message=FALSE, echo = FALSE}
 app <- iSEE(sce, initial = list(ReducedDimensionPlot(
   PanelWidth = 12L, SelectionBoxOpen = TRUE,
-  Type = "TSNE", ColorBy = "Column data", 
+  Type = "TSNE", ColorBy = "Column data",
   ColorByColumnData = "Cluster"
 )))
 ```
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-reduceddimensionplot-selectionparameters.png", delay=10)
+SCREENSHOT("images/isee-reduceddimensionplot-selectionparameters.png", delay = 10)
 ```
 
 # Additional controls {#additional-controls}

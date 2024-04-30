@@ -87,7 +87,7 @@ app <- iSEEhub(ehub)
 ```
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/iseehub.png", delay=20)
+SCREENSHOT("images/iseehub.png", delay = 20)
 ```
 
 <!-- Possible actions: -->
@@ -104,18 +104,18 @@ To see how to configure such an app, we will create a small example:
 bfc <- BiocFileCache(cache = tempdir())
 
 dataset_fun <- function() {
-    x <- yaml::read_yaml(system.file(package = "iSEEindex", "example.yaml"))
-    x$datasets
+  x <- yaml::read_yaml(system.file(package = "iSEEindex", "example.yaml"))
+  x$datasets
 }
 initial_fun <- function() {
-    x <- yaml::read_yaml(system.file(package = "iSEEindex", "example.yaml"))
-    x$initial
+  x <- yaml::read_yaml(system.file(package = "iSEEindex", "example.yaml"))
+  x$initial
 }
 app <- iSEEindex(bfc, dataset_fun, initial_fun)
 ```
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/iseeindex.png", delay=20)
+SCREENSHOT("images/iseeindex.png", delay = 20)
 ```
 
 
@@ -142,8 +142,9 @@ iSEEde and iSEEpathways: ideal companions for exploring DE results
 We first load the processed `macrophage` data (derived from the work of [@Alasoo2018]) - on this, we already ran the workflow of `DESeq2` [@Love2014] to identify the differentially expressed genes.
 
 ```{r}
-macrophage_location <- system.file("datasets", "sce_macrophage_readytouse.RDS", 
-                                   package = "iUSEiSEE")
+macrophage_location <- system.file("datasets", "sce_macrophage_readytouse.RDS",
+  package = "iUSEiSEE"
+)
 macrophage_location
 
 sce_macrophage <- readRDS(macrophage_location)
@@ -161,15 +162,17 @@ Let's look at an example:
 
 ```{r}
 app <- iSEE(sce_macrophage, initial = list(
-    DETable(ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2", 
-            HiddenColumns = c("baseMean", "lfcSE", "stat")),
-    VolcanoPlot(ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2"),
-    MAPlot(ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2")
+  DETable(
+    ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2",
+    HiddenColumns = c("baseMean", "lfcSE", "stat")
+  ),
+  VolcanoPlot(ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2"),
+  MAPlot(ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2")
 ))
 ```
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/isee_de_setup1.png", delay=20)
+SCREENSHOT("images/isee_de_setup1.png", delay = 20)
 ```
 
 
@@ -183,22 +186,30 @@ Note how it is easy to switch to a different contrast in any of the panels.
 
 ```{r}
 app <- iSEE(sce_macrophage, initial = list(
-    DETable(ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2", 
-            HiddenColumns = c("baseMean", "lfcSE", "stat")),
-    VolcanoPlot(ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2"),
-    MAPlot(ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2"),
-    PathwaysTable(ResultName = "IFNgTRUE.SL1344TRUE.limma.fgsea", 
-                  Selected = "GO:0046324"),
-    ComplexHeatmapPlot(RowSelectionSource = "PathwaysTable1", 
-                       CustomRows = FALSE, ColumnData = "condition_name",
-                       ClusterRows = TRUE, Assay = "vst"),
-    FgseaEnrichmentPlot(ResultName = "IFNgTRUE.SL1344TRUE.limma.fgsea",
-                        PathwayId = "GO:0046324")
+  DETable(
+    ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2",
+    HiddenColumns = c("baseMean", "lfcSE", "stat")
+  ),
+  VolcanoPlot(ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2"),
+  MAPlot(ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2"),
+  PathwaysTable(
+    ResultName = "IFNgTRUE.SL1344TRUE.limma.fgsea",
+    Selected = "GO:0046324"
+  ),
+  ComplexHeatmapPlot(
+    RowSelectionSource = "PathwaysTable1",
+    CustomRows = FALSE, ColumnData = "condition_name",
+    ClusterRows = TRUE, Assay = "vst"
+  ),
+  FgseaEnrichmentPlot(
+    ResultName = "IFNgTRUE.SL1344TRUE.limma.fgsea",
+    PathwayId = "GO:0046324"
+  )
 ))
 ```
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/isee_de_setup2.png", delay=30)
+SCREENSHOT("images/isee_de_setup2.png", delay = 30)
 ```
 
 <!-- Possible actions: -->

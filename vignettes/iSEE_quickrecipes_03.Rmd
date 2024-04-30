@@ -110,7 +110,7 @@ app <- iSEE(sce, initial = list(
 </details>
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/recipe_01.png", delay=20)
+SCREENSHOT("images/recipe_01.png", delay = 20)
 ```
 
 ## Recipe 2: Data parameters configuration - selecting columns to display
@@ -145,14 +145,16 @@ shiny::runApp(app)
 <summary>Solution (programmatically)</summary>
 ```{r}
 app <- iSEE(sce, list(
-    ColumnDataPlot(PanelWidth = 12L, XAxis = "Column data",
-                   YAxis = "labels_fine", XAxisColumnData = "Cluster")
+  ColumnDataPlot(
+    PanelWidth = 12L, XAxis = "Column data",
+    YAxis = "labels_fine", XAxisColumnData = "Cluster"
+  )
 ))
 ```
 </details>
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/recipe_02.png", delay=20)
+SCREENSHOT("images/recipe_02.png", delay = 20)
 ```
 
 ## Recipe 3: Data parameters configuration - displaying multiple reduced dimension representations
@@ -172,8 +174,10 @@ Using the `pbmc3k` data set, display both the tSNE and UMAP representations next
 <ul>
 <li>First open an application with two `ReducedDimensionPlot` panels, each spanning half the application window)</li>
 ```{r, eval = FALSE}
-app <- iSEE(sce, initial = list(ReducedDimensionPlot(PanelWidth = 6L),
-                                ReducedDimensionPlot(PanelWidth = 6L)))
+app <- iSEE(sce, initial = list(
+  ReducedDimensionPlot(PanelWidth = 6L),
+  ReducedDimensionPlot(PanelWidth = 6L)
+))
 shiny::runApp(app)
 ```
 <li>In the first `ReducedDimensionPlot` panel, click to expand the `Data parameters` collapsible box.</li>
@@ -186,14 +190,14 @@ shiny::runApp(app)
 <summary>Solution (programmatically)</summary>
 ```{r}
 app <- iSEE(sce, initial = list(
-    ReducedDimensionPlot(PanelWidth = 6L, Type = "TSNE"),
-    ReducedDimensionPlot(PanelWidth = 6L, Type = "UMAP")
+  ReducedDimensionPlot(PanelWidth = 6L, Type = "TSNE"),
+  ReducedDimensionPlot(PanelWidth = 6L, Type = "UMAP")
 ))
 ```
 </details>
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/recipe_03.png", delay=20)
+SCREENSHOT("images/recipe_03.png", delay = 20)
 ```
 
 ## Recipe 4: Data parameters configuration - displaying the expression of a specific gene across clusters
@@ -226,14 +230,16 @@ shiny::runApp(app)
 <summary>Solution (programmatically)</summary>
 ```{r}
 app <- iSEE(sce, initial = list(
-    FeatureAssayPlot(PanelWidth = 12L, XAxis = "Column data",
-                     YAxisFeatureName = "CD74", XAxisColumnData = "Cluster")
+  FeatureAssayPlot(
+    PanelWidth = 12L, XAxis = "Column data",
+    YAxisFeatureName = "CD74", XAxisColumnData = "Cluster"
+  )
 ))
 ```
 </details>
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/recipe_04.png", delay=20)
+SCREENSHOT("images/recipe_04.png", delay = 20)
 ```
 
 ## Recipe 5: Visual parameters configuration - coloring reduced dimension representations by cell annotation
@@ -255,8 +261,10 @@ Using the `pbmc3k` data set, display two tSNE representations next to each other
 <ul>
 <li>First open an application with two `ReducedDimensionPlot` panels, each spanning half the application window)</li>
 ```{r, eval = FALSE}
-app <- iSEE(sce, initial = list(ReducedDimensionPlot(PanelWidth = 6L),
-                                ReducedDimensionPlot(PanelWidth = 6L)))
+app <- iSEE(sce, initial = list(
+  ReducedDimensionPlot(PanelWidth = 6L),
+  ReducedDimensionPlot(PanelWidth = 6L)
+))
 shiny::runApp(app)
 ```
 <li>In each `ReducedDimensionPlot` panel, click to expand the `Data parameters` collapsible box and under `Type`, choose `TSNE`.</li>
@@ -272,18 +280,22 @@ shiny::runApp(app)
 <summary>Solution (programmatically)</summary>
 ```{r}
 app <- iSEE(sce, initial = list(
-    ReducedDimensionPlot(PanelWidth = 6L, Type = "TSNE",
-                         ColorBy = "Column data",
-                         ColorByColumnData = "Cluster"),
-    ReducedDimensionPlot(PanelWidth = 6L, Type = "TSNE",
-                         ColorBy = "Column data",
-                         ColorByColumnData = "log10_total")
+  ReducedDimensionPlot(
+    PanelWidth = 6L, Type = "TSNE",
+    ColorBy = "Column data",
+    ColorByColumnData = "Cluster"
+  ),
+  ReducedDimensionPlot(
+    PanelWidth = 6L, Type = "TSNE",
+    ColorBy = "Column data",
+    ColorByColumnData = "log10_total"
+  )
 ))
 ```
 </details>
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/recipe_05.png", delay=20)
+SCREENSHOT("images/recipe_05.png", delay = 20)
 ```
 
 ## Recipe 6: Visual parameters configuration - coloring reduced dimension representations by gene expression
@@ -305,8 +317,10 @@ Using the `pbmc3k` data set, display two tSNE representations next to each other
 <ul>
 <li>First open an application with two `ReducedDimensionPlot` panels, each spanning half the application window)</li>
 ```{r, eval = FALSE}
-app <- iSEE(sce, initial = list(ReducedDimensionPlot(PanelWidth = 6L),
-                                ReducedDimensionPlot(PanelWidth = 6L)))
+app <- iSEE(sce, initial = list(
+  ReducedDimensionPlot(PanelWidth = 6L),
+  ReducedDimensionPlot(PanelWidth = 6L)
+))
 shiny::runApp(app)
 ```
 <li>In each `ReducedDimensionPlot` panel, click to expand the `Data parameters` collapsible box and under `Type`, choose `TSNE`.</li>
@@ -322,18 +336,22 @@ shiny::runApp(app)
 <summary>Solution (programmatically)</summary>
 ```{r}
 app <- iSEE(sce, initial = list(
-    ReducedDimensionPlot(PanelWidth = 6L, Type = "TSNE",
-                         ColorBy = "Feature name",
-                         ColorByFeatureName = "CD3D"),
-    ReducedDimensionPlot(PanelWidth = 6L, Type = "TSNE",
-                         ColorBy = "Feature name",
-                         ColorByFeatureName = "CD79B")
+  ReducedDimensionPlot(
+    PanelWidth = 6L, Type = "TSNE",
+    ColorBy = "Feature name",
+    ColorByFeatureName = "CD3D"
+  ),
+  ReducedDimensionPlot(
+    PanelWidth = 6L, Type = "TSNE",
+    ColorBy = "Feature name",
+    ColorByFeatureName = "CD79B"
+  )
 ))
 ```
 </details>
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/recipe_06.png", delay=20)
+SCREENSHOT("images/recipe_06.png", delay = 20)
 ```
 
 ## Recipe 7: Visual parameters configuration - changing the size and opacity of points
@@ -354,8 +372,10 @@ Using the `pbmc3k` data set, display two tSNE representations next to each other
 <ul>
 <li>First open an application with two `ReducedDimensionPlot` panels, each spanning half the application window)</li>
 ```{r, eval = FALSE}
-app <- iSEE(sce, initial = list(ReducedDimensionPlot(PanelWidth = 6L),
-                                ReducedDimensionPlot(PanelWidth = 6L)))
+app <- iSEE(sce, initial = list(
+  ReducedDimensionPlot(PanelWidth = 6L),
+  ReducedDimensionPlot(PanelWidth = 6L)
+))
 shiny::runApp(app)
 ```
 <li>In each `ReducedDimensionPlot` panel, click to expand the `Data parameters` collapsible box and under `Type`, choose `TSNE`.</li>
@@ -375,16 +395,20 @@ shiny::runApp(app)
 <summary>Solution (programmatically)</summary>
 ```{r}
 app <- iSEE(sce, initial = list(
-    ReducedDimensionPlot(PanelWidth = 6L, Type = "TSNE",
-                         PointSize = 0.5),
-    ReducedDimensionPlot(PanelWidth = 6L, Type = "TSNE",
-                         PointSize = 3, PointAlpha = 0.2)
+  ReducedDimensionPlot(
+    PanelWidth = 6L, Type = "TSNE",
+    PointSize = 0.5
+  ),
+  ReducedDimensionPlot(
+    PanelWidth = 6L, Type = "TSNE",
+    PointSize = 3, PointAlpha = 0.2
+  )
 ))
 ```
 </details>
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/recipe_07.png", delay=20)
+SCREENSHOT("images/recipe_07.png", delay = 20)
 ```
 
 ## Recipe 8: Selection configuration
@@ -408,8 +432,10 @@ Using the `pbmc3k` data set, display the expression (logcounts) of `CD3D` across
 <ul>
 <li>First open an application with one `FeatureAssayPlot` panel and one `ReducedDimensionPlot` panel, each spanning half the application window)</li>
 ```{r, eval = FALSE}
-app <- iSEE(sce, initial = list(FeatureAssayPlot(PanelWidth = 6L),
-                                ReducedDimensionPlot(PanelWidth = 6L)))
+app <- iSEE(sce, initial = list(
+  FeatureAssayPlot(PanelWidth = 6L),
+  ReducedDimensionPlot(PanelWidth = 6L)
+))
 shiny::runApp(app)
 ```
 <li>In the `FeatureAssayPlot` panel, click to expand the `Data parameters` collapsible box and under `Y-axis feature`, type or select `CD3D`.</li>
@@ -427,26 +453,32 @@ shiny::runApp(app)
 <summary>Solution (programmatically)</summary>
 ```{r}
 app <- iSEE(sce, initial = list(
-    FeatureAssayPlot(PanelWidth = 6L, 
-                     BrushData = list(xmin = 0, xmax = 15, 
-                                      ymin = 0.5, ymax = 4, 
-                       mapping = list(x = "X", y = "Y", group = "GroupBy"), 
-                       direction = "xy", 
-                       brushId = "FeatureAssayPlot1_Brush", 
-                       outputId = "FeatureAssayPlot1"),
-                     XAxis = "Column data", 
-                     XAxisColumnData = "Cluster", YAxisFeatureName = "CD3D"),
-    ReducedDimensionPlot(PanelWidth = 6L, Type = "TSNE",
-                         ColorBy = "Column data",
-                         ColorByColumnData = "Cluster",
-                         SelectionEffect = "Transparent", 
-                         ColumnSelectionSource = "FeatureAssayPlot1")
+  FeatureAssayPlot(
+    PanelWidth = 6L,
+    BrushData = list(
+      xmin = 0, xmax = 15,
+      ymin = 0.5, ymax = 4,
+      mapping = list(x = "X", y = "Y", group = "GroupBy"),
+      direction = "xy",
+      brushId = "FeatureAssayPlot1_Brush",
+      outputId = "FeatureAssayPlot1"
+    ),
+    XAxis = "Column data",
+    XAxisColumnData = "Cluster", YAxisFeatureName = "CD3D"
+  ),
+  ReducedDimensionPlot(
+    PanelWidth = 6L, Type = "TSNE",
+    ColorBy = "Column data",
+    ColorByColumnData = "Cluster",
+    SelectionEffect = "Transparent",
+    ColumnSelectionSource = "FeatureAssayPlot1"
+  )
 ))
 ```
 </details>
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/recipe_08.png", delay=20)
+SCREENSHOT("images/recipe_08.png", delay = 20)
 ```
 
 ## Recipe 9: Verifying the cell type identity of clusters
@@ -470,8 +502,10 @@ Using the `pbmc3k` data set, create a scatter plots displaying the (logcounts) e
 <ul>
 <li>First open an application with one `FeatureAssayPlot` panel and one `ColumnDataPlot` panel, each spanning half of the application window)</li>
 ```{r, eval = FALSE}
-app <- iSEE(sce, initial = list(FeatureAssayPlot(PanelWidth = 6L),
-                                ColumnDataPlot(PanelWidth = 6L)))
+app <- iSEE(sce, initial = list(
+  FeatureAssayPlot(PanelWidth = 6L),
+  ColumnDataPlot(PanelWidth = 6L)
+))
 shiny::runApp(app)
 ```
 <li>In the `FeatureAssayPlot` panel, click to expand the `Data parameters` collapsible box.</li>
@@ -491,26 +525,31 @@ shiny::runApp(app)
 <summary>Solution (programmatically)</summary>
 ```{r}
 app <- iSEE(sce, initial = list(
-    FeatureAssayPlot(PanelWidth = 6L, XAxis = "Feature name",
-                     YAxisFeatureName = "CD79A", 
-                     XAxisFeatureName = "CD74",
-                     BrushData = list(
-                       xmin = 0.3, xmax = 7, 
-                       ymin = 0.3, ymax = 7, 
-                       mapping = list(x = "X", y = "Y", colour = "ColorBy"), 
-                       direction = "xy", brushId = "FeatureAssayPlot1_Brush", 
-                       outputId = "FeatureAssayPlot1")),
-    ColumnDataPlot(PanelWidth = 6L, XAxis = "Column data", 
-                   YAxis = "labels_main", 
-                   XAxisColumnData = "Cluster",
-                   ColumnSelectionSource = "FeatureAssayPlot1",
-                   ColumnSelectionRestrict = FALSE)
+  FeatureAssayPlot(
+    PanelWidth = 6L, XAxis = "Feature name",
+    YAxisFeatureName = "CD79A",
+    XAxisFeatureName = "CD74",
+    BrushData = list(
+      xmin = 0.3, xmax = 7,
+      ymin = 0.3, ymax = 7,
+      mapping = list(x = "X", y = "Y", colour = "ColorBy"),
+      direction = "xy", brushId = "FeatureAssayPlot1_Brush",
+      outputId = "FeatureAssayPlot1"
+    )
+  ),
+  ColumnDataPlot(
+    PanelWidth = 6L, XAxis = "Column data",
+    YAxis = "labels_main",
+    XAxisColumnData = "Cluster",
+    ColumnSelectionSource = "FeatureAssayPlot1",
+    ColumnSelectionRestrict = FALSE
+  )
 ))
 ```
 </details>
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/recipe_09.png", delay=20)
+SCREENSHOT("images/recipe_09.png", delay = 20)
 ```
 
 ## Recipe 10: Using modes from `iSEEu`
@@ -533,7 +572,7 @@ app <- modeReducedDim(sce, colorBy = "labels_main")
 </details>
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/recipe_10.png", delay=20)
+SCREENSHOT("images/recipe_10.png", delay = 20)
 ```
 
 ## Recipe 11 - Including a tour
@@ -556,31 +595,41 @@ Using the `pbmc3k` data set, display two tSNE representations next to each other
 <summary>Solution (programmatically)</summary>
 ```{r}
 tour <- data.frame(
-    element = c(
-        "#Welcome",
-        "#ReducedDimensionPlot1",
-        "#ReducedDimensionPlot2",
-        "#Conclusion"),
-    intro = c(
-        "Welcome to this tour!",
-        "This is the first reduced dimension plot",
-        "And here is the second one",
-        "Thank you for taking this tour!"),
-    stringsAsFactors = FALSE)
+  element = c(
+    "#Welcome",
+    "#ReducedDimensionPlot1",
+    "#ReducedDimensionPlot2",
+    "#Conclusion"
+  ),
+  intro = c(
+    "Welcome to this tour!",
+    "This is the first reduced dimension plot",
+    "And here is the second one",
+    "Thank you for taking this tour!"
+  ),
+  stringsAsFactors = FALSE
+)
 
-app <- iSEE(sce, initial = list(
-    ReducedDimensionPlot(PanelWidth = 6L, Type = "TSNE",
-                         ColorBy = "Feature name",
-                         ColorByFeatureName = "CD3D"),
-    ReducedDimensionPlot(PanelWidth = 6L, Type = "TSNE",
-                         ColorBy = "Feature name",
-                         ColorByFeatureName = "CD79B")), 
-    tour = tour)
+app <- iSEE(sce,
+  initial = list(
+    ReducedDimensionPlot(
+      PanelWidth = 6L, Type = "TSNE",
+      ColorBy = "Feature name",
+      ColorByFeatureName = "CD3D"
+    ),
+    ReducedDimensionPlot(
+      PanelWidth = 6L, Type = "TSNE",
+      ColorBy = "Feature name",
+      ColorByFeatureName = "CD79B"
+    )
+  ),
+  tour = tour
+)
 ```
 </details>
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/recipe_11.png", delay=20)
+SCREENSHOT("images/recipe_11.png", delay = 20)
 ```
 
 # Session info {-}

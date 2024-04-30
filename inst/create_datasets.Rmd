@@ -56,8 +56,8 @@ In the case where multiple Ensembl identifiers correspond to the same gene symbo
 library("scater")
 colnames(sce) <- paste0("Cell", seq_len(ncol(sce)))
 rownames(sce) <- scater::uniquifyFeatureNames(
-    ID = rowData(sce)$ENSEMBL_ID,
-    names = rowData(sce)$Symbol_TENx
+  ID = rowData(sce)$ENSEMBL_ID,
+  names = rowData(sce)$Symbol_TENx
 )
 head(rownames(sce))
 ```
@@ -108,7 +108,7 @@ In order to extract the most informative genes, we first model the mean-variance
 
 ```{r mgv}
 dec <- scran::modelGeneVar(sce)
-top.dec <- dec[order(dec$bio, decreasing = TRUE), ] 
+top.dec <- dec[order(dec$bio, decreasing = TRUE), ]
 head(top.dec)
 ```
 
@@ -135,13 +135,17 @@ clusters <- igraph::cluster_walktrap(snn.gr)
 sce$Cluster <- factor(clusters$membership)
 table(sce$Cluster)
 
-markers <- scran::findMarkers(sce, groups = sce$Cluster,
-                              test.type = "t",
-                              direction = "up", pval.type = "all")
+markers <- scran::findMarkers(sce,
+  groups = sce$Cluster,
+  test.type = "t",
+  direction = "up", pval.type = "all"
+)
 for (i in names(markers)) {
-    rowData(sce)[, paste0("FDR_cluster", i)] <- 
-        markers[[i]]$FDR[match(rownames(sce), 
-                               rownames(markers[[i]]))]
+  rowData(sce)[, paste0("FDR_cluster", i)] <-
+    markers[[i]]$FDR[match(
+      rownames(sce),
+      rownames(markers[[i]])
+    )]
 }
 sce
 ```
@@ -160,9 +164,11 @@ Here we assign the cell type according to the main classification scheme
 (this includes `r knitr::combine_words(names(table(ref_monaco$label.main)))`)
 
 ```{r annomain}
-pred_monaco_main <- SingleR(test = sce, 
-                            ref = ref_monaco, 
-                            labels = ref_monaco$label.main)
+pred_monaco_main <- SingleR(
+  test = sce,
+  ref = ref_monaco,
+  labels = ref_monaco$label.main
+)
 table(pred_monaco_main$labels)
 sce$labels_main <- pred_monaco_main$labels
 ```
@@ -170,9 +176,11 @@ sce$labels_main <- pred_monaco_main$labels
 We do something similar with a more fine-grained classification, this time including the cell subtypes (e.g., for `r sort(unique(ref_monaco$label.main))[1]`, the subtypes would include `r knitr::combine_words(names(table((ref_monaco$label.main), (ref_monaco$label.fine))[1, ])[which(table((ref_monaco$label.main), (ref_monaco$label.fine))[1,] > 0)])`)
 
 ```{r annofine}
-pred_monaco_fine <- SingleR(test = sce, 
-                            ref = ref_monaco, 
-                            labels = ref_monaco$label.fine)
+pred_monaco_fine <- SingleR(
+  test = sce,
+  ref = ref_monaco,
+  labels = ref_monaco$label.fine
+)
 table(pred_monaco_fine$labels)
 sce$labels_fine <- pred_monaco_fine$labels
 ```
@@ -180,9 +188,11 @@ sce$labels_fine <- pred_monaco_fine$labels
 Similarly, we use the information contained in the cell ontology labels.
 
 ```{r annocl}
-pred_monaco_ont <- SingleR(test = sce, 
-                           ref = ref_monaco, 
-                           labels = ref_monaco$label.ont)
+pred_monaco_ont <- SingleR(
+  test = sce,
+  ref = ref_monaco,
+  labels = ref_monaco$label.ont
+)
 table(pred_monaco_ont$labels)
 sce$labels_ont <- pred_monaco_ont$labels
 ```
@@ -204,11 +214,15 @@ sce$cell_ontology_labels <- cl$name[pred_monaco_ont$labels]
 The next table shows the relationship between the coarse and fine grained assignments in the data at hand.
 
 ```{r compareanno}
-table(sce$labels_main,
-      sce$labels_fine)
+table(
+  sce$labels_main,
+  sce$labels_fine
+)
 
-table(sce$labels_main,
-      sce$cell_ontology_labels)
+table(
+  sce$labels_main,
+  sce$cell_ontology_labels
+)
 ```
 
 
@@ -220,13 +234,15 @@ We can launch an `r Biocpkg("iSEE")` instance for exploring this data set using 
 ```{r launchisee, message=FALSE}
 library("iSEE")
 
-if(interactive())
-   iSEE(sce)
+if (interactive()) {
+  iSEE(sce)
+}
 ```
 
 ```{r saveobj}
-saveRDS(sce, 
-        file = "datasets/sce_pbmc3k.RDS")
+saveRDS(sce,
+  file = "datasets/sce_pbmc3k.RDS"
+)
 
 sce_pbmc3k <- readRDS("datasets/sce_pbmc3k.RDS")
 ```
@@ -241,13 +257,13 @@ library("Seurat")
 # seurat_object <- as.Seurat(sce)
 
 seurat_object <- Seurat::CreateSeuratObject(
-  counts = as.matrix(counts(sce)), 
+  counts = as.matrix(counts(sce)),
   meta.data = as.data.frame(colData(sce))
 )
 
 seurat_object <- Seurat::SetAssayData(
-  object = seurat_object, 
-  slot = "data", 
+  object = seurat_object,
+  slot = "data",
   new.data = as.matrix(logcounts(sce))
 )
 
@@ -262,16 +278,18 @@ seurat_object <- ScaleData(seurat_object, features = all.genes)
 seurat_object <- RunPCA(seurat_object, features = VariableFeatures(seurat_object))
 seurat_object <- RunUMAP(seurat_object, dims = 1:10)
 
-saveRDS(seurat_object, 
-        file = "datasets/seurat_pbmc3k.RDS")
+saveRDS(seurat_object,
+  file = "datasets/seurat_pbmc3k.RDS"
+)
 
 sce_from_seurat <- Seurat::as.SingleCellExperiment(
   readRDS("datasets/seurat_pbmc3k.RDS")
 )
 sce_from_seurat
 
-if(interactive())
+if (interactive()) {
   iSEE(sce_from_seurat)
+}
 ```
 
 ### And where is my AnnData object?
@@ -282,14 +300,16 @@ library("zellkonverter")
 sce$Tissue_status <- NULL
 
 zellkonverter::writeH5AD(sce,
-                         file = "datasets/anndata_pbmc3k.h5ad",
-                         compression = "gzip")
-  
+  file = "datasets/anndata_pbmc3k.h5ad",
+  compression = "gzip"
+)
+
 sce_from_anndata <- zellkonverter::readH5AD(file = "datasets/anndata_pbmc3k.h5ad")
 sce_from_anndata
 
-if(interactive())
+if (interactive()) {
   iSEE(sce_from_anndata)
+}
 ```
 
 
@@ -346,13 +366,13 @@ rownames(seg) <- str_replace(rownames(seg), "\\.\\d+$", "")
 seg <- addIds(seg, "SYMBOL")
 seg <- addIds(seg, "GOALL", multiVals = "list")
 rownames(seg) <- scater::uniquifyFeatureNames(
-    ID = rownames(seg), names = rowData(seg)$SYMBOL
+  ID = rownames(seg), names = rowData(seg)$SYMBOL
 )
 
 ## Create a DESeqDataSet and filter lowly expressed genes
 dds <- DESeqDataSet(seg, design = ~ IFNg * SL1344)
 keep <- rowSums(counts(dds)) >= 10
-dds <- dds[keep,]
+dds <- dds[keep, ]
 
 dds
 
@@ -378,14 +398,17 @@ We test the interaction effect between IFNgamma and Salmonella exposure, to inve
 ## Run DESeq2
 dds <- DESeq2::DESeq(dds)
 DESeq2::resultsNames(dds)
-res <- DESeq2::results(dds, name = "IFNgTRUE.SL1344TRUE", 
-                       lfcThreshold = 0)
+res <- DESeq2::results(dds,
+  name = "IFNgTRUE.SL1344TRUE",
+  lfcThreshold = 0
+)
 
 ## Embed the contrast results obtained from DESeq2 into the SCE
 stopifnot(rownames(res) == rownames(sce_macrophage))
-sce_macrophage <- embedContrastResults(res, 
-                            sce_macrophage, 
-                            name = "IFNgTRUE.SL1344TRUE.DESeq2")
+sce_macrophage <- embedContrastResults(res,
+  sce_macrophage,
+  name = "IFNgTRUE.SL1344TRUE.DESeq2"
+)
 
 sce_macrophage
 
@@ -400,10 +423,11 @@ tt <- topTable(fit, coef = ncol(design), number = Inf, sort.by = "none")
 
 ## Embed the results obtained from limma into the SCE
 stopifnot(rownames(tt) == rownames(sce_macrophage))
-sce_macrophage <- embedContrastResults(tt, 
-                            sce_macrophage, 
-                            name = "IFNgTRUE.SL1344TRUE.limma", 
-                            class = "limma")
+sce_macrophage <- embedContrastResults(tt,
+  sce_macrophage,
+  name = "IFNgTRUE.SL1344TRUE.limma",
+  class = "limma"
+)
 
 sce_macrophage
 
@@ -416,9 +440,10 @@ rowData(sce_macrophage)$iSEEde
 We also run `r Biocpkg("fgsea")` to perform a gene set enrichment analysis of GO terms, based on the `DESeq2` results obtained above.
 
 ```{r runfgsea}
-## Extract GO term composition 
-pathways <- select(org.Hs.eg.db, keys(org.Hs.eg.db, "SYMBOL"), c("GOALL"), 
-                   keytype = "SYMBOL")
+## Extract GO term composition
+pathways <- select(org.Hs.eg.db, keys(org.Hs.eg.db, "SYMBOL"), c("GOALL"),
+  keytype = "SYMBOL"
+)
 pathways <- subset(pathways, ONTOLOGYALL == "BP")
 pathways <- unique(pathways[, c("SYMBOL", "GOALL")])
 pathways <- split(pathways$SYMBOL, pathways$GOALL)
@@ -430,22 +455,25 @@ length(pathways)
 feature_stats <- res$stat
 names(feature_stats) <- rownames(res)
 set.seed(42)
-fgseaRes <- fgsea(pathways = pathways, 
-                  stats = feature_stats,
-                  minSize = 15,
-                  maxSize = 200)
+fgseaRes <- fgsea(
+  pathways = pathways,
+  stats = feature_stats,
+  minSize = 15,
+  maxSize = 200
+)
 fgseaRes <- fgseaRes[order(pval), ]
 
 head(fgseaRes)
 
 ## Embed pathway analysis results in the SCE object
-sce_macrophage <- embedPathwaysResults(fgseaRes, 
-                            sce_macrophage, 
-                            name = "IFNgTRUE.SL1344TRUE.DESeq2.fgsea", 
-                            class = "fgsea", 
-                            pathwayType = "GO", 
-                            pathwaysList = pathways, 
-                            featuresStats = feature_stats)
+sce_macrophage <- embedPathwaysResults(fgseaRes,
+  sce_macrophage,
+  name = "IFNgTRUE.SL1344TRUE.DESeq2.fgsea",
+  class = "fgsea",
+  pathwayType = "GO",
+  pathwaysList = pathways,
+  featuresStats = feature_stats
+)
 
 sce_macrophage
 ## Again: where's the data stored?
@@ -454,20 +482,21 @@ metadata(sce_macrophage)$iSEEpathways
 ## Add details about the GO terms
 ## These will be displayed in the application
 go_details <- function(x) {
-    info <- select(GO.db, x, c("TERM", "ONTOLOGY", "DEFINITION"), "GOID")
-    html <- list(p(strong(info$GOID), ":", info$TERM, paste0("(", info$ONTOLOGY, ")")))
-    if (!is.na(info$DEFINITION)) {
-        html <- append(html, list(p(info$DEFINITION)))
-    }
-    tagList(html)
+  info <- select(GO.db, x, c("TERM", "ONTOLOGY", "DEFINITION"), "GOID")
+  html <- list(p(strong(info$GOID), ":", info$TERM, paste0("(", info$ONTOLOGY, ")")))
+  if (!is.na(info$DEFINITION)) {
+    html <- append(html, list(p(info$DEFINITION)))
+  }
+  tagList(html)
 }
 
 ## Define the mapping from GO terms to gene IDs
 map_GO <- function(pathway_id, se) {
-    pathway_symbol <- mapIds(org.Hs.eg.db, pathway_id, "SYMBOL", 
-                             keytype = "GOALL", multiVals = "CharacterList")[[pathway_id]]
-    pathway_rownames <- rownames(se)[rowData(se)$SYMBOL %in% pathway_symbol]
-    pathway_rownames
+  pathway_symbol <- mapIds(org.Hs.eg.db, pathway_id, "SYMBOL",
+    keytype = "GOALL", multiVals = "CharacterList"
+  )[[pathway_id]]
+  pathway_rownames <- rownames(se)[rowData(se)$SYMBOL %in% pathway_symbol]
+  pathway_rownames
 }
 
 ## Register the pathway mapping information into the SCE object

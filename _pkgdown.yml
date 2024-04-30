@@ -14,3 +14,29 @@ navbar:
   right:
    - icon: fa-github
      href: https://github.com/imbeimainz/iUSEiSEE
+  components:
+    home:
+      icon: fas fa-home fa-lg
+      href: index.html
+    reference:
+      text: Reference
+      href: reference/index.html
+    github:
+      icon: fab fa-github fa-lg
+      href: https://github.com/imbeimainz/iUSEiSEE/
+    articles:
+      text: Workshop sessions
+      menu:
+      - text: 00. About this workshop
+        href: articles/about_this_workshop_00.html
+      - text: 01. iUSEiSEE in a glance
+        href: articles/iUSEiSEE_01.html
+      - text: 02. An overview on iSEE
+        href: articles/iSEE_overview_02.html
+      - text: 03. The iSEE cookbook
+        href: articles/iSEE_quickrecipes_03.html
+      - text: 04. Bonus iSEE content
+        href: articles/bonus_content_04.html
+
+
+

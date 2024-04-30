@@ -1,4 +1,4 @@
-<img src="vignettes/iSEE.png" align="right" alt="" width="120" />
+<img src="vignettes/iSEE.png" align="right" alt="" width="240" />
 
 # iUSEiSEE
 
@@ -6,13 +6,6 @@ The `iSEE` package is a flexible, powerful and extendible application to explore
 
 `iSEE` enables a multitude of panels to gain in-depth insight in your data; it does so combining interactivity and reproducibility, and providing an ideal companion to CELLxGENE for deeper dives into data.
 
-<p align="center">
-https://iSEE.github.io/iSEEdemo
-<img src="vignettes/images/qrcode_iSEEdemo_rendered.png" alt="" width="200" />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-https://github.com/iSEE/iSEEdemo
-<img src="vignettes/images/qrcode_iSEEdemo.png" alt="" width="200" />
-</p>
 
 ## How to install
 
@@ -23,12 +16,12 @@ remotes::install_github("imbeimainz/iUSEiSEE",
                         build_vignettes = TRUE)
 ```
 
-## How to run this demo
+## How to run this workshop
 
 - Open the `iUSEiSEE.Rproj` project file
 - Navigate to the `vignettes` folder
 - Make sure the datasets are included in the `datasets` subfolder (if using Seurat or AnnData)
-- Open the `iUSEiSEE.Rmd` Rmarkdown file (and the other Rmd files) and execute its content live!
+- Open the individual Rmarkdown files and execute their content live!
 
 ## Schedule
 

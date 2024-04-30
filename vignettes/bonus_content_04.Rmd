@@ -66,6 +66,10 @@ TODO
 
 Najla :)
 
+## Multi-sample, multi-condition datasets: how to let iSEE shine
+
+
+
 ## iSEEhub & iSEEindex
 
 

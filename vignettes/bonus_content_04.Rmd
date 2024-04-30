@@ -223,7 +223,55 @@ SCREENSHOT("images/isee_de_setup2.png", delay = 30)
 
 ## Tours: help and storytelling
 
-TODO
+Tours can be an essential tool to satisfy two needs:
+
+* Helping users to navigate the UI
+* Telling a story on an existing configuration
+
+A simple example can be demonstrated with this configuration:
+
+```{r}
+sce_location <- system.file("datasets", "sce_pbmc3k.RDS", package = "iUSEiSEE")
+sce_location
+sce <- readRDS(sce_location)
+
+initial_for_tour <- list(
+  ReducedDimensionPlot(PanelWidth = 3L), 
+  RowDataTable(PanelWidth = 3L),
+  FeatureAssayPlot(PanelWidth = 3L),
+  ComplexHeatmapPlot(PanelWidth = 3L)
+)
+```
+
+This next chunk defines the **steps** of the tour, specified by an anchoring point (`element`) and the content of that step (`intro`).
+
+```{r}
+tour <- data.frame(
+  element = c(
+    "#Welcome",
+    "#ReducedDimensionPlot1",
+    "#RowDataTable1",
+    "#ComplexHeatmapPlot1",
+    "#FeatureAssayPlot1",
+    "#ReducedDimensionPlot1",
+    "#Conclusion"),
+  intro = c(
+    "Welcome to this tour!",
+    "This is the a reduced dimension plot",
+    "and this is a table",
+    "Why not a heatmap?",
+    "... and now we look at one individual feature.",
+    "Back to the a reduced dimension plot...",
+    "Thank you for taking this tour!"),
+  stringsAsFactors = FALSE
+)
+
+app <- iSEE(sce, initial = initial_for_tour, tour = tour)
+```
+
+```{r, echo=FALSE}
+SCREENSHOT("images/isee_simpletour.png", delay = 20)
+```
 
 # Session info {-}
 

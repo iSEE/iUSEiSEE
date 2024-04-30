@@ -35,7 +35,7 @@ suppressPackageStartupMessages({
 
 # Description
 
-The iSEE package is a flexible, powerful and extendible application to explore any dataset stored in SummarizedExperiment objects, including single cell and spatially resolved data. 
+The iSEE package [@Rue-Albrecht2018-isee] is a flexible, powerful and extendible application to explore any dataset stored in SummarizedExperiment objects, including single cell and spatially resolved data. 
 
 iSEE enables a multitude of panels to gain in-depth insight in your data; it does so combining interactivity and reproducibility, and providing an ideal companion to CELLxGENE for deeper dives into data.
 
@@ -86,3 +86,5 @@ Participants will be able to follow along in the live coding parts of the demo.
 * Practice interactive visualization over a single-cell RNA-sequencing workflow
 * Imagine use cases and future developments for interactive visualization as part of computational workflows
 * Design and create iSEE instances for collections of datasets
+
+# References {-}

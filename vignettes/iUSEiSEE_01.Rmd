@@ -38,7 +38,7 @@ suppressPackageStartupMessages({
 
 # `iUSEiSEE`: a masterclass-level workshop on iSEE
 
-The iSEE package is a flexible, powerful and extendible application to explore any dataset stored in SummarizedExperiment objects, including single cell and spatially resolved data. 
+The iSEE package [@Rue-Albrecht2018-isee] is a flexible, powerful and extendible application to explore any dataset stored in SummarizedExperiment objects, including single cell and spatially resolved data. 
 
 This workshop and associated workshop package contain all the materials you might need to have a full experience and learn how to use iSEE, hands on, starting from the basics and making your way up to the more advanced features.
 

@@ -43,7 +43,7 @@ SCREENSHOT <- function(x, ...) knitr::include_graphics(x)
 
 # Moar iSEE things
 
-This vignette contains some examples on even more `iSEE`-things.
+This vignette contains some examples on even more `iSEE`-things [@Rue-Albrecht2018-isee].
 
 We will use the following packages throughout its content (make sure to have them installed if you want to run it interactively)
 
@@ -119,7 +119,7 @@ SCREENSHOT("images/iseeindex.png", delay=20)
 ```
 
 
-A more elaborate example is available at [https://rehwinkellab.shinyapps.io/ifnresource/](https://rehwinkellab.shinyapps.io/ifnresource/). 
+A more elaborate example (referring to the work in [@Rigby2023]) is available at [https://rehwinkellab.shinyapps.io/ifnresource/](https://rehwinkellab.shinyapps.io/ifnresource/). 
 The source can be found at [https://github.com/kevinrue/IFNresource](https://github.com/kevinrue/IFNresource). 
 
 <!-- Possible actions: -->
@@ -138,6 +138,8 @@ Potential use cases can include:
 ## iSEEde and iSEEpathways
 
 iSEEde and iSEEpathways: ideal companions for exploring DE results
+
+We first load the processed `macrophage` data (derived from the work of [@Alasoo2018]) - on this, we already ran the workflow of `DESeq2` [@Love2014] to identify the differentially expressed genes.
 
 ```{r}
 macrophage_location <- system.file("datasets", "sce_macrophage_readytouse.RDS", 

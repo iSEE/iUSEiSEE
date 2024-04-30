@@ -43,7 +43,7 @@ SCREENSHOT <- function(x, ...) knitr::include_graphics(x)
 
 # Introduction
 
-This vignette consists of a series of (independent) hands-on recipes, aimed at exploring the capabilities of `r Biocpkg("iSEE")` both interactively and programmatically.
+This vignette consists of a series of (independent) hands-on recipes, aimed at exploring the capabilities of `r Biocpkg("iSEE")` [@Rue-Albrecht2018-isee] both interactively and programmatically.
 Each recipe consists of a short task and a screen shot of the desired appearance of the app instance that should be created. 
 For each recipe, we provide a set of hints, as well as detailed instructions on how to solve the task both interactively (by clicking in the app) and programmatically (by directly setting up and launching the desired app instance).
 

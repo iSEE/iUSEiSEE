@@ -43,7 +43,7 @@ SCREENSHOT <- function(x, ...) knitr::include_graphics(x)
 
 # Introduction
 
-This vignette provides an overview of the graphical interface of `r Biocpkg("iSEE")` applications.
+This vignette provides an overview of the graphical interface of `r Biocpkg("iSEE")` applications [@Rue-Albrecht2018-isee].
 To follow along, make sure that you launch the default `r Biocpkg("iSEE")` instance as described in the next code block at the start of the [following section](#default-app).
 
 Note that in the default configuration, the panels do not look exactly like the ones shown in the screenshots that you will see below.

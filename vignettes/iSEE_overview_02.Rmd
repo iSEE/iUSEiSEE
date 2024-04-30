@@ -440,6 +440,108 @@ A BibTeX entry for LaTeX users is:
 }
 ```
 
+# Modes and additional panels
+
+The `r Biocpkg("iSEEu")` ("iSEE universe") Bioconductor package defines additional custom panels and predefined 'modes' (startup configurations) that may be useful for specific applications. 
+Here we illustrate the use of the _reduced dimension_ mode, which will start an application with one reduced dimension panel for each reduced dimension representation in the input object.
+
+```{r}
+library("iSEEu")
+app <- modeReducedDim(sce)
+```
+
+```{r, eval = FALSE}
+shiny::runApp(app)
+```
+
+```{r, echo=FALSE, out.width = '100%'}
+SCREENSHOT("screenshots/isee-iseeu-modereduceddim.png", delay=10)
+```
+
+Furthermore, since `r Biocpkg("iSEE")` version 2.0.0, users can leverage the implementation of panels as a hierarchy of S4 classes to rapidly extend the framework and develop new types of panels with virtually unlimited freedom of functionality.
+In this framework, new panel types can be readily integrated in apps alongside built-in panel types and immediately benefit of most panel functionality with minimal effort, including the capacity to transmit selections to and from other panels.
+New panels may be implemented by extending the core virtual class `Panel` directly for full control over the user interface and reactive observers;
+alternatively, it is often desirable for developers to inherit from one of the concrete panel classes to get most of the essential functionality from the parent class "for free".
+
+Use cases demonstrating the implementation of new panels with various levels of complexity are available in the [Extending iSEE](https://isee.github.io/iSEE-book/) bookdown.
+For example, the _Hexagonal reduced dimension plot_ - implemented in the `r Biocpkg("iSEEu")` package - demonstrates an alternative to the downsampling strategy, by summarizing data points into hexagonal bins.
+
+```{r}
+app <- iSEE(sce, initial = list(
+  ReducedDimensionPlot(PanelWidth = 6L),
+  ReducedDimensionHexPlot(PanelWidth = 6L)
+))
+```
+
+```{r, eval = FALSE}
+shiny::runApp(app)
+```
+```{r, echo=FALSE, out.width = '100%'}
+SCREENSHOT("screenshots/isee-iseeu-modereduceddimhex.png", delay=10)
+```
+
+
+Another useful mode you can use with your data, especially if using iSEE for mass cytometry data, would be the `modeGating`. 
+This launches an app preconfigured with multiple chain-linked feature expression plots for interactive data exploration.
+
+```{r}
+# Select top variable genes ----
+plot_count <- 6
+rv <- rowVars(assay(sce, "logcounts"))
+top_var <- head(order(rv, decreasing=TRUE), plot_count*2)
+top_var_genes <- rownames(sce)[top_var]
+
+plot_features <- data.frame(
+  x=head(top_var_genes, plot_count),
+  y=tail(top_var_genes, plot_count),
+  stringsAsFactors=FALSE
+)
+
+# launch the app itself ----
+
+app <- modeGating(sce, 
+                  plotAssay = "logcounts",
+                  features = plot_features)
+```
+
+```{r, eval = FALSE}
+shiny::runApp(app)
+```
+
+```{r, echo=FALSE, out.width = '100%'}
+SCREENSHOT("screenshots/isee-iseeu-modegating.png", delay=20)
+```
+
+Interestingly, iSEEu also has a set of extra panels that can come in handy in different situations.
+For example, `iSEEu::AggregatedDotPlot` implements an aggregated dot plot where each feature/group combination is represented by a dot. 
+The color of the dot scales with the mean assay value across all samples for a given group, while the size of the dot scales with the proportion of non-zero values across samples in that group.
+This can be an alternative to a heatmap, and an example can be seen in the chunks below:
+
+```{r}
+app <- iSEE(
+  sce, 
+  initial = list(
+    AggregatedDotPlot(
+      Assay = "logcounts",
+      ColumnDataLabel = "labels_main",
+      CustomRowsText = top_var_genes
+    )
+    
+  )
+)
+```
+
+```{r, echo=FALSE, out.width = '100%'}
+SCREENSHOT("screenshots/isee-iseeu-aggrodotplot.png", delay=20)
+```
+
+
+New panels and modes may be defined in independent _R_ packages that declare `Imports: iSEE` in their DESCRIPTION file, and distributed online to create an "iSEE-verse" of interoperable packages for interactive visualization, akin to the `r CRANpkg('tidyverse')` collection of R packages for data science.
+If you have ideas about additional panels and/or modes that might be useful, we welcome issues and pull requests at https://github.com/iSEE/iSEEu.
+
+
+
+
 # Additional resources {#additional-resources}
 
 A lot of materials have been developed, from the first use of `r Biocpkg("iSEE")` to contributions of new panel classes in separate downstream packages.
@@ -449,7 +551,7 @@ A lot of materials have been developed, from the first use of `r Biocpkg("iSEE")
 * Publication (F1000Research, 2018): https://f1000research.com/articles/7-741/v1
 * Deployed examples: https://marionilab.cruk.cam.ac.uk/, code at https://github.com/iSEE/iSEE2018
   * Further deployments in the https://github.com/iSEE/iSEE_instances repo
-  * `r Biocpkg("iSEE")` in production: http://www.teichlab.org/singlecell-treg
+  * More and more examples: https://isee.github.io/apps.html
 * Custom panel examples: https://github.com/iSEE/iSEE_custom
 * Development version (bug reports etc): https://github.com/iSEE/iSEE
 

@@ -84,9 +84,11 @@ p>.fas {
   color: #0092ac;
 }
 
+/*
 img {
   width: auto;
 }
+*/
 
 .snowflake {
   color: lightblue;
@@ -106,5 +108,5 @@ img {
 }
 .demo a{
   font-family: 'Raleway', sans-serif;
-color: #000;		
+color: #000;
 }

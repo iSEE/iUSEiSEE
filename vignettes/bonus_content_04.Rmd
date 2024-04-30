@@ -134,11 +134,15 @@ We can check the initial's content, or how the included panels are linked betwee
 
 ```{r}
 # display a graphical representation of the initial configuration, where the panels are identified by their corresponding colors
-view_initial_tiles(initial = initial)
+view_initial_tiles(initial = initial_1)
 # display a network visualization for the panels
-view_initial_network(initial, plot_format = "igraph")
-# another alternative for network visualization
-view_initial_network(initial, plot_format = "visNetwork")
+view_initial_network(initial_1, plot_format = "igraph")
+```
+
+Another alternative for network visualization would use the interactive widget provided by `visNetwork`:
+
+```{r}
+view_initial_network(initial_1, plot_format = "visNetwork")
 ```
 
 It is also possible to combine multiple initials into one:

@@ -440,6 +440,7 @@ A BibTeX entry for LaTeX users is:
 }
 ```
 
+
 # Modes and additional panels
 
 The `r Biocpkg("iSEEu")` ("iSEE universe") Bioconductor package defines additional custom panels and predefined 'modes' (startup configurations) that may be useful for specific applications. 
@@ -455,7 +456,7 @@ shiny::runApp(app)
 ```
 
 ```{r, echo=FALSE, out.width = '100%'}
-SCREENSHOT("screenshots/isee-iseeu-modereduceddim.png", delay=10)
+SCREENSHOT("images/isee-iseeu-modereduceddim.png", delay=10)
 ```
 
 Furthermore, since `r Biocpkg("iSEE")` version 2.0.0, users can leverage the implementation of panels as a hierarchy of S4 classes to rapidly extend the framework and develop new types of panels with virtually unlimited freedom of functionality.
@@ -477,7 +478,7 @@ app <- iSEE(sce, initial = list(
 shiny::runApp(app)
 ```
 ```{r, echo=FALSE, out.width = '100%'}
-SCREENSHOT("screenshots/isee-iseeu-modereduceddimhex.png", delay=10)
+SCREENSHOT("images/isee-iseeu-modereduceddimhex.png", delay=10)
 ```
 
 
@@ -509,7 +510,7 @@ shiny::runApp(app)
 ```
 
 ```{r, echo=FALSE, out.width = '100%'}
-SCREENSHOT("screenshots/isee-iseeu-modegating.png", delay=20)
+SCREENSHOT("images/isee-iseeu-modegating.png", delay=20)
 ```
 
 Interestingly, iSEEu also has a set of extra panels that can come in handy in different situations.
@@ -532,7 +533,7 @@ app <- iSEE(
 ```
 
 ```{r, echo=FALSE, out.width = '100%'}
-SCREENSHOT("screenshots/isee-iseeu-aggrodotplot.png", delay=20)
+SCREENSHOT("images/isee-iseeu-aggrodotplot.png", delay=20)
 ```
 
 

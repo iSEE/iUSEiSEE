@@ -10,8 +10,8 @@ output:
 vignette: >
   %\VignetteIndexEntry{04. Bonus content}
   %\VignettePackage{iUSEiSEE}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
   chunk_output_type: console
 bibliography: iUSEiSEErefs.bib
@@ -60,9 +60,87 @@ TODO
 
 ## iSEEfier
 
-TODO
+Let's say we are interested in visualizing the expression of some specific marker genes side by side, or maybe we created different initial states with custom panels separately but would like to visualize them in the same instance. We previously learned that we can do a lot of this by running the command:
 
-Najla :)
+```{r, eval=FALSE}
+# don't run
+iSEE(sce)
+```
+
+then add/remove panels to our need. This can involve multiple steps (selecting the gene, color by a specific `coldData`...)
+For that we can use the `iSEEfier` package, which is a faster way to start (or if you will, fire-up) an `iSEE` instance with few lines of code, avoiding the tedious way of setting up every `iSEE` panel individually.
+In this chapter we will illustrate a simple example of how to use `iSEEfier`.
+We will use the same pbmc3k data we worked with during this workshop.
+
+```{r}
+# load the data into the environment
+sce <- readRDS(
+  file = system.file("datasets", "sce_pbmc3k.RDS", package = "iUSEiSEE")
+)
+
+sce
+```
+
+For example, we can be interested in visualizing the expression of *GZMB*, *TGFB*, and *CD28* genes. We start by providing a couple of parameters:
+
+```{r}
+# define the list of genes
+feature_list <- c("GZMB", "TGFB1", "CD28")
+# define the cluster/cell type 
+cluster <- "labels_main"
+# define the group/condition
+#group <- ""
+
+# create an initial state with iSEEinit
+initial <- iSEEfier::iSEEinit(sce,
+                              features = feature_list,
+                              clusters = cluster,
+                              add_markdown_panel = T)
+```
+
+This will create an initial configuration that can be passed as an argument to the `iSEE()` call
+
+```{r}
+iSEE::iSEE(sce,initial = initial)
+```
+
+While we are visualizing the expression of these genes, we might want to take some notes (gene X is more expressed in a certain cell type/cluster than some others...) For this, we used the argument `add_markdown_panel = TRUE`. It will display a `MarkdownBoard` where we can note our observations.
+
+We can also use the argument `add_dynamicTable_panel=TRUE` to add another custom panel to display the maker genes of certain cluster/cell type.
+
+```{r}
+feature_list1 <- c("CD74","CD79B")
+initial1 <- iSEEfier::iSEEinit(sce,
+                              features = feature_list1,
+                              clusters = cluster,
+                              add_markdown_panel = TRUE,
+                              add_dynamicTable_panel = TRUE)
+```
+
+```{r}
+iSEE::iSEE(sce,initial = initial1)
+```
+
+We can create different initial configurations and see what are the included panels, or how these panels are linked between each other without running the app `view_initial_tiles()` and `view_initial_network()`:
+
+```{r}
+library("ggplot2")
+library("visNetwork")
+view_initial_tiles(initial = initial)
+view_initial_network(initial, plot_format = "igraph")
+# another alternative for network visualization
+view_initial_network(initial, plot_format = "visNetwork")
+```
+
+It is also possible to combine multiple initials into one:
+
+```{r}
+merged_config <- glue_initials(initial,initial1)
+# check out the content of merged_config
+view_initial_tiles(initial = merged_config)
+```
+
+`?function()` is always your friend whenever you need further documentation on a certain function and how to use it.
 
 ## iSEEindex
 

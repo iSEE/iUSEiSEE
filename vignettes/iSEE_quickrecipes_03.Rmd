@@ -47,7 +47,7 @@ This vignette consists of a series of (independent) hands-on recipes, aimed at e
 Each recipe consists of a short task and a screen shot of the desired appearance of the app instance that should be created. 
 For each recipe, we provide a set of hints, as well as detailed instructions on how to solve the task both interactively (by clicking in the app) and programmatically (by directly setting up and launching the desired app instance).
 
-For a general overview of the default `iSEE` panels, we refer to the [overview vignette](overview.html). 
+For a general overview of the default `iSEE` panels, we refer to the [overview vignette](iSEE_overview_02.html). 
 For all the details about the panel classes and the associated slots, we refer to the help pages for the respective panel class (e.g., `?ReducedDimensionPlot`).
 
 # Prepare the session
@@ -78,7 +78,7 @@ Using the `pbmc3k` data set, create an app that contains only a reduced dimensio
 <li>Panels can be added, removed and resized via the `Organization` button in the top right corner of the app.</li>
 <li>To pre-specify the panels to be included in the app, use the `initial` argument to `iSEE()`.</li>
 <li>You can remind yourself of the list of slot names available for each panel class and their respective value using the `str()` function on any instance of a panel object, e.g. `str(ReducedDimensionPlot())`.</li>
-<li>For more information about the different types of panels, see the [overview vignette](overview.html) or the help pages for the respective panel classes.</li>
+<li>For more information about the different types of panels, see the [overview vignette](iSEE_overview_02.html) or the help pages for the respective panel classes.</li>
 </ul>
 </details>
 

@@ -175,7 +175,7 @@ view_initial_tiles(initial = merged_config)
 
 We will take another dataset for this, from a recent work of Bartneck and colleagues ([@Bartneck2023]).
 
-You can find the dataset in the `sce_merged_allsets.RDS` object - let's see together how we can access that.
+You can find the dataset in the `sce_merged_allsets.RDS` object - let's see together how we can access that --> https://seafile.rlp.net/d/c7f1335a6248427d97da/.
 
 Once the data is available locally, we load it in the R session and simply start iSEE on it.
 

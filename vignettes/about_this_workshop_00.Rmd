@@ -35,15 +35,15 @@ suppressPackageStartupMessages({
 
 # Description
 
-The iSEE package [@Rue-Albrecht2018-isee] is a flexible, powerful and extendible application to explore any dataset stored in SummarizedExperiment objects, including single cell and spatially resolved data. 
+The iSEE package [@Rue-Albrecht2018-isee] is a flexible, powerful and extendible application to explore any dataset stored in SummarizedExperiment objects, including single cell, spatially resolved data, but also bulk data (transcriptomics and proteomics being just two examples of what can efficiently fit in there!).
 
-iSEE enables a multitude of panels to gain in-depth insight in your data; it does so combining interactivity and reproducibility, and providing an ideal companion to CELLxGENE for deeper dives into data.
+iSEE enables a multitude of panels to gain in-depth insight in your data; it does so combining interactivity and reproducibility, and providing an ideal companion to other tools (such as CELLxGENE) for deeper dives into data.
 
-This package demo provides an overview of the functionality of the `r Biocpkg("iSEE")` Bioconductor package, and is intended as an appetizer to more.
+This package provides a complete overview of the functionality of the `r Biocpkg("iSEE")` Bioconductor package, and is intended as some kind of "masterclass-level" workshop - indeed, the material is enough to cover a full-day workshop on iSEE.
 
 # Pre-requisites
 
-* Familiarity with single-cell sequencing data (ideally scRNA-seq)
+* Familiarity with bulk or single-cell sequencing data (ideally scRNA-seq)
 * Familiarity with the SummarizedExperiment/SingleCellExperiment class, or 
 alternatively the Seurat or AnnData frameworks - basically, any of the widely used 
 ecosystem for working with/storing/processing single cell data
@@ -51,23 +51,27 @@ ecosystem for working with/storing/processing single cell data
 
 # Participation
 
-Participants will be able to follow along in the live coding parts of the demo.
+Participants will be able (and heartily invited) to follow along in the live coding parts of the workshop. This is very much intended as a hands-on learning resource.
 
 # _R_ / _Bioconductor_ packages used
 
 * `iSEE`: https://bioconductor.org/packages/iSEE
+* `iSEEu`: https://bioconductor.org/packages/iSEEu
 * `iSEEde`: https://bioconductor.org/packages/iSEEde
-* `iSEEindex`: https://bioconductor.org/packages/iSEEindex
 * `iSEEpathways`: https://bioconductor.org/packages/iSEEpathways
 * `iSEEhub`: https://bioconductor.org/packages/iSEEhub
+* `iSEEindex`: https://bioconductor.org/packages/iSEEindex
+* `iSEEfier`: https://bioconductor.org/packages/iSEEfier
 
-<!-- ## Time outline -->
 
-<!-- | Activity                                        | Time | -->
-<!-- |-------------------------------------------------|------| -->
-<!-- | Overview of iSEE                                | 20m  | -->
-<!-- | Building up your own iSEE instance              | 10m  | -->
-<!-- | New and extra features in the iSEE ecosystem    | 15m  | -->
+# Outline of the course
+
+After a short presentation, we will start going through the material in the `vignettes` folder:
+
+* [iUSEiSEE](iUSEiSEE_01.Rmd) - a tl;dr version of the whole, which can be used as a compact summary of the content
+* [Overview on iSEE](iSEE_overview_02.Rmd) - a detailed overview on iSEE and its functionality
+* [The iSEE cookbook](iSEE_quickrecipes_03.Rmd) - a set of self-contained recipes with simple-to-advanced tasks one can complete within iSEE
+* [Bonus advanced content around iSEE](bonus_content_04.Rmd) - some additional content, focused on some advanced or more specific tasks to carry out with iSEE
 
 # Workshop goals and objectives
 

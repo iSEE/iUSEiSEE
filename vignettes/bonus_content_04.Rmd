@@ -51,16 +51,27 @@ We will use the following packages throughout its content (make sure to have the
 library("iSEE")
 library("iSEEfier")
 # library("iSEEu")
+
+library("iSEEde")
+library("iSEEpathways")
+
+library("iSEEhub")
 library("iSEEindex")
 ```
 
 
 
-## iSEE a challenge: let's reproduce any figure!
+# iSEE a challenge: let's reproduce any figure!
 
-TODO
+We'd like to open up a challenge, with some simple rules:
 
-## iSEEfier
+* You search a nice graphical representation of data
+* We try to reproduce this within `iSEE` - as far as this is possible!
+
+Let's suggest a couple of figure/figure panels!  
+Enter a couple of suggestions in this GSheet: https://docs.google.com/spreadsheets/d/1poE713rXqzfNdPcKAPN2AxJYXhaxy8GwgAjRsk_UiK8/edit?usp=sharing
+
+# iSEEfier
 
 Let's say we are interested in visualizing the expression of a list of specific marker genes in one view, or maybe we created different initial states separately, but would like to visualize them in the same instance. As we previously learned, we can do a lot of these tasks by running the command:
 
@@ -69,9 +80,11 @@ Let's say we are interested in visualizing the expression of a list of specific 
 iSEE(sce)
 ```
 
-then add/remove the panels to our need. This can involve multiple steps (selecting the gene of interest, color by a specific `colData`...), or probably even write multiple lines of code.
-For that we can use the `iSEEfier` package, which streamlines the process of starting (or if you will, firing up) an `iSEE` instance with a small chunk of code, avoiding the tedious way of setting up every `iSEE` panel individually.
-In this chapter we will illustrate a simple example of how to use `iSEEfier`. We will use the same pbmc3k data we worked with during this workshop.
+Then, add/remove the panels to our need. This can involve multiple steps (selecting the gene of interest, color by a specific `colData`...), or probably even write multiple lines of code.
+For that we can use the `r Biocpkg("iSEEfier")` package, which streamlines the process of starting (or if you will, firing up) an `iSEE` instance with a small chunk of code, avoiding the tedious way of setting up every `iSEE` panel individually.
+
+In this section, we will illustrate a simple example of how to use `r Biocpkg("iSEEfier")`. We will use the same pbmc3k data we worked with during this workshop.
+
 We start by loading the data:
 
 ```{r}
@@ -115,7 +128,8 @@ SCREENSHOT("images/isee-on-fier.png", delay = 30)
 ```
 
 
-While we are visualizing the expression of these genes, we might want to take some notes (gene X is more expressed in a certain cell type/cluster than some others, maybe we are trying to annotate the cells ourselves if the annotation wasn't available...) For this, we used the argument `add_markdown_panel = TRUE`. It will display a `MarkdownBoard` panel where we can note our observations without leaving the app.
+While we are visualizing the expression of these genes, we might want to take some notes (gene X is more expressed in a certain cell type/cluster than some others, maybe we are trying to annotate the cells ourselves if the annotation wasn't available...).  
+For this, we used the argument `add_markdown_panel = TRUE`. It will display a `MarkdownBoard` panel where we can note our observations without leaving the app.
 
 We can also use the argument `add_dynamicTable_panel=TRUE` to add another custom panel to display the maker genes of certain cluster/cell type.
 
@@ -157,14 +171,25 @@ view_initial_tiles(initial = merged_config)
 
 `?iSEEfier` is always your friend whenever you need further documentation on the package/a certain function and how to use it.
 
-## Multi-sample, multi-condition datasets: how to let iSEE shine
+# Multi-sample, multi-condition datasets: how to let iSEE shine
 
+We will take another dataset for this, from a recent work of Bartneck and colleagues ([@Bartneck2023]).
 
+You can find the dataset in the `sce_merged_allsets.RDS` object - let's see together how we can access that.
 
-## iSEEhub & iSEEindex
+Once the data is available locally, we load it in the R session and simply start iSEE on it.
 
+```{r eval=FALSE}
+library("iSEE")
+sce_bartneck <- readRDS("path/to/sce_merged_allsets.RDS")
+iSEE(sce_bartneck)
+```
 
-### iSEEhub: `iSEE`ing the ExperimentHub datasets
+For more about this work, please refer to the [original publication](https://www.frontiersin.org/articles/10.3389/fimmu.2023.1267866/full).
+
+# iSEEhub & iSEEindex
+
+## iSEEhub: `iSEE`ing the ExperimentHub datasets
 
 The `r Biocpkg("iSEEhub")` package provides a custom landing page for an `r Biocpkg("iSEE")` application interfacing with the Bioconductor `r Biocpkg("ExperimentHub")`. 
 The landing page allows users to browse the ExperimentHub, select a data set, download and cache it, and import it directly into an iSEE app.
@@ -185,7 +210,7 @@ SCREENSHOT("images/iseehub.png", delay = 20)
 <!-- select a dataset from DuoClustering -->
 <!-- start iSEE on that -->
 
-### iSEEindex: one instance of `iSEE` to explore them all
+## iSEEindex: one instance of `iSEE` to explore them all
 
 `r Biocpkg("iSEEindex")` provides an interface to **any** collection of data sets within a single iSEE web-application.  
 The main functionality of this package is to define a custom landing page allowing app maintainers to list a custom collection of data sets that users can select from and directly load objects into an iSEE web application.
@@ -226,7 +251,7 @@ Potential use cases can include:
 * An app to mirror and enhance the content of e.g. the cellxgene data portal
 * Got any ideas on how to use iSEE for such deployments?
 
-## iSEEde and iSEEpathways
+# iSEEde and iSEEpathways
 
 iSEEde and iSEEpathways: ideal companions for exploring DE results
 
@@ -244,7 +269,6 @@ library("iSEE")
 library("iSEEde")
 library("iSEEpathways")
 ```
-
 
 `r Biocpkg("iSEEde")` and `r Biocpkg("iSEEpathways")` are two new Bioconductor packages that provide `r Biocpkg("iSEE")` panels specifically aimed towards exploration of differential expression and pathway analysis results. 
 More precisely, `r Biocpkg("iSEEde")` provides the `VolcanoPlot`, `MAPlot`, `LogFCLogFCPlot` and `DETable` panels. 
@@ -312,7 +336,7 @@ SCREENSHOT("images/isee_de_setup2.png", delay = 30)
 <!-- usual iSEE magic: export code for the plots -->
 <!-- usual iSEE magic: export code for the panel configuration -->
 
-## Tours: help and storytelling
+# Tours: help and storytelling
 
 Tours can be an essential tool to satisfy two needs:
 

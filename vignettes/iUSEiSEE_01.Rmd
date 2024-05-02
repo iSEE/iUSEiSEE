@@ -62,7 +62,7 @@ To run the content presented in this demo, run this following chunk in your R en
 
 ```{r eval = FALSE}
 library("BiocManager")
-BiocManager::install("imbeimainz/iUSEiSEE")
+BiocManager::install("imbeimainz/iUSEiSEE", dependencies = TRUE, build_vignettes = TRUE)
 ```
 
 We start by loading the packages that will be used during the demo. 
@@ -73,8 +73,10 @@ library("iSEE")
 library("TENxPBMCData")
 
 library("iSEEu")
+
 library("iSEEde")
 library("iSEEpathways")
+
 library("iSEEhub")
 library("iSEEindex")
 ```
@@ -111,7 +113,7 @@ sce_pbmc3k
 
 Who of you is investing a fair amount/lot of time in doing proper data exploration?
 
-Who of you is familiar with the beautiful CellxGene tool?
+Who of you is familiar with the beautiful CELLxGENE tool?
 
 Who of you dreamed to do even more on your data?
 
@@ -158,19 +160,17 @@ Let's run this together and see what we have got in store.
 
 
 
-Schedule:
+<!-- Schedule: -->
 
-- go get the dataset
-- overview on the iSEE interface as a whole
-  - panels
-  - controls
-  - all ui elements
-
-
-- the iSEE challenge: let's reproduce any figure?
-- 
+<!-- - go get the dataset -->
+<!-- - overview on the iSEE interface as a whole -->
+<!--   - panels -->
+<!--   - controls -->
+<!--   - all ui elements -->
 
 
+<!-- - the iSEE challenge: let's reproduce any figure? -->
+<!-- -  -->
 
 
 
@@ -183,8 +183,9 @@ Schedule:
 
 
 
+# iSEE, "tl;dr"
 
-# Quick tour of the panels
+## Quick tour of the panels
 
 What typical visualizations people would you use to represent and explore your datasets?
 
@@ -198,7 +199,7 @@ Let's have a closer look at that on the Reduced Dimension Plot 1 panel.
 
 If you have no idea of what a panel can "normally" do, look for the question mark icon, that will start a tiny tour on its functionality.
 
-# Additional UI functionality
+## Additional UI functionality
 
 iSEE also has some additional controls, grouped into the header bar, let's have a look at them:
 
@@ -215,35 +216,35 @@ With this, we can...
 - generate at once an archive with all/selected parts of the panel outputs
 - start a tour on the content displayed - yes, you can very much tell a story with iSEE!
 
-# In depth exploration of data - iSEE's main functionality 
+## In depth exploration of data - iSEE's main functionality 
 
-## You can control pretty much everything in a plot
+### You can control pretty much everything in a plot
 
 Coloring by, faceting, zooming, hovering!  
 Make a wish!
 
-## You can link any panel to any other panel
+### You can link any panel to any other panel
 
 Brush selection, lasso selection, select the receiving panel, iterate!  
 Read out information, see the panel transmission graph.
 
-## You can use tables to navigate panels
+### You can use tables to navigate panels
 
 Search and select, transmit, receive, iterate!
 
-## Configuring your iSEE instance
+### Configuring your iSEE instance
 
 Panels: add, move, remove; exporting the `initial` configuration, reloading it
 
-## Reproducibility for the win!
+### Reproducibility for the win!
 
 A magic wand: two clicks away from all the R code you need; export all outputs, save individual images
 
-## Sharing is caring, and so is telling a story
+### Sharing is caring, and so is telling a story
 
 Start the tour, highlighting elements; make your data really explorable!
 
-# Custom panels & the iSEE universe
+## Custom panels & the iSEE universe
 
 A couple of additional things you can do with custom panels (and this is just an appetizer!):
 
@@ -252,9 +253,9 @@ A couple of additional things you can do with custom panels (and this is just an
 * Check out `r Biocpkg("iSEEu")` for more
 * Spatial data? We can already handle that with a workaround! See https://moffittlab.connect.hms.harvard.edu/merfish/merfish_homepage.html for an example
 
-# Got data?
+## Got data?
 
-## Got single cell data?
+### Got single cell data?
 
 You might have got the gist:
 
@@ -266,11 +267,11 @@ iSEE(sce)
 
 So, yes, we mighe be down to THREE lines of code.
 
-## Got some special feature in your data?
+### Got some special feature in your data?
 
 Maybe `r Biocpkg("iSEEu")` can be the place to find already that piece of functionality!
 
-## Got bulk?
+### Got bulk?
 
 Have a look at the functionality provided by 
 
@@ -282,7 +283,7 @@ These can be ideal companions for exploring DE results.
 `r Biocpkg("iSEEde")` and `r Biocpkg("iSEEpathways")` are two new Bioconductor packages that provide `r Biocpkg("iSEE")` panels specifically aimed towards exploration of differential expression and pathway analysis results. 
 More precisely, `r Biocpkg("iSEEde")` provides the `VolcanoPlot`, `MAPlot`, `LogFCLogFCPlot` and `DETable` panels. 
 
-## Got many datasets?
+### Got many datasets?
 
 Have a look at the functionality provided by 
 
@@ -313,13 +314,13 @@ Potential use cases can include:
 * An app to mirror and enhance the content of e.g. the CellxGene data portal
 * Got any ideas on how to use iSEE for such deployments?
 
-# Interoperability
+## Interoperability
 
 "Wait, I got Seurat/Anndata objects".
 
 The single cell communities got you covered:
 
-## From Seurat...
+### From Seurat...
 
 ```{r eval=FALSE}
 library("Seurat")
@@ -334,7 +335,7 @@ sce_from_seurat
 iSEE(sce_from_seurat)
 ```
 
-## From AnnData...
+### From AnnData...
 
 ... which is basically able to serve any dataset available throught the CELLxGENE Data Portal!
 
@@ -352,9 +353,9 @@ An example could be...
 https://cellxgene.cziscience.com/e/c7856243-c59a-4b70-8ce7-25b94c2d9da1.cxg/
 
 
-# I want moaaaaar on iSEE!
+## I want moaaaaar on iSEE!
 
-For more extensive descriptions of the different parts of the interface, we refer to the [overview](https://isee.github.io/iSEEWorkshopEuroBioc2020/articles/overview.html) vignette in a previous, extended workshop on `r Biocpkg("iSEE")`.
+For more extensive descriptions of the different parts of the interface, we refer to the [overview](iSEE_overview_02.Rmd) vignette in this workshop material package on `r Biocpkg("iSEE")`.
 
 Additional material can also be found at these other repositories:
 

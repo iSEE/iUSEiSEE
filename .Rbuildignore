@@ -1,0 +1,13 @@
+^LICENSE\.md$
+^\.github$
+^.*\.Rproj$
+^\.Rproj\.user$
+Dockerfile
+_pkgdown.yml
+^inst/datasets/anndata_pbmc3k.h5ad
+^inst/datasets/seurat_pbmc3k.RDS
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^vignettes/sce_merged_allsets.RDS
+^inst/datasets/sce_pbmc3k_old.RDS

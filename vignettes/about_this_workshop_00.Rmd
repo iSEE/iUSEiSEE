@@ -53,6 +53,17 @@ ecosystem for working with/storing/processing single cell data
 
 Participants will be able (and heartily invited) to follow along in the live coding parts of the workshop. This is very much intended as a hands-on learning resource.
 
+Given the hands-on nature of this, this is going to be a BYOD (Bring Your Own Device) event - if cloud-based setups are provided, this information will be passed on in advance to the participants.
+Nonetheless, we value the side effect of participants installing a working environment as a part of the learning objectives.
+
+Participants will (likely) use a set of stickers to indicate their progress throughout the material, to be attached onto the laptop lid. In brief:
+
+* Yellow sticker: "I am working on the task"
+* Green sticker: "I am done with the task"
+* Red sticker: "I am stuck on this, could you please come help me?"
+
+We do stress the importance of working together on such tasks, therefore participants are very encouraged to talk to their neighbors during the task sessions!
+
 # _R_ / _Bioconductor_ packages used
 
 * `iSEE`: https://bioconductor.org/packages/iSEE

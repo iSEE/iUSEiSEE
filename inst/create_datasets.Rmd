@@ -35,6 +35,11 @@ At this point we can inspect the dataset in the console.
 sce
 ```
 
+```{r}
+counts(sce) <- as(counts(sce), "dgCMatrix")
+```
+
+
 The dataset is provided as an object of the `SingleCellExperiment` class.
 In particular, this summary view indicates that the following pieces of information are available:
 

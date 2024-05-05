@@ -49,16 +49,7 @@ We will use the following packages throughout its content (make sure to have the
 
 ```{r pkgs}
 library("iSEE")
-library("iSEEfier")
-# library("iSEEu")
-
-library("iSEEde")
-library("iSEEpathways")
-
-library("iSEEhub")
-library("iSEEindex")
 ```
-
 
 
 # iSEE a challenge: let's reproduce any figure!
@@ -70,6 +61,92 @@ We'd like to open up a challenge, with some simple rules:
 
 Let's suggest a couple of figure/figure panels!  
 Enter a couple of suggestions in this GSheet: https://docs.google.com/spreadsheets/d/1poE713rXqzfNdPcKAPN2AxJYXhaxy8GwgAjRsk_UiK8/edit?usp=sharing
+
+# iSEEde and iSEEpathways
+
+iSEEde and iSEEpathways: ideal companions for exploring DE results
+
+We first load the processed `macrophage` data (derived from the work of [@Alasoo2018]) - on this, we already ran the workflow of `DESeq2` [@Love2014] to identify the differentially expressed genes.
+
+```{r}
+macrophage_location <- system.file("datasets", "sce_macrophage_readytouse.RDS",
+  package = "iUSEiSEE"
+)
+macrophage_location
+
+sce_macrophage <- readRDS(macrophage_location)
+
+library("iSEE")
+library("iSEEde")
+library("iSEEpathways")
+```
+
+`r Biocpkg("iSEEde")` and `r Biocpkg("iSEEpathways")` are two new Bioconductor packages that provide `r Biocpkg("iSEE")` panels specifically aimed towards exploration of differential expression and pathway analysis results. 
+More precisely, `r Biocpkg("iSEEde")` provides the `VolcanoPlot`, `MAPlot`, `LogFCLogFCPlot` and `DETable` panels. 
+These panels can be configured to extract data that was added via the `embedContrastResults()` function above. 
+Let's look at an example:
+
+```{r}
+app <- iSEE(sce_macrophage, initial = list(
+  DETable(
+    ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2",
+    HiddenColumns = c("baseMean", "lfcSE", "stat")
+  ),
+  VolcanoPlot(ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2"),
+  MAPlot(ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2")
+))
+```
+
+```{r, echo=FALSE}
+SCREENSHOT("images/isee_de_setup1.png", delay = 20)
+```
+
+
+<!-- Possible actions: -->
+<!-- select some genes from any panel and pass the selection to others -->
+<!-- move panels around, add some, update configuration -->
+<!-- hover with the mouse to have the tooltip show up -->
+<!-- usual iSEE magic: export code for the plots -->
+
+Note how it is easy to switch to a different contrast in any of the panels. 
+
+```{r}
+app <- iSEE(sce_macrophage, initial = list(
+  iSEEde::DETable(
+    ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2",
+    HiddenColumns = c("baseMean", "lfcSE", "stat")
+  ),
+  iSEEde::VolcanoPlot(ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2"),
+  iSEEde::MAPlot(ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2"),
+  PathwaysTable(
+    ResultName = "IFNgTRUE.SL1344TRUE.limma.fgsea",
+    Selected = "GO:0046324"
+  ),
+  ComplexHeatmapPlot(
+    RowSelectionSource = "PathwaysTable1",
+    CustomRows = FALSE, ColumnData = "condition_name",
+    ClusterRows = TRUE, Assay = "vst"
+  ),
+  FgseaEnrichmentPlot(
+    ResultName = "IFNgTRUE.SL1344TRUE.limma.fgsea",
+    PathwayId = "GO:0046324"
+  )
+))
+```
+
+```{r, echo=FALSE}
+SCREENSHOT("images/isee_de_setup2.png", delay = 30)
+```
+
+<!-- Possible actions: -->
+<!-- select a pathway from PAT1 -->
+<!-- transform vst data in heatmap, center -->
+<!-- receive row selection in volcano and MA plot -->
+<!-- change coloring to "row selection" -->
+<!-- select alternative contrast and see all dependencies updated -->
+<!-- usual iSEE magic: export code for the plots -->
+<!-- usual iSEE magic: export code for the panel configuration -->
+
 
 # iSEEfier
 
@@ -88,6 +165,8 @@ In this section, we will illustrate a simple example of how to use `r Biocpkg("i
 We start by loading the data:
 
 ```{r}
+library("iSEEfier")
+
 # import data
 sce <- readRDS(
   file = system.file("datasets", "sce_pbmc3k.RDS", package = "iUSEiSEE")
@@ -217,6 +296,9 @@ The main functionality of this package is to define a custom landing page allowi
 To see how to configure such an app, we will create a small example:
 
 ```{r}
+library("iSEE")
+library("iSEEindex")
+
 bfc <- BiocFileCache(cache = tempdir())
 
 dataset_fun <- function() {
@@ -251,90 +333,6 @@ Potential use cases can include:
 * An app to mirror and enhance the content of e.g. the cellxgene data portal
 * Got any ideas on how to use iSEE for such deployments?
 
-# iSEEde and iSEEpathways
-
-iSEEde and iSEEpathways: ideal companions for exploring DE results
-
-We first load the processed `macrophage` data (derived from the work of [@Alasoo2018]) - on this, we already ran the workflow of `DESeq2` [@Love2014] to identify the differentially expressed genes.
-
-```{r}
-macrophage_location <- system.file("datasets", "sce_macrophage_readytouse.RDS",
-  package = "iUSEiSEE"
-)
-macrophage_location
-
-sce_macrophage <- readRDS(macrophage_location)
-
-library("iSEE")
-library("iSEEde")
-library("iSEEpathways")
-```
-
-`r Biocpkg("iSEEde")` and `r Biocpkg("iSEEpathways")` are two new Bioconductor packages that provide `r Biocpkg("iSEE")` panels specifically aimed towards exploration of differential expression and pathway analysis results. 
-More precisely, `r Biocpkg("iSEEde")` provides the `VolcanoPlot`, `MAPlot`, `LogFCLogFCPlot` and `DETable` panels. 
-These panels can be configured to extract data that was added via the `embedContrastResults()` function above. 
-Let's look at an example:
-
-```{r}
-app <- iSEE(sce_macrophage, initial = list(
-  DETable(
-    ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2",
-    HiddenColumns = c("baseMean", "lfcSE", "stat")
-  ),
-  VolcanoPlot(ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2"),
-  MAPlot(ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2")
-))
-```
-
-```{r, echo=FALSE}
-SCREENSHOT("images/isee_de_setup1.png", delay = 20)
-```
-
-
-<!-- Possible actions: -->
-<!-- select some genes from any panel and pass the selection to others -->
-<!-- move panels around, add some, update configuration -->
-<!-- hover with the mouse to have the tooltip show up -->
-<!-- usual iSEE magic: export code for the plots -->
-
-Note how it is easy to switch to a different contrast in any of the panels. 
-
-```{r}
-app <- iSEE(sce_macrophage, initial = list(
-  DETable(
-    ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2",
-    HiddenColumns = c("baseMean", "lfcSE", "stat")
-  ),
-  VolcanoPlot(ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2"),
-  MAPlot(ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2"),
-  PathwaysTable(
-    ResultName = "IFNgTRUE.SL1344TRUE.limma.fgsea",
-    Selected = "GO:0046324"
-  ),
-  ComplexHeatmapPlot(
-    RowSelectionSource = "PathwaysTable1",
-    CustomRows = FALSE, ColumnData = "condition_name",
-    ClusterRows = TRUE, Assay = "vst"
-  ),
-  FgseaEnrichmentPlot(
-    ResultName = "IFNgTRUE.SL1344TRUE.limma.fgsea",
-    PathwayId = "GO:0046324"
-  )
-))
-```
-
-```{r, echo=FALSE}
-SCREENSHOT("images/isee_de_setup2.png", delay = 30)
-```
-
-<!-- Possible actions: -->
-<!-- select a pathway from PAT1 -->
-<!-- transform vst data in heatmap, center -->
-<!-- receive row selection in volcano and MA plot -->
-<!-- change coloring to "row selection" -->
-<!-- select alternative contrast and see all dependencies updated -->
-<!-- usual iSEE magic: export code for the plots -->
-<!-- usual iSEE magic: export code for the panel configuration -->
 
 # Tours: help and storytelling
 

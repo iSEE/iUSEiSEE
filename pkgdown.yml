@@ -1,0 +1,14 @@
+pandoc: 3.1.12.1
+pkgdown: 2.0.9
+pkgdown_sha: ~
+articles:
+  about_this_workshop_00: about_this_workshop_00.html
+  bonus_content_04: bonus_content_04.html
+  iSEE_overview_02: iSEE_overview_02.html
+  iSEE_quickrecipes_03: iSEE_quickrecipes_03.html
+  iUSEiSEE_01: iUSEiSEE_01.html
+last_built: 2024-05-06T08:40Z
+urls:
+  reference: https://imbeimainz.github.io/iUSEiSEE/reference
+  article: https://imbeimainz.github.io/iUSEiSEE/articles
+

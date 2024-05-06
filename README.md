@@ -25,13 +25,13 @@ remotes::install_github("imbeimainz/iUSEiSEE",
 
 ## Schedule
 
-* Start with a rendered presentation on iSEE
-* Install & tech check
-* Retrieve the data & process that
-* Overview on iSEE
+* Short presentation, `iSEE`: Harry met Sally for interactive and reproducible data exploration
+* Installation of the dependencies & tech check
+* Retrieval of the data + Inspecting the processing steps so far
+* Overview on iSEE: panel by panel, learning Data + Visual + Selection parameters
 * Hands on with the full workshop
-* "what if all I need is some recipes"
-* Display some of the more recent things - DE and pathways?
-* Hub and Index: got more than just one?
+* Going through the iSEE cookbook: "What if all I need is some recipes?"
+* Latest developments in the iSEE universe: iSEE for DE and pathways
+* Got more than just one dataset? iSEEhub and iSEEindex
 * iSEEfier: starting things up in a breeze
-* some space for working on own data?
+* Got some own data? Some space for additional questions and setting up iSEE on that

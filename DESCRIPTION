@@ -57,7 +57,11 @@ Suggests:
     iSEEindex,
     iSEEfier,
     yaml,
-    BiocStyle
+    BiocStyle,
+    fgsea,
+    AnnotationDbi, 
+    org.Hs.eg.db,
+    GO.db
 URL: https://iSEE.github.io/iUSEiSEE/
 BugReports: https://github.com/iSEE/iUSEiSEE/issues
 VignetteBuilder: knitr

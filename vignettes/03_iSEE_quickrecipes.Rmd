@@ -108,7 +108,7 @@ app <- iSEE(sce, initial = list(
 </details>
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/recipe_01.png", delay = 20)
+SCREENSHOT("images/03-recipe_01.png", delay = 20)
 ```
 
 ## Recipe 2: Data parameters configuration - selecting columns to display
@@ -152,7 +152,7 @@ app <- iSEE(sce, list(
 </details>
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/recipe_02.png", delay = 20)
+SCREENSHOT("images/03-recipe_02.png", delay = 20)
 ```
 
 ## Recipe 3: Data parameters configuration - displaying multiple reduced dimension representations
@@ -195,7 +195,7 @@ app <- iSEE(sce, initial = list(
 </details>
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/recipe_03.png", delay = 20)
+SCREENSHOT("images/03-recipe_03.png", delay = 20)
 ```
 
 ## Recipe 4: Data parameters configuration - displaying the expression of a specific gene across clusters
@@ -237,7 +237,7 @@ app <- iSEE(sce, initial = list(
 </details>
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/recipe_04.png", delay = 20)
+SCREENSHOT("images/03-recipe_04.png", delay = 20)
 ```
 
 ## Recipe 5: Visual parameters configuration - coloring reduced dimension representations by cell annotation
@@ -293,7 +293,7 @@ app <- iSEE(sce, initial = list(
 </details>
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/recipe_05.png", delay = 20)
+SCREENSHOT("images/03-recipe_05.png", delay = 20)
 ```
 
 ## Recipe 6: Visual parameters configuration - coloring reduced dimension representations by gene expression
@@ -349,7 +349,7 @@ app <- iSEE(sce, initial = list(
 </details>
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/recipe_06.png", delay = 20)
+SCREENSHOT("images/03-recipe_06.png", delay = 20)
 ```
 
 ## Recipe 7: Visual parameters configuration - changing the size and opacity of points
@@ -406,7 +406,7 @@ app <- iSEE(sce, initial = list(
 </details>
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/recipe_07.png", delay = 20)
+SCREENSHOT("images/03-recipe_07.png", delay = 20)
 ```
 
 ## Recipe 8: Selection configuration
@@ -476,7 +476,7 @@ app <- iSEE(sce, initial = list(
 </details>
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/recipe_08.png", delay = 20)
+SCREENSHOT("images/03-recipe_08.png", delay = 20)
 ```
 
 ## Recipe 9: Verifying the cell type identity of clusters
@@ -547,7 +547,7 @@ app <- iSEE(sce, initial = list(
 </details>
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/recipe_09.png", delay = 20)
+SCREENSHOT("images/03-recipe_09.png", delay = 20)
 ```
 
 ## Recipe 10: Using modes from `iSEEu`
@@ -570,7 +570,7 @@ app <- modeReducedDim(sce, colorBy = "labels_main")
 </details>
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/recipe_10.png", delay = 20)
+SCREENSHOT("images/03-recipe_10.png", delay = 20)
 ```
 
 ## Recipe 11 - Including a tour
@@ -627,7 +627,7 @@ app <- iSEE(sce,
 </details>
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/recipe_11.png", delay = 20)
+SCREENSHOT("images/03-recipe_11.png", delay = 20)
 ```
 
 # Session info {-}

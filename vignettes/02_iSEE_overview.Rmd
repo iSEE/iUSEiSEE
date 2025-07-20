@@ -69,7 +69,7 @@ shiny::runApp(app)
 ```
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-initial.png", delay = 40)
+SCREENSHOT("images/02-isee-initial.png", delay = 40)
 ```
 
 The main argument to the `iSEE()` function is a `SummarizedExperiment` object, or an object of any class extending `SummarizedExperiment` (such as `SingleCellExperiment`, in this case).
@@ -90,7 +90,7 @@ shiny::runApp(app)
 ```
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-no-se.png", delay = 10)
+SCREENSHOT("images/02-isee-no-se.png", delay = 10)
 ```
 
 # The built-in panel types {#user-interface}
@@ -135,7 +135,7 @@ app <- iSEE(sce, initial = list(ReducedDimensionPlot(
 ```
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-reduceddimensionplot.png", delay = 10)
+SCREENSHOT("images/02-isee-reduceddimensionplot.png", delay = 10)
 ```
 
 ## `r .fullName(ColumnDataPlot())` {#coldataplot}
@@ -152,7 +152,7 @@ app <- iSEE(sce, initial = list(ColumnDataPlot(
 ```
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-columndataplot.png", delay = 10)
+SCREENSHOT("images/02-isee-columndataplot.png", delay = 10)
 ```
 
 ## `r .fullName(RowDataPlot())` {#rowdataplot}
@@ -168,7 +168,7 @@ app <- iSEE(sce, initial = list(RowDataPlot(
 ```
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-rowdataplot.png", delay = 10)
+SCREENSHOT("images/02-isee-rowdataplot.png", delay = 10)
 ```
 
 ## `r .fullName(ComplexHeatmapPlot())` {#heatmap}
@@ -184,7 +184,7 @@ app <- iSEE(sce, initial = list(ComplexHeatmapPlot(
 ```
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-complexheatmapplot.png", delay = 10)
+SCREENSHOT("images/02-isee-complexheatmapplot.png", delay = 10)
 ```
 
 ## `r .fullName(FeatureAssayPlot())` {#featassayplot}
@@ -202,7 +202,7 @@ app <- iSEE(sce, initial = list(FeatureAssayPlot(
 ```
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-featureassayplot.png", delay = 10)
+SCREENSHOT("images/02-isee-featureassayplot.png", delay = 10)
 ```
 
 ## `r .fullName(SampleAssayPlot())` {#sampassayplot}
@@ -219,7 +219,7 @@ app <- iSEE(sce, initial = list(SampleAssayPlot(
 ```
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-sampleassayplot.png", delay = 10)
+SCREENSHOT("images/02-isee-sampleassayplot.png", delay = 10)
 ```
 
 ## `r .fullName(RowDataTable())` {#rowdatatable}
@@ -231,7 +231,7 @@ app <- iSEE(sce, initial = list(RowDataTable(PanelWidth = 12L)))
 ```
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-rowdatatable.png", delay = 10)
+SCREENSHOT("images/02-isee-rowdatatable.png", delay = 10)
 ```
 
 ## `r .fullName(ColumnDataTable())` {#coldatatable}
@@ -243,7 +243,7 @@ app <- iSEE(sce, initial = list(ColumnDataTable(PanelWidth = 12L)))
 ```
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-columndatatable.png", delay = 10)
+SCREENSHOT("images/02-isee-columndatatable.png", delay = 10)
 ```
 
 # Collapsible boxes with display controls {#collapsible-boxes}
@@ -262,7 +262,7 @@ app <- iSEE(sce, initial = list(ColumnDataPlot(
 ```
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-columndataplot-dataparameters.png", delay = 10)
+SCREENSHOT("images/02-isee-columndataplot-dataparameters.png", delay = 10)
 ```
 
 ## Visual parameters {#visual-parameters-box}
@@ -281,7 +281,7 @@ app <- iSEE(sce, initial = list(ColumnDataPlot(
 ```
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-columndataplot-visualparameters.png", delay = 10)
+SCREENSHOT("images/02-isee-columndataplot-visualparameters.png", delay = 10)
 ```
 
 ## Selection parameters {#selection-parameter-box}
@@ -299,7 +299,7 @@ app <- iSEE(sce, initial = list(ReducedDimensionPlot(
 ```
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-reduceddimensionplot-selectionparameters.png", delay = 10)
+SCREENSHOT("images/02-isee-reduceddimensionplot-selectionparameters.png", delay = 10)
 ```
 
 # Additional controls {#additional-controls}
@@ -506,7 +506,7 @@ shiny::runApp(app)
 ```
 
 ```{r, echo=FALSE, out.width = '100%'}
-SCREENSHOT("images/isee-iseeu-modereduceddim.png", delay=10)
+SCREENSHOT("images/02-isee-iseeu-modereduceddim.png", delay=10)
 ```
 
 Furthermore, since `r Biocpkg("iSEE")` version 2.0.0, users can leverage the implementation of panels as a hierarchy of S4 classes to rapidly extend the framework and develop new types of panels with virtually unlimited freedom of functionality.
@@ -528,7 +528,7 @@ app <- iSEE(sce, initial = list(
 shiny::runApp(app)
 ```
 ```{r, echo=FALSE, out.width = '100%'}
-SCREENSHOT("images/isee-iseeu-modereduceddimhex.png", delay=10)
+SCREENSHOT("images/02-isee-iseeu-modereduceddimhex.png", delay=10)
 ```
 
 
@@ -560,7 +560,7 @@ shiny::runApp(app)
 ```
 
 ```{r, echo=FALSE, out.width = '100%'}
-SCREENSHOT("images/isee-iseeu-modegating.png", delay=20)
+SCREENSHOT("images/02-isee-iseeu-modegating.png", delay=20)
 ```
 
 Interestingly, iSEEu also has a set of extra panels that can come in handy in different situations.
@@ -583,7 +583,7 @@ app <- iSEE(
 ```
 
 ```{r, echo=FALSE, out.width = '100%'}
-SCREENSHOT("images/isee-iseeu-aggrodotplot.png", delay=20)
+SCREENSHOT("images/02-isee-iseeu-aggrodotplot.png", delay=20)
 ```
 
 An overview of other extension packages and the panels they provide can be found on the iSEE website: https://isee.github.io/panels.html.

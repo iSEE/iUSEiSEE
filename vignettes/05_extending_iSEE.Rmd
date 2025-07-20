@@ -45,6 +45,14 @@ In this vignette, we illustrate how to:
 * Extend an existing panel class into a new panel class
 * Derive a new panel class from an existing panel
 
+# Load example data
+
+```{r}
+library("iSEE")
+
+sce <- readRDS(system.file("datasets", "sce_pbmc3k.RDS", package = "iUSEiSEE"))
+```
+
 # Philosophy
 
 `r BiocStyle::Biocpkg("iSEE")` panels are implemented as S4 classes that store the state of each panel in designated slots, and most of the functionality is implemented as S4 methods that describe various behavioural aspects of each panel class.
@@ -53,7 +61,7 @@ As a result, new classes can be created simply by inheritance from existing clas
 
 # Deriving an S4 class
 
-In this demo, let us create a new class called `ReducedDimensionHexPlot`, that inherits from the existing class `ReducedDimensionPlot()` (implemented in the `r BiocStyle::Biocpkg("iSEE")` package).
+In this demo, let us create a new class called `ReducedDimensionHexagonPlot`, that inherits from the existing class `ReducedDimensionPlot()` (implemented in the `r BiocStyle::Biocpkg("iSEE")` package).
 
 The objective is to produce a panel that displays the same information as the original `ReducedDimensionPlot()` panel, but summarising data points into hexagonal bins.
 
@@ -67,7 +75,8 @@ However, this is not without caveats:
 To proceed, the new class needs at least one additional slot to store the number of hexagonal bins to create (i.e., a resolution for the plot).
 
 ```{r}
-setClass("ReducedDimensionHexPlot", contains="ReducedDimensionPlot", slots=c(BinResolution = "numeric"))
+setClass("ReducedDimensionHexagonPlot", contains="ReducedDimensionPlot", 
+         slots=c(BinResolution = "numeric"))
 ```
 
 To properly initialise instances of the new class, the new slot must be populated with a default value in the event that users do not specify a bin resolution.
@@ -76,7 +85,7 @@ For this, we need to create a new method for the generic `initialize()` and the 
 We set the default resolution to 100 hexagonal bins along each axis.
 
 ```{r}
-setMethod("initialize", "ReducedDimensionHexPlot", function(.Object, ...) {
+setMethod("initialize", "ReducedDimensionHexagonPlot", function(.Object, ...) {
   args <- list(...)
   
   args <- .emptyDefault(args, "BinResolution", 20)
@@ -94,8 +103,8 @@ In this example, the function passes all its arguments to the `new()` function.
 This is standard practice in `r BiocStyle::Biocpkg("iSEE")`, where the arguments for constructor functions are typically the values of the various slots that describe the initial state of the panel.
 
 ```{r}
-ReducedDimensionHexPlot <- function(...) {
-  new("ReducedDimensionHexPlot", ...)
+ReducedDimensionHexagonPlot <- function(...) {
+  new("ReducedDimensionHexagonPlot", ...)
 }
 ```
 
@@ -103,15 +112,15 @@ At this point, we can already demonstrate that we have a functional new panel cl
 
 ```{r, message=FALSE, warning=FALSE, eval=FALSE}
 app <- iSEE(sce, initial = list(
-  ReducedDimensionHexPlot(PanelWidth = 6L),
+  ReducedDimensionHexagonPlot(PanelWidth = 6L),
   ReducedDimensionPlot(PanelWidth = 6L)
 ))
-runApp(app, launch.browser = TRUE)
 ```
 
-<!-- ![Screenshot of iSEE app including a parent ReducedDimensionPlot and a ReducedDimensionHexPlot extension.](img/iSEEhex_clone.png) -->
+```{r, echo=FALSE}
+SCREENSHOT("images/05-hex-initial.png", delay = 10)
+```
 
-<br/>
 
 How can we even tell which is which?!
 
@@ -122,22 +131,23 @@ The generic `.fullName()` declares the label shown in the interface, at the top 
 Let us create a method for the new class, that gives it a different name, highlighting the hexagonal binning in the plot.
 
 ```{r}
-setMethod(".fullName", "ReducedDimensionHexPlot", function(x) "Hexagonal reduced dimension plot")
+setMethod(".fullName", "ReducedDimensionHexagonPlot", 
+          function(x) "Hexagonal reduced dimension plot")
 ```
 
 Let's launch the app to see the effect
 
 ```{r, message=FALSE, warning=FALSE, eval=FALSE}
 app <- iSEE(sce, initial = list(
-  ReducedDimensionHexPlot(PanelWidth = 6L),
+  ReducedDimensionHexagonPlot(PanelWidth = 6L),
   ReducedDimensionPlot(PanelWidth = 6L)
 ))
-runApp(app, launch.browser = TRUE)
 ```
 
-<!-- ![Screenshot of iSEE app including a parent ReducedDimensionPlot and a ReducedDimensionHexPlot extension after changing the full name of the child panel.](img/iSEEhex_fullName.png) -->
+```{r, echo=FALSE}
+SCREENSHOT("images/05-hex-name.png", delay = 10)
+```
 
-<br/>
 
 # Changing the background panel colour
 
@@ -146,22 +156,22 @@ Similarly, the generic `.panelColor()` declares the background colour of the pan
 Let us create a method for the new class, that gives it a different colour.
 
 ```{r}
-setMethod(".panelColor", "ReducedDimensionHexPlot", function(x) "#991717")
+setMethod(".panelColor", "ReducedDimensionHexagonPlot", function(x) "#991717")
 ```
 
 Let's launch the app to see the effect
 
 ```{r, message=FALSE, warning=FALSE, eval=FALSE}
 app <- iSEE(sce, initial = list(
-  ReducedDimensionHexPlot(PanelWidth = 6L),
+  ReducedDimensionHexagonPlot(PanelWidth = 6L),
   ReducedDimensionPlot(PanelWidth = 6L)
 ))
-runApp(app, launch.browser = TRUE)
 ```
 
-<!-- ![Screenshot of iSEE app including a parent ReducedDimensionPlot and a ReducedDimensionHexPlot extension after changing the background colour of the child panel.](img/iSEEhex_color.png) -->
+```{r, echo=FALSE}
+SCREENSHOT("images/05-hex-color.png", delay = 10)
+```
 
-<br/>
 
 # Altering the user interface
 
@@ -172,10 +182,10 @@ A number of S4 methods control the interface elements displayed in the various g
 Here, we are discussing a parameter that will control the *size* of bins.
 Moreover, we are about to replace data points by hexagonal bins, meaning that the visual parameters controlling the size of data points are about to become useless.
 
-Thus, the generic `.defineVisualSizeInterface()` is the natural choice to use for replacing the size parameters of the parent `ReducedDimensionHexPlot()` class by a new HTML element that displays a numeric input allowing users to change the hexagonal bin resolution.
+Thus, the generic `.defineVisualSizeInterface()` is the natural choice to use for replacing the size parameters of the parent `ReducedDimensionHexagonPlot()` class by a new HTML element that displays a numeric input allowing users to change the hexagonal bin resolution.
 
 ```{r}
-setMethod(".defineVisualSizeInterface", "ReducedDimensionHexPlot", function(x) {
+setMethod(".defineVisualSizeInterface", "ReducedDimensionHexagonPlot", function(x) {
   plot_name <- .getEncodedName(x)
   
   tagList(
@@ -187,15 +197,15 @@ setMethod(".defineVisualSizeInterface", "ReducedDimensionHexPlot", function(x) {
 
 ```{r, message=FALSE, warning=FALSE, eval=FALSE}
 app <- iSEE(sce, initial = list(
-  ReducedDimensionHexPlot(PanelWidth = 6L, VisualBoxOpen = TRUE, VisualChoices = "Size"),
+  ReducedDimensionHexagonPlot(PanelWidth = 6L, VisualBoxOpen = TRUE, VisualChoices = "Size"),
   ReducedDimensionPlot(PanelWidth = 6L, VisualBoxOpen = TRUE, VisualChoices = "Size")
 ))
-runApp(app, launch.browser = TRUE)
 ```
 
-<!-- ![Screenshot of iSEE app including a parent ReducedDimensionPlot and a ReducedDimensionHexPlot extension after replacing the size parameter interface in the child panel.](img/iSEEhex_input.png) -->
+```{r, echo=FALSE}
+SCREENSHOT("images/05-hex-visual.png", delay = 10)
+```
 
-<br/>
 
 # Altering the panel output
 
@@ -205,7 +215,7 @@ To this end, the generic `.generateDotPlot()` is key.
 Given a panel state, axis labels, and an environment that contains the `SummarizedExperiment()` object and possibly other relevant values such as incoming selections, 
 
 ```{r}
-setMethod(".generateDotPlot", "ReducedDimensionHexPlot", function(x, labels, envir) {
+setMethod(".generateDotPlot", "ReducedDimensionHexagonPlot", function(x, labels, envir) {
   plot_cmds <- list()
   plot_cmds[["ggplot"]] <- "ggplot() +"
   color_lab <- "Count"
@@ -223,15 +233,15 @@ setMethod(".generateDotPlot", "ReducedDimensionHexPlot", function(x, labels, env
 
 ```{r, message=FALSE, warning=FALSE, eval=FALSE}
 app <- iSEE(sce, initial = list(
-  ReducedDimensionHexPlot(PanelWidth = 6L, VisualBoxOpen = TRUE, VisualChoices = "Size"),
+  ReducedDimensionHexagonPlot(PanelWidth = 6L, VisualBoxOpen = TRUE, VisualChoices = "Size"),
   ReducedDimensionPlot(PanelWidth = 6L, VisualBoxOpen = TRUE, VisualChoices = "Size")
 ))
-runApp(app, launch.browser = TRUE)
 ```
 
-<!-- ![Screenshot of iSEE app including a parent ReducedDimensionPlot and a ReducedDimensionHexPlot extension after replacing the internal plotting code in the child panel.](img/iSEEhex_binned.png) -->
+```{r, echo=FALSE}
+SCREENSHOT("images/05-hex-output.png", delay = 10)
+```
 
-<br/>
 
 # Adding reactivity
 
@@ -245,7 +255,7 @@ The `.createProtectedParameterObservers()` function provides a convenient way to
 This function automatically ensures that any change of value in the interface element is updated in the panel state and triggers re-rendering of the panel plot.
 
 ```{r}
-setMethod(".createObservers", "ReducedDimensionHexPlot", function(x, se, input, session, pObjects, rObjects) {
+setMethod(".createObservers", "ReducedDimensionHexagonPlot", function(x, se, input, session, pObjects, rObjects) {
     callNextMethod()
 
     plot_name <- .getEncodedName(x)
@@ -262,15 +272,14 @@ With the new observer in place, we can launch the app one more time, to toy with
 
 ```{r, message=FALSE, warning=FALSE, eval=FALSE}
 app <- iSEE(sce, initial = list(
-  ReducedDimensionHexPlot(PanelWidth = 6L, VisualBoxOpen = TRUE, VisualChoices = "Size"),
+  ReducedDimensionHexagonPlot(PanelWidth = 6L, VisualBoxOpen = TRUE, VisualChoices = "Size"),
   ReducedDimensionPlot(PanelWidth = 6L)
 ))
-runApp(app, launch.browser = TRUE)
 ```
 
-<!-- ![Screenshot of iSEE app including a parent ReducedDimensionPlot and a ReducedDimensionHexPlot extension after adding an observer in the child panel and using the value of the new interface element.](img/iSEE_observer.png) -->
-
-<br/>
+```{r, echo=FALSE}
+SCREENSHOT("images/05-hex-reactivity.png", delay = 10)
+```
 
 # Further work
 

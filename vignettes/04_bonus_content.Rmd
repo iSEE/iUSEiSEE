@@ -60,6 +60,9 @@ sce_macrophage <- readRDS(macrophage_location)
 library("iSEE")
 library("iSEEde")
 library("iSEEpathways")
+library("AnnotationDbi")
+library("org.Hs.eg.db")
+library("GO.db")
 ```
 
 `r Biocpkg("iSEEde")` and `r Biocpkg("iSEEpathways")` are two new Bioconductor packages that provide `r Biocpkg("iSEE")` panels specifically aimed towards exploration of differential expression and pathway analysis results. 
@@ -69,17 +72,17 @@ Let's look at an example:
 
 ```{r}
 app <- iSEE(sce_macrophage, initial = list(
-  DETable(
+  iSEEde::DETable(
     ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2",
     HiddenColumns = c("baseMean", "lfcSE", "stat")
   ),
-  VolcanoPlot(ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2"),
-  MAPlot(ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2")
+  iSEEde::VolcanoPlot(ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2"),
+  iSEEde::MAPlot(ContrastName = "IFNgTRUE.SL1344TRUE.DESeq2")
 ))
 ```
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/isee_de_setup1.png", delay = 20)
+SCREENSHOT("images/04-isee-de-setup1.png", delay = 20)
 ```
 
 
@@ -116,7 +119,7 @@ app <- iSEE(sce_macrophage, initial = list(
 ```
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/isee_de_setup2.png", delay = 30)
+SCREENSHOT("images/04-isee-de-setup2.png", delay = 30)
 ```
 
 <!-- Possible actions: -->
@@ -187,7 +190,7 @@ app <- iSEE(sce, initial = initial_1)
 This is how it would look like:
 
 ```{r, echo=FALSE, out.width='100%'}
-SCREENSHOT("images/isee-on-fier.png", delay = 30)
+SCREENSHOT("images/04-isee-on-fier.png", delay = 30)
 ```
 
 
@@ -239,7 +242,7 @@ app <- iSEEhub(ehub)
 ```
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/iseehub.png", delay = 20)
+SCREENSHOT("images/04-iseehub.png", delay = 20)
 ```
 
 <!-- Possible actions: -->
@@ -270,7 +273,7 @@ app <- iSEEindex(bfc, dataset_fun, initial_fun)
 ```
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/iseeindex.png", delay = 20)
+SCREENSHOT("images/04-iseeindex.png", delay = 20)
 ```
 
 
@@ -338,7 +341,7 @@ app <- iSEE(sce, initial = initial_for_tour, tour = tour)
 ```
 
 ```{r, echo=FALSE}
-SCREENSHOT("images/isee_simpletour.png", delay = 20)
+SCREENSHOT("images/04-isee-simpletour.png", delay = 20)
 ```
 
 # Interoperability

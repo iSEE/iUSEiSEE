@@ -1,5 +1,5 @@
 ---
-title: "iUSEiSEE - About this workshop"
+title: "About this workshop"
 author: "Federico Marini^[marinif@uni-mainz.de], Kevin Rue-Albrecht^[kevinrue67@gmail.com], Charlotte soneson^[charlottesoneson@gmail.com], Aaron Lun^[infinite.monkeys.with.keyboards@gmail.com], Najla Abassi^[abassina@uni-mainz.de]"
 output: 
     html_document:
@@ -33,34 +33,26 @@ suppressPackageStartupMessages({
 
 # Description
 
-The iSEE package [@Rue-Albrecht2018-isee] is a flexible, powerful and extensible application to explore any dataset stored in SummarizedExperiment objects, including single cell, spatially resolved data, but also bulk data (transcriptomics and proteomics being just two examples of what can efficiently fit in there!).
+The `r Biocpkg("iSEE")` Bioconductor package [@Rue-Albrecht2018-isee] is a flexible, powerful and extensible application to explore any dataset stored in a `r Biocpkg("SummarizedExperiment")` object, including single cell and spatially resolved data, but also bulk data (such as transcriptomics and proteomics) and many types of non-biological data.
 
-iSEE enables a multitude of panels to gain in-depth insight in your data; it does so combining interactivity and reproducibility, and providing an ideal companion to other tools (such as CELLxGENE) for deeper dives into data.
+`r Biocpkg("iSEE")` enables a multitude of panels to gain in-depth insight in your data; it does so combining interactivity and reproducibility, and providing an ideal companion to other tools for deeper dives into data.
 
-This package provides a complete overview of the functionality of the `r Biocpkg("iSEE")` Bioconductor package, and is intended as some kind of "masterclass-level" workshop - indeed, the material is enough to cover a full-day workshop on iSEE.
+This package provides an overview of the functionality of the `r Biocpkg("iSEE")` package. 
+The material is equally suitable for use in a "masterclass-style" workshop as for self-study.
 
 # Pre-requisites
 
+Most of the examples in this workshop will center around bulk and single-cell RNA sequencing data. 
+For this reason, a certain background knowledge about these types of data and the questions that are typically addressed with them can be helpful to get the most out of the content. 
+More precisely, the following pre-requisities are useful:
+
 * Familiarity with bulk or single-cell sequencing data (ideally scRNA-seq)
-* Familiarity with the SummarizedExperiment/SingleCellExperiment class, or 
-alternatively the Seurat or AnnData frameworks - basically, any of the widely used 
-ecosystem for working with/storing/processing single cell data
+* Familiarity with the `r Biocpkg("SummarizedExperiment")`/`r Biocpkg("SingleCellExperiment")` class, or alternatively the `r CRANpkg("Seurat")` or AnnData frameworks - basically, any of the widely used ecosystem for working with/storing/processing single cell data
 * Familiarity with single-cell data visualizations and representations
 
 # Participation
 
-Participants will be able (and heartily invited) to follow along in the live coding parts of the workshop. This is very much intended as a hands-on learning resource.
-
-Given the hands-on nature of this, this is going to be a BYOD (Bring Your Own Device) event - if cloud-based setups are provided, this information will be passed on in advance to the participants.
-Nonetheless, we value the side effect of participants installing a working environment as a part of the learning objectives.
-
-Participants will (likely) use a set of stickers to indicate their progress throughout the material, to be attached onto the laptop lid. In brief:
-
-* Yellow sticker: "I am working on the task"
-* Green sticker: "I am done with the task"
-* Red sticker: "I am stuck on this, could you please come help me?"
-
-We do stress the importance of working together on such tasks, therefore participants are very encouraged to talk to their neighbors during the task sessions!
+Participants will be encouraged to follow along in the live coding parts of the workshop - this is very much intended as a hands-on learning resource.
 
 # _R_ / _Bioconductor_ packages used
 
@@ -72,32 +64,31 @@ We do stress the importance of working together on such tasks, therefore partici
 * `iSEEindex`: https://bioconductor.org/packages/iSEEindex
 * `iSEEfier`: https://bioconductor.org/packages/iSEEfier
 
+# Outline of the workshop
 
-# Outline of the course
+The following material is available in the `vignettes` folder:
 
-After a short presentation, we will start going through the material in the `vignettes` folder:
-
-* [iUSEiSEE](iUSEiSEE_01.Rmd) - a tl;dr version of the whole, which can be used as a compact summary of the content
-* [Overview on iSEE](iSEE_overview_02.Rmd) - a detailed overview on iSEE and its functionality
-* [The iSEE cookbook](iSEE_quickrecipes_03.Rmd) - a set of self-contained recipes with simple-to-advanced tasks one can complete within iSEE
-* [Bonus advanced content around iSEE](bonus_content_04.Rmd) - some additional content, focused on some advanced or more specific tasks to carry out with iSEE
+* [iUSEiSEE](01_iUSEiSEE.Rmd) - a compact summary of the content of the whole workshop
+* [Overview of iSEE](02_iSEE_overview.Rmd) - a detailed overview of `r Biocpkg("iSEE")` and its functionality
+* [The iSEE cookbook](03_iSEE_quickrecipes.Rmd) - a set of self-contained recipes with simple-to-advanced tasks one can complete within `r Biocpkg("iSEE")`
+* [Bonus advanced content around iSEE](04_bonus_content.Rmd) - some additional content, focused on some advanced or more specific tasks to carry out with `r Biocpkg("iSEE")`
 
 # Workshop goals and objectives
 
 ## Learning goals
 
-* Outline the features of iSEE, built upon the RStudio Shiny framework
+* Outline the features of `r Biocpkg("iSEE")`, built upon the R/Shiny framework
 * Utilize interactive GUI components and layouts to efficiently extract information from biological data sets
 * Describe how to construct interactive apps and custom panels
-* Demonstrate how these package can smoothly be integrated into and enhance existing workflows for the datasets at hand
+* Demonstrate how `r Biocpkg("iSEE")` and related packages can smoothly be integrated into and enhance existing workflows for the datasets at hand
 
 ## Learning objectives
 
-* Set up a local environment for running iSEE apps
-* Interact with components of the iSEE user interface to visually inspect and discuss various data sets
-* Identify and locate configurable aspects of iSEE apps
+* Set up a local environment for running `r Biocpkg("iSEE")` apps
+* Interact with components of the `r Biocpkg("iSEE")` user interface to visually inspect and discuss various datasets
+* Identify and locate configurable aspects of `r Biocpkg("iSEE")` apps
 * Practice interactive visualization over a single-cell RNA-sequencing workflow
 * Imagine use cases and future developments for interactive visualization as part of computational workflows
-* Design and create iSEE instances for collections of datasets
+* Design and create `r Biocpkg("iSEE")` instances for collections of datasets
 
 # References {-}

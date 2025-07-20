@@ -61,7 +61,8 @@ Suggests:
     fgsea,
     AnnotationDbi, 
     org.Hs.eg.db,
-    GO.db
+    GO.db,
+    sparseMatrixStats
 URL: https://iSEE.github.io/iUSEiSEE/
 BugReports: https://github.com/iSEE/iUSEiSEE/issues
 VignetteBuilder: knitr

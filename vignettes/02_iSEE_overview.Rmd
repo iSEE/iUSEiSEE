@@ -590,8 +590,13 @@ An overview of other extension packages and the panels they provide can be found
 
 # Session info {-}
 
+<details>
+<summary><b>
+Session info
+</b></summary>
 ```{r}
 sessionInfo()
 ```
+</details>
 
 # References {-}

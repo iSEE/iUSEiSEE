@@ -632,8 +632,13 @@ SCREENSHOT("images/recipe_11.png", delay = 20)
 
 # Session info {-}
 
+<details>
+<summary><b>
+Session info
+</b></summary>
 ```{r}
 sessionInfo()
 ```
+</details>
 
 # References {-}

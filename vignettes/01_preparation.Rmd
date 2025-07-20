@@ -82,9 +82,14 @@ sce
 
 # Session info {-}
 
+<details>
+<summary><b>
+Session info
+</b></summary>
 ```{r}
 sessionInfo()
 ```
+</details>
 
 # References {-}
 

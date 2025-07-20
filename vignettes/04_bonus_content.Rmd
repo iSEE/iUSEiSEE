@@ -376,8 +376,13 @@ iSEE(sce_from_anndata)
 
 # Session info {-}
 
+<details>
+<summary><b>
+Session info
+</b></summary>
 ```{r}
 sessionInfo()
 ```
+</details>
 
 # References {-}

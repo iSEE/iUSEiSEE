@@ -12,8 +12,8 @@ output:
 vignette: >
   %\VignetteIndexEntry{01. iUSEiSEE}
   %\VignettePackage{iUSEiSEE}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
   chunk_output_type: console
 bibliography: iUSEiSEErefs.bib
@@ -62,7 +62,7 @@ To run the content presented in this demo, run this following chunk in your R en
 
 ```{r eval = FALSE}
 library("BiocManager")
-BiocManager::install("imbeimainz/iUSEiSEE", dependencies = TRUE, build_vignettes = TRUE)
+BiocManager::install("iSEE/iUSEiSEE", dependencies = TRUE, build_vignettes = TRUE)
 ```
 
 We start by loading the packages that will be used during the demo. 
@@ -87,7 +87,7 @@ All of these would be loaded if you run
 library("iUSEiSEE")
 ```
 
-You can also clone this repository (https://imbeimainz.github.io/iUSEiSEE) locally by `git clone` - it makes it easy to follow along this vignette!
+You can also clone this repository (https://github.com/iSEE/iUSEiSEE) locally by `git clone` - it makes it easy to follow along this vignette!
 
 # Let's go get us some data!
 

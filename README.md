@@ -11,7 +11,7 @@ The `iSEE` package is a flexible, powerful and extendible application to explore
 
 ```
 library("remotes")
-remotes::install_github("imbeimainz/iUSEiSEE", 
+remotes::install_github("iSEE/iUSEiSEE", 
                         dependencies = TRUE, 
                         build_vignettes = TRUE)
 ```

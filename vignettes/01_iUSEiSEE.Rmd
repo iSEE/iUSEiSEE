@@ -1,8 +1,6 @@
 ---
 title: "iUSEiSEE - The iSEE package for efficient, interactive, and reproducible exploration of data"
-author: "Federico Marini^[marinif@uni-mainz.de], Najla Abassi^[abassina@uni-mainz.de] <br><hr>
-  Collection of material developed by the iSEE core dev team <br>
-  (Kevin Rue-Albrecht, Federico Marini, Charlotte Soneson, Aaron Lun)"
+author: "Federico Marini^[marinif@uni-mainz.de], Kevin Rue-Albrecht^[kevinrue67@gmail.com], Charlotte soneson^[charlottesoneson@gmail.com], Aaron Lun^[infinite.monkeys.with.keyboards@gmail.com], Najla Abassi^[abassina@uni-mainz.de]"
 output: 
     html_document:
       theme: cosmo

@@ -1,8 +1,6 @@
 ---
 title: "iUSEiSEE - The iSEE cookbook"
-author: "Federico Marini^[marinif@uni-mainz.de], Najla Abassi^[abassina@uni-mainz.de] <br><hr>
-  Collection of material developed by the iSEE core dev team <br>
-  (Kevin Rue-Albrecht, Federico Marini, Charlotte Soneson, Aaron Lun)"
+author: "Federico Marini^[marinif@uni-mainz.de], Kevin Rue-Albrecht^[kevinrue67@gmail.com], Charlotte soneson^[charlottesoneson@gmail.com], Aaron Lun^[infinite.monkeys.with.keyboards@gmail.com], Najla Abassi^[abassina@uni-mainz.de]"
 output: 
     html_document:
       theme: cosmo
@@ -12,8 +10,8 @@ output:
 vignette: >
   %\VignetteIndexEntry{03. The iSEE cookbook}
   %\VignettePackage{iUSEiSEE}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
   chunk_output_type: console
 bibliography: iUSEiSEErefs.bib

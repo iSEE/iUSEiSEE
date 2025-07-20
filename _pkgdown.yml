@@ -28,15 +28,15 @@ navbar:
       text: Workshop sessions
       menu:
       - text: 00. About this workshop
-        href: articles/about_this_workshop_00.html
-      - text: 01. iUSEiSEE in a glance
-        href: articles/iUSEiSEE_01.html
-      - text: 02. An overview on iSEE
-        href: articles/iSEE_overview_02.html
+        href: articles/00_about_this_workshop.html
+      - text: 01. iUSEiSEE at a glance
+        href: articles/01_iUSEiSEE.html
+      - text: 02. An overview of iSEE
+        href: articles/02_iSEE_overview.html
       - text: 03. The iSEE cookbook
-        href: articles/iSEE_quickrecipes_03.html
+        href: articles/03_iSEE_quickrecipes.html
       - text: 04. Bonus iSEE content
-        href: articles/bonus_content_04.html
+        href: articles/04_bonus_content.html
 
 
 

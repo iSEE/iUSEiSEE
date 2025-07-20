@@ -1,8 +1,6 @@
 ---
 title: "iUSEiSEE - About this workshop"
-author: "Federico Marini^[marinif@uni-mainz.de], Najla Abassi^[abassina@uni-mainz.de] <br><hr>
-  Collection of material developed by the iSEE core dev team <br>
-  (Kevin Rue-Albrecht, Federico Marini, Charlotte Soneson, Aaron Lun)"
+author: "Federico Marini^[marinif@uni-mainz.de], Kevin Rue-Albrecht^[kevinrue67@gmail.com], Charlotte soneson^[charlottesoneson@gmail.com], Aaron Lun^[infinite.monkeys.with.keyboards@gmail.com], Najla Abassi^[abassina@uni-mainz.de]"
 output: 
     html_document:
       theme: cosmo
@@ -12,8 +10,8 @@ output:
 vignette: >
   %\VignetteIndexEntry{00. About this workshop}
   %\VignettePackage{iUSEiSEE}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
   chunk_output_type: console
 bibliography: iUSEiSEErefs.bib
@@ -35,7 +33,7 @@ suppressPackageStartupMessages({
 
 # Description
 
-The iSEE package [@Rue-Albrecht2018-isee] is a flexible, powerful and extendible application to explore any dataset stored in SummarizedExperiment objects, including single cell, spatially resolved data, but also bulk data (transcriptomics and proteomics being just two examples of what can efficiently fit in there!).
+The iSEE package [@Rue-Albrecht2018-isee] is a flexible, powerful and extensible application to explore any dataset stored in SummarizedExperiment objects, including single cell, spatially resolved data, but also bulk data (transcriptomics and proteomics being just two examples of what can efficiently fit in there!).
 
 iSEE enables a multitude of panels to gain in-depth insight in your data; it does so combining interactivity and reproducibility, and providing an ideal companion to other tools (such as CELLxGENE) for deeper dives into data.
 

@@ -37,6 +37,8 @@ navbar:
         href: articles/03_iSEE_quickrecipes.html
       - text: 04. Bonus iSEE content
         href: articles/04_bonus_content.html
+      - text: 05. Extending iSEE
+        href: articles/05_extending_iSEE.html
 
 
 

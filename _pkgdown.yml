@@ -29,8 +29,8 @@ navbar:
       menu:
       - text: 00. About this workshop
         href: articles/00_about_this_workshop.html
-      - text: 01. iUSEiSEE at a glance
-        href: articles/01_iUSEiSEE.html
+      - text: 01. Preparation
+        href: articles/01_preparation.html
       - text: 02. An overview of iSEE
         href: articles/02_iSEE_overview.html
       - text: 03. The iSEE cookbook

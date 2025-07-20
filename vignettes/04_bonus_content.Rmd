@@ -1,5 +1,5 @@
 ---
-title: "iUSEiSEE - Bonus content"
+title: "Bonus content"
 author: "Federico Marini^[marinif@uni-mainz.de], Kevin Rue-Albrecht^[kevinrue67@gmail.com], Charlotte soneson^[charlottesoneson@gmail.com], Aaron Lun^[infinite.monkeys.with.keyboards@gmail.com], Najla Abassi^[abassina@uni-mainz.de]"
 output: 
     html_document:
@@ -39,37 +39,20 @@ SCREENSHOT <- function(x, ...) knitr::include_graphics(x)
 ```
 
 
-# Moar iSEE things
+# Introduction
 
-This vignette contains some examples on even more `iSEE`-things [@Rue-Albrecht2018-isee].
-
-We will use the following packages throughout its content (make sure to have them installed if you want to run it interactively)
-
-```{r pkgs}
-library("iSEE")
-```
-
-
-# iSEE a challenge: let's reproduce any figure!
-
-We'd like to open up a challenge, with some simple rules:
-
-* You search a nice graphical representation of data
-* We try to reproduce this within `iSEE` - as far as this is possible!
-
-Let's suggest a couple of figure/figure panels!  
-Enter a couple of suggestions in this GSheet: https://docs.google.com/spreadsheets/d/1poE713rXqzfNdPcKAPN2AxJYXhaxy8GwgAjRsk_UiK8/edit?usp=sharing
+This vignette contains some additional examples of things that can be done using `iSEE`, going beyond the basic application interface.
 
 # iSEEde and iSEEpathways
 
-iSEEde and iSEEpathways: ideal companions for exploring DE results
+`r Biocpkg("iSEEde")` and `r Biocpkg("iSEEpathways")` and ideal companion packages for exploring differential expression results in (e.g.) bulk RNA-seq data.
 
-We first load the processed `macrophage` data (derived from the work of [@Alasoo2018]) - on this, we already ran the workflow of `DESeq2` [@Love2014] to identify the differentially expressed genes.
+We will use the `macrophage` dataset (derived from the work of [@Alasoo2018]), for which we have already run a differential expression analysis using `DESeq2` [@Love2014]. 
+The processed dataset is provided with the workshop package.
 
 ```{r}
 macrophage_location <- system.file("datasets", "sce_macrophage_readytouse.RDS",
-  package = "iUSEiSEE"
-)
+                                   package = "iUSEiSEE")
 macrophage_location
 
 sce_macrophage <- readRDS(macrophage_location)
@@ -148,17 +131,19 @@ SCREENSHOT("images/isee_de_setup2.png", delay = 30)
 
 # iSEEfier
 
-Let's say we are interested in visualizing the expression of a list of specific marker genes in one view, or maybe we created different initial states separately, but would like to visualize them in the same instance. As we previously learned, we can do a lot of these tasks by running the command:
+Let's say we are interested in visualizing the expression of a list of specific marker genes in one view, or maybe we created different initial states separately, but would like to visualize them in the same instance. 
+As we previously learned, we can do a lot of these tasks by running the command:
 
 ```{r, eval=FALSE}
 # don't run
 iSEE(sce)
 ```
 
-Then, add/remove the panels to our need. This can involve multiple steps (selecting the gene of interest, color by a specific `colData`...), or probably even write multiple lines of code.
+Then, add/remove the panels to our need. 
+This can involve multiple steps (selecting the gene of interest, color by a specific `colData`...), or probably even write multiple lines of code.
 For that we can use the `r Biocpkg("iSEEfier")` package, which streamlines the process of starting (or if you will, firing up) an `iSEE` instance with a small chunk of code, avoiding the tedious way of setting up every `iSEE` panel individually.
 
-In this section, we will illustrate a simple example of how to use `r Biocpkg("iSEEfier")`. We will use the same pbmc3k data we worked with during this workshop.
+In this section, we will illustrate a simple example of how to use `r Biocpkg("iSEEfier")`. We will use the same `pbmc3k` data we worked with during this workshop.
 
 We start by loading the data:
 
@@ -173,7 +158,8 @@ sce <- readRDS(
 sce
 ```
 
-For example, we can be interested in visualizing the expression of *GZMB*, *TGFB*, and *CD28* genes all at once. We start by providing a couple of parameters:
+For example, we can be interested in visualizing the expression of *GZMB*, *TGFB*, and *CD28* genes all at once. 
+We start by providing a couple of parameters:
 
 ```{r}
 # define the list of genes
@@ -208,21 +194,6 @@ SCREENSHOT("images/isee-on-fier.png", delay = 30)
 While we are visualizing the expression of these genes, we might want to take some notes (gene X is more expressed in a certain cell type/cluster than some others, maybe we are trying to annotate the cells ourselves if the annotation wasn't available...).  
 For this, we used the argument `add_markdown_panel = TRUE`. It will display a `MarkdownBoard` panel where we can note our observations without leaving the app.
 
-We can also use the argument `add_dynamicTable_panel=TRUE` to add another custom panel to display the maker genes of certain cluster/cell type.
-
-```{r}
-feature_list_2 <- c("CD74", "CD79B")
-initial_2 <- iSEEinit(sce,
-                      features = feature_list_2,
-                      clusters = cluster_1,
-                      add_markdown_panel = TRUE,
-                      add_dynamicTable_panel = TRUE)
-```
-
-```{r}
-app <- iSEE(sce, initial = initial_2)
-```
-
 We can check the initial's content, or how the included panels are linked between each other without running the app with `view_initial_tiles()` and `view_initial_network()`:
 
 ```{r}
@@ -241,28 +212,16 @@ view_initial_network(initial_1, plot_format = "visNetwork")
 It is also possible to combine multiple initials into one:
 
 ```{r}
+feature_list_2 <- c("CD74", "CD79B")
+initial_2 <- iSEEinit(sce,
+                      features = feature_list_2,
+                      clusters = cluster_1)
 merged_config <- glue_initials(initial_1, initial_2)
 # check out the content of merged_config
 view_initial_tiles(initial = merged_config)
 ```
 
 `?iSEEfier` is always your friend whenever you need further documentation on the package/a certain function and how to use it.
-
-# Multi-sample, multi-condition datasets: how to let iSEE shine
-
-We will take another dataset for this, from a recent work of Bartneck and colleagues ([@Bartneck2023]).
-
-You can find the dataset in the `sce_merged_allsets.RDS` object - let's see together how we can access that --> https://seafile.rlp.net/d/c7f1335a6248427d97da/.
-
-Once the data is available locally, we load it in the R session and simply start iSEE on it.
-
-```{r eval=FALSE}
-library("iSEE")
-sce_bartneck <- readRDS("path/to/sce_merged_allsets.RDS")
-iSEE(sce_bartneck)
-```
-
-For more about this work, please refer to the [original publication](https://www.frontiersin.org/articles/10.3389/fimmu.2023.1267866/full).
 
 # iSEEhub & iSEEindex
 
@@ -329,8 +288,6 @@ Potential use cases can include:
 * An app to present and explore the different datasets in your next publication
 * An app to explore collection of datasets collaboratively, in consortium-like initiatives
 * An app to mirror and enhance the content of e.g. the cellxgene data portal
-* Got any ideas on how to use iSEE for such deployments?
-
 
 # Tours: help and storytelling
 
@@ -382,6 +339,39 @@ app <- iSEE(sce, initial = initial_for_tour, tour = tour)
 
 ```{r, echo=FALSE}
 SCREENSHOT("images/isee_simpletour.png", delay = 20)
+```
+
+# Interoperability
+
+As we have seen throughout this workshop, `r Biocpkg("iSEE")` works on `SummarizedExperiment` objects, or derivatives thereof. 
+However, especially if you are working with single-cell data you may already have your dataset available in another format (such as a `Seurat` object or an `AnnData` object). 
+To use `iSEE` on these objects, they first have to be converted to `SingleCellExperiment` objects. 
+Fortunately, there are good packages available to perform this conversion. 
+We exemplify this below, using data downloaded from https://zenodo.org/records/10084595 (if you want to follow along, download the data and unpack in a folder named `datasets` in the current working directory).
+
+## From Seurat
+
+```{r eval=FALSE}
+library("Seurat")
+
+seurat_object <- readRDS("datasets/seurat_pbmc3k.RDS")
+sce_from_seurat <- Seurat::as.SingleCellExperiment(
+  seurat_object
+)
+sce_from_seurat
+
+iSEE(sce_from_seurat)
+```
+
+## From AnnData
+
+```{r eval=FALSE}
+library("zellkonverter")
+
+sce_from_anndata <- zellkonverter::readH5AD(file = "datasets/anndata_pbmc3k.h5ad")
+sce_from_anndata
+
+iSEE(sce_from_anndata)
 ```
 
 # Session info {-}

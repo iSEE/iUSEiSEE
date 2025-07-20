@@ -1,5 +1,5 @@
 ---
-title: "iUSEiSEE - The iSEE cookbook"
+title: "The iSEE cookbook"
 author: "Federico Marini^[marinif@uni-mainz.de], Kevin Rue-Albrecht^[kevinrue67@gmail.com], Charlotte soneson^[charlottesoneson@gmail.com], Aaron Lun^[infinite.monkeys.with.keyboards@gmail.com], Najla Abassi^[abassina@uni-mainz.de]"
 output: 
     html_document:
@@ -64,7 +64,7 @@ sce
 
 # The cookbook
 
-What follows is a list of 11 small self contained recipes, that try to address one specific aim - and provide accordingly a simple, targeted solution.
+What follows is a list of 11 small self contained recipes, that each tries to address one specific aim - and provide accordingly a simple, targeted solution.
 
 ## Recipe 1: Panel organisation
 

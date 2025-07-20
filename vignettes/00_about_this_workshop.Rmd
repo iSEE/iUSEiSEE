@@ -68,7 +68,7 @@ Participants will be encouraged to follow along in the live coding parts of the 
 
 The following material is available in the `vignettes` folder:
 
-* [iUSEiSEE](01_iUSEiSEE.Rmd) - a compact summary of the content of the whole workshop
+* [Preparation](01_preparation.Rmd) - instructions for installing the required packages and downloading the example data
 * [Overview of iSEE](02_iSEE_overview.Rmd) - a detailed overview of `r Biocpkg("iSEE")` and its functionality
 * [The iSEE cookbook](03_iSEE_quickrecipes.Rmd) - a set of self-contained recipes with simple-to-advanced tasks one can complete within `r Biocpkg("iSEE")`
 * [Bonus advanced content around iSEE](04_bonus_content.Rmd) - some additional content, focused on some advanced or more specific tasks to carry out with `r Biocpkg("iSEE")`
@@ -90,5 +90,18 @@ The following material is available in the `vignettes` folder:
 * Practice interactive visualization over a single-cell RNA-sequencing workflow
 * Imagine use cases and future developments for interactive visualization as part of computational workflows
 * Design and create `r Biocpkg("iSEE")` instances for collections of datasets
+
+# Additional resources {#additional-resources}
+
+A lot of materials have been developed, from the first use of `r Biocpkg("iSEE")` to contributions of new panel classes in separate downstream packages.
+
+* The iSEE website: https://isee.github.io/
+* Publication (F1000Research, 2018): https://f1000research.com/articles/7-741/v1
+* Bioconductor landing page: https://bioconductor.org/packages/iSEE/
+* Development version (bug reports etc): https://github.com/iSEE/iSEE
+* Material from previous workshops: https://isee.github.io/resources.html#workshops
+* Deployed examples: https://isee.github.io/apps.html, https://github.com/iSEE/iSEE_instances
+* Custom panel examples: https://github.com/iSEE/iSEE_custom
+* The bookdown book on _Extending iSEE_: https://isee.github.io/iSEE-book/
 
 # References {-}

@@ -1,0 +1,90 @@
+---
+title: "Preparation"
+author: "Federico Marini^[marinif@uni-mainz.de], Kevin Rue-Albrecht^[kevinrue67@gmail.com], Charlotte soneson^[charlottesoneson@gmail.com], Aaron Lun^[infinite.monkeys.with.keyboards@gmail.com], Najla Abassi^[abassina@uni-mainz.de]"
+output: 
+    html_document:
+      theme: cosmo
+      toc: yes
+      toc_float: yes
+      number_sections: true
+vignette: >
+  %\VignetteIndexEntry{01. iUSEiSEE}
+  %\VignettePackage{iUSEiSEE}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+bibliography: iUSEiSEErefs.bib
+---
+
+<img src="iSEE.png" align="right" alt="" width="120" />
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  cache = FALSE,
+  collapse = TRUE,
+  comment = "#>",
+  crop = NA
+)
+suppressPackageStartupMessages({
+  library("BiocStyle")
+  library("iSEE")
+})
+```
+
+# Installing and loading the required packages
+
+To run the content presented in this demo, run this following chunk in your R session.
+This will install the workshop package as well as all required dependencies.
+
+```{r eval = FALSE}
+library("BiocManager")
+BiocManager::install("iSEE/iUSEiSEE", dependencies = TRUE, build_vignettes = TRUE)
+```
+
+Next, we load the packages that will be used during the demo. 
+
+```{r, message=FALSE, warning=FALSE}
+library("SingleCellExperiment")
+library("iSEE")
+library("TENxPBMCData")
+
+library("iSEEu")
+
+library("iSEEde")
+library("iSEEpathways")
+
+library("iSEEhub")
+library("iSEEindex")
+```
+
+Alternatively, all of these would be loaded if you load the workshop package itself, i.e.:
+
+```{r}
+library("iUSEiSEE")
+```
+
+You can also clone the GitHub repository (https://github.com/iSEE/iUSEiSEE) locally using `git clone` - it makes it easy to open and follow along in the vignettes.
+
+# Load example data
+
+Most of the functionality covered in this workshop will be illustrated by means of a single-cell RNA sequencing dataset that is included in the package. 
+You can load the dataset as follows: 
+
+```{r}
+sce <- readRDS(
+  file = system.file("datasets", "sce_pbmc3k.RDS", package = "iUSEiSEE")
+)
+
+sce
+```
+
+# Session info {-}
+
+```{r}
+sessionInfo()
+```
+
+# References {-}
+

@@ -1,5 +1,5 @@
 ---
-title: "iUSEiSEE - An overview of iSEE"
+title: "An overview of iSEE"
 author: "Federico Marini^[marinif@uni-mainz.de], Kevin Rue-Albrecht^[kevinrue67@gmail.com], Charlotte soneson^[charlottesoneson@gmail.com], Aaron Lun^[infinite.monkeys.with.keyboards@gmail.com], Najla Abassi^[abassina@uni-mainz.de]"
 output: 
     html_document:
@@ -38,7 +38,6 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 SCREENSHOT <- function(x, ...) knitr::include_graphics(x)
 ```
 
-
 # Introduction
 
 This vignette provides an overview of the graphical interface of `r Biocpkg("iSEE")` applications [@Rue-Albrecht2018-isee].
@@ -46,7 +45,7 @@ To follow along, make sure that you launch the default `r Biocpkg("iSEE")` insta
 
 Note that in the default configuration, the panels do not look exactly like the ones shown in the screenshots that you will see below.
 For example, data points are not immediately colored, and the default annotation variables displayed by each panel may differ.
-The [hands-on recipes](recipes.html) workshop of this workshop will demonstrate how to modify the content of the panels, and how they are displayed. 
+The [hands-on recipes](03_iSEE_quickrecipes.html) workshop of this workshop will demonstrate how to modify the content of the panels, and how they are displayed. 
 
 Note that for simplicity, we typically refer to a `SummarizedExperiment` in this workshop; however, `r Biocpkg("iSEE")` works seamlessly for objects of any class extending `SummarizedExperiment` as well (e.g., `SingleCellExperiment`, `DESeqDataSet`).
 That said, some types of panels -- such as the `r .fullName(ReducedDimensionPlot())` -- are only available for objects that contain a `reducedDim` slot (in particular, `SingleCellExperiment` objects); the basic `SummarizedExperiment` class does not contain this slot.
@@ -101,12 +100,12 @@ SCREENSHOT("images/isee-no-se.png", delay = 10)
 The `r Biocpkg("iSEE")` user interface (UI) consists of a number of panels, each displaying the data provided in the `SummarizedExperiment` from a specific perspective.
 There are 8 standard panel types; 6 plot panels and 2 table panels, all showcased in the figure shown at the start of the [previous section](#default-app).
 In the default configuration, one panel of each type is included when launching the `r Biocpkg("iSEE")` user interface.
-However, users are free to rearrange, resize, remove or add panels freely, as demonstrated in the separate vignette of [workshop recipes](recipes.html).
+However, users are free to rearrange, resize, remove or add panels freely, as demonstrated in the separate vignette of [workshop recipes](03_iSEE_quickrecipes.html).
 We provide a brief overview of each panel type in the following subsections.
 
 In addition to the 8 standard panel types included in `r Biocpkg("iSEE")`, users can create custom panels (both plots and tables).
 Moreover, the `r Biocpkg("iSEEu")` (iSEE universe) package contains additional panel types. 
-The creation and configuration of custom panels is also demonstrated in a series of [workshop advanced recipes](recipes.html).
+The creation and configuration of custom panels is also demonstrated in a series of [workshop advanced recipes](03_iSEE_quickrecipes.html).
 
 Specifically, `r Biocpkg("iSEE")` panels are implemented as a hierarchy of S4 classes.
 Only _concrete_ classes (orange) may be instantiated as panels in the user interface; while _virtual_ classes (grey) provide functionality shared by families of panels (e.g., sample-oriented plots, feature-oriented tables).
@@ -289,7 +288,7 @@ SCREENSHOT("images/isee-columndataplot-visualparameters.png", delay = 10)
 
 The `Selection parameters` collapsible box provides controls to transfer selections of points (features or samples) between panels.
 
-We demonstrate examples of point transmission in the separate vignette of [workshop recipes](recipes.html)
+We demonstrate examples of point transmission in the separate vignette of [workshop recipes](03_iSEE_quickrecipes.html)
 
 ```{r, message=FALSE, echo = FALSE}
 app <- iSEE(sce, initial = list(ReducedDimensionPlot(
@@ -396,8 +395,7 @@ Clicking the `Quick tour` button launches an interactive tour of the interface u
 knitr::include_graphics("images/quick-tour.png", dpi = 180)
 ```
 
-You can see a live example of a more complex tour in action, visit <https://marionilab.cruk.cam.ac.uk/iSEE_pbmc4k/>.
-The code used to create this app and the associated tour is available from <https://github.com/iSEE/iSEE2018/tree/master/tours/pbmc4k>.
+You can see a live example of a more complex tour in action in the deployed apps exemplified on the iSEE website, for example <https://hbcc-nimh.shinyapps.io/shinyApp_JNS2023/>.
 
 ## Open the vignette {#browse-vignettes}
 
@@ -441,60 +439,57 @@ A BibTeX entry for LaTeX users is:
 
 # Using iSEE: what can you do with it?
 
-In this section, we list a number of actions you can perform, possibly in a very smooth manner, with the help of iSEE.
-
-These are reported here as bullet points, and will be demonstrated by the instructors.
+In this section, we list a number of actions you can perform with the help of iSEE.
+Feel free to try them out already! 
+The following vignettes will go into more details for many of them.
 
 * Organize the iSEE panels:
   - Search for the `Organize panels` button. 
-  - Try to add and remove panels, and resize the existing ones.
+  - Try to add and remove panels, and resize and reorder the existing ones.
   - Remember to click on `Apply settings` afterwards. 
   - See how to export the `initial` configuration of panels.
-  - Relaunch the application, now with the additional argument `initial` provided
+  - Relaunch the application, now with the additional argument `initial` provided.
 
-* Seeing more:
+* Multiple panels of the same type:
   - Show two _Reduced dimension plot_ panels; one showing the PCA representation, one showing the t-SNE representation.
-  - Link them together
+  - Link them together, so that points that are selected in one are highlighted in the other.
 
-* See the true colors of your data:
+* More on `iSEE` links and transmissions:
+  - Start an instance with the default set of panels and explore the different types of plots generated by the Feature assay plot panel using the choices available for the two axes.
+  - Select a set of points in one of the _Feature assay plot_ panels, by drawing a rectangle around them. 
+  - Then open the _Selection parameters_ collapsible box of another _Feature assay plot_ panel, and select the _Feature assay plot_ panel where you made the point selection from the dropdown menu under **Receive column selection from**. 
+  - Note how the points corresponding to the cells that you selected in the first panel are highlighted in the receiving panel. 
+  - You can highlight the points in different ways by changing the **Selection effect**.
+  - `iSEE` can display active links transmitting point selections between panel using the "[Examine panel chart](#additional-controls)" menu.
+
+* Color the points:
   - Open the `Visual parameters` collapsible box in one of the _Reduced dimension plot_ panels, and set `Color by:` to `Column data`.
-  - Color the cells by `Cluster`, which contains the cluster labels that were assigned to the cells in the preprocessing step
-  - Color the cells by the log10-transformed number of detected genes (`log10_total`).#
+  - Color the cells by `Cluster`, which contains the cluster labels that were assigned to the cells in the preprocessing step.
+  - Color the cells by the log10-transformed number of detected genes (`log10_total`).
   - Set `Color by:` to `Feature name` in one of the _Reduced dimension plot_ panels, and select one of the genes from the dropdown menu. You can search for a gene of interest by typing in the dropdown box.
 
-* Highlighting & zooming:
+* Highlight & zoom:
   - Set `Color by:` to `Sample name` in one of the Reduced dimension plots, and use the dropdown menu underneath to change the highlighted cell.
-  - Here, we reduce the point size and increase the transparency (i.e. reduce the value for the alpha attribute).
-  - We also apply a downsampling grid of 100 horizontal and vertical bins 
+  - Reduce the point size and increase the transparency (i.e. reduce the value for the alpha attribute).
+  - Apply a downsampling grid of 100 horizontal and vertical bins.
+  - As above, select a region in the first panel and transmit the selection to the second one.
   - Double-click on the area selected in the first panel to zoom and display the same view as the second panel.
   - Double click again anywhere in the panel to zoom out.
 
-* Ready, steady, go:
-  - Start `iSEE` in the default configuration
-  - Set up one _Column data plot_ and one _Row data plot_ panel
-  - Start `iSEE` in an empty configuration
-
-* iSEE links:
-  - Start an instance with the default set of panels and explore the different types of plots generated by the Feature assay plot panel using the choices available for the two axes.
-  - Select a set of points in one of the _Feature assay plot_ panels, by drawing a rectangle around them. 
-  - Then open the _Selection parameters_ collapsible box of one of the other _Feature assay plot_ panels, and select the _Feature assay plot_ panel where you made the point selection from the dropdown menu under **Receive column selection from**. 
-  - Note how the points corresponding to the cells that you selected in the first panel are highlighted in the receiving panel. 
-  - You can highlight the points in different ways by changing the **Selection effect**.
-  - iSEE can display active links transmitting point selections between panel using the "[Examine panel chart](#additional-controls)" menu.
-* Selecting things
-  - Get ready to know the rectangular selection and the lasso selection
-  - Create multiple selections
-
-* Let's export things!
+* Launch iSEE with pre-specified configurations:
+  - Start `iSEE` in the default configuration.
   - Click on the export icon (<i class="fa fa-download fa-1g"></i>) in the top-right corner, and select 'Display panel settings'.
   - Copy all the code shown in the pop-up window. 
   - Close the app and paste this code in your R session.
   - This defines the 'initial' list that we have composed manually in the examples above. Then launch a new instance using the following code. 
   - Note how the app starts in the same configuration as it was before closing. Of course, it is still possible to continue exploring the data interactively - we have only changed the starting configuration.
-  - On to the code for the output now! Click on the export icon (<i class="fa fa-download fa-1g"></i>) in the top-right corner, and select 'Extract the R code'.
-  - Copy the preamble and the code for the first _Reduced dimension plot_ from the pop-up window.  Close the app and paste the code in your R session.
-  - Note how this recreates the first reduced dimension plot from the app. 
+  - Start `iSEE` with one _Column data plot_ and one _Row data plot_ panel.
+  - Start `iSEE` in an empty configuration.
 
+* Export code
+  - Click on the export icon (<i class="fa fa-download fa-1g"></i>) in the top-right corner, and select 'Extract the R code'.
+  - Copy the preamble and the code for the first plot from the pop-up window. Close the app and paste the code in your R session.
+  - Note how this recreates the first plot from the app. 
 
 # Modes and additional panels
 
@@ -520,7 +515,7 @@ New panels may be implemented by extending the core virtual class `Panel` direct
 alternatively, it is often desirable for developers to inherit from one of the concrete panel classes to get most of the essential functionality from the parent class "for free".
 
 Use cases demonstrating the implementation of new panels with various levels of complexity are available in the [Extending iSEE](https://isee.github.io/iSEE-book/) bookdown.
-For example, the _Hexagonal reduced dimension plot_ - implemented in the `r Biocpkg("iSEEu")` package - demonstrates an alternative to the downsampling strategy, by summarizing data points into hexagonal bins.
+For example, the _Hexagonal reduced dimension plot_ - implemented in the `r Biocpkg("iSEEhex")` package - demonstrates an alternative to the downsampling strategy, by summarizing data points into hexagonal bins.
 
 ```{r}
 app <- iSEE(sce, initial = list(
@@ -537,7 +532,7 @@ SCREENSHOT("images/isee-iseeu-modereduceddimhex.png", delay=10)
 ```
 
 
-Another useful mode you can use with your data, especially if using iSEE for mass cytometry data, would be the `modeGating`. 
+Another useful mode you can use with your data, for example if using iSEE for mass cytometry data, would be the `modeGating`. 
 This launches an app preconfigured with multiple chain-linked feature expression plots for interactive data exploration.
 
 ```{r}
@@ -591,25 +586,7 @@ app <- iSEE(
 SCREENSHOT("images/isee-iseeu-aggrodotplot.png", delay=20)
 ```
 
-
-New panels and modes may be defined in independent _R_ packages that declare `Imports: iSEE` in their DESCRIPTION file, and distributed online to create an "iSEE-verse" of interoperable packages for interactive visualization, akin to the `r CRANpkg('tidyverse')` collection of R packages for data science.
-If you have ideas about additional panels and/or modes that might be useful, we welcome issues and pull requests at https://github.com/iSEE/iSEEu.
-
-
-
-
-# Additional resources {#additional-resources}
-
-A lot of materials have been developed, from the first use of `r Biocpkg("iSEE")` to contributions of new panel classes in separate downstream packages.
-
-* The bookdown book on _Extending iSEE_: https://isee.github.io/iSEE-book/
-* Bioconductor landing page: https://bioconductor.org/packages/iSEE/
-* Publication (F1000Research, 2018): https://f1000research.com/articles/7-741/v1
-* Deployed examples: https://marionilab.cruk.cam.ac.uk/, code at https://github.com/iSEE/iSEE2018
-  * Further deployments in the https://github.com/iSEE/iSEE_instances repo
-  * More and more examples: https://isee.github.io/apps.html
-* Custom panel examples: https://github.com/iSEE/iSEE_custom
-* Development version (bug reports etc): https://github.com/iSEE/iSEE
+An overview of other extension packages and the panels they provide can be found on the iSEE website: https://isee.github.io/panels.html.
 
 # Session info {-}
 

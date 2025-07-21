@@ -1,9 +1,9 @@
 url: https://iSEE.github.io/iUSEiSEE
 
 template:
-  params:
-    bootswatch: cosmo
-    #ganalytics: UA-99999999-9
+  bootstrap: 5
+  bootswatch: cosmo
+  #ganalytics: UA-99999999-9
 
 home:
   title: "iUSEiSEE"

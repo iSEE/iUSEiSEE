@@ -6,12 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>iUSEiSEE • iUSEiSEE</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
+<link rel="icon" type="”image/svg+xml”" href="favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" sizes="any" href="favicon.ico">
+<link rel="manifest" href="site.webmanifest">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
@@ -26,7 +25,7 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -52,33 +51,36 @@
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Workshop sessions
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/about_this_workshop_00.html">00. About this workshop</a>
+      <a href="articles/d00_about_this_workshop.html">00. About this workshop</a>
     </li>
     <li>
-      <a href="articles/iUSEiSEE_01.html">01. iUSEiSEE in a glance</a>
+      <a href="articles/d01_preparation.html">01. Preparation</a>
     </li>
     <li>
-      <a href="articles/iSEE_overview_02.html">02. An overview on iSEE</a>
+      <a href="articles/d02_iSEE_overview.html">02. An overview of iSEE</a>
     </li>
     <li>
-      <a href="articles/iSEE_quickrecipes_03.html">03. The iSEE cookbook</a>
+      <a href="articles/d03_iSEE_quickrecipes.html">03. The iSEE cookbook</a>
     </li>
     <li>
-      <a href="articles/bonus_content_04.html">04. Bonus iSEE content</a>
+      <a href="articles/d04_bonus_content.html">04. Bonus iSEE content</a>
+    </li>
+    <li>
+      <a href="articles/d05_extending_iSEE.html">05. Extending iSEE</a>
     </li>
   </ul>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/imbeimainz/iUSEiSEE" class="external-link">
+  <a href="https://github.com/iSEE/iUSEiSEE" class="external-link">
     <span class="fa fa-github"></span>
-     
+
   </a>
 </li>
       </ul>
@@ -89,7 +91,7 @@
 </div>
 <!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="contents col-md-9">
@@ -98,41 +100,57 @@
 <div class="section level1">
 <div class="page-header"><h1 id="iuseisee">iUSEiSEE<a class="anchor" aria-label="anchor" href="#iuseisee"></a>
 </h1></div>
-<p>The <code>iSEE</code> package is a flexible, powerful and extendible application to explore any dataset stored in SummarizedExperiment objects, including single cell and spatially resolved data.</p>
-<p><code>iSEE</code> enables a multitude of panels to gain in-depth insight in your data; it does so combining interactivity and reproducibility, and providing an ideal companion to CELLxGENE for deeper dives into data.</p>
+<p>The <code>iSEE</code> package is a flexible, powerful and extendible application to explore any dataset stored in a <code>SummarizedExperiment</code> object. In turn, any dataset that can be shaped into one or more numerical matrices (“rectangular” datasets) can easily be put into a <code>SummarizedExperiment</code> object. This includes many types of bulk, single cell and spatially resolved biological data, as well as many non-biological data types.</p>
+<p><code>iSEE</code> enables a multitude of panels to gain in-depth insight in your data; it does so combining interactivity and reproducibility, and provides an ideal tool for deeper dives into your data.</p>
 <div class="section level2">
 <h2 id="how-to-install">How to install<a class="anchor" aria-label="anchor" href="#how-to-install"></a>
 </h2>
 <pre><code><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://remotes.r-lib.org" class="external-link">"remotes"</a></span><span class="op">)</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"imbeimainz/iUSEiSEE"</span>, </span>
-<span>                        dependencies <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"iSEE/iUSEiSEE"</span>,</span>
+<span>                        dependencies <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                        build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="how-to-run-this-workshop">How to run this workshop<a class="anchor" aria-label="anchor" href="#how-to-run-this-workshop"></a>
 </h2>
 <ul>
-<li>Open the <code>iUSEiSEE.Rproj</code> project file</li>
+<li>Open the <code>iUSEiSEE.Rproj</code> project file in RStudio</li>
 <li>Navigate to the <code>vignettes</code> folder</li>
 <li>Make sure the datasets are included in the <code>datasets</code> subfolder (if using Seurat or AnnData)</li>
-<li>Open the individual Rmarkdown files and execute their content live!</li>
+<li>Open the individual R Markdown files and execute their content live!</li>
 </ul>
 </div>
 <div class="section level2">
 <h2 id="schedule">Schedule<a class="anchor" aria-label="anchor" href="#schedule"></a>
 </h2>
 <ul>
-<li>Short presentation, <code>iSEE</code>: Harry met Sally for interactive and reproducible data exploration</li>
-<li>Installation of the dependencies &amp; tech check</li>
-<li>Retrieval of the data + Inspecting the processing steps so far</li>
-<li>Overview on iSEE: panel by panel, learning Data + Visual + Selection parameters</li>
-<li>Hands on with the full workshop</li>
-<li>Going through the iSEE cookbook: “What if all I need is some recipes?”</li>
-<li>Latest developments in the iSEE universe: iSEE for DE and pathways</li>
-<li>Got more than just one dataset? iSEEhub and iSEEindex</li>
-<li>iSEEfier: starting things up in a breeze</li>
-<li>Got some own data? Some space for additional questions and setting up iSEE on that</li>
+<li>Short presentation of <code>iSEE</code>
+</li>
+<li>Installation of the dependencies and tech check</li>
+<li>Retrieval of the data and inspection of the processing steps so far</li>
+<li>Overview of <code>iSEE</code>: panel by panel, learning Data + Visual + Selection parameters</li>
+<li>Hands-on practice using the recipes from the <code>iSEE</code> cookbook</li>
+<li>Extension packages from the <code>iSEE</code> universe: <code>iSEE</code> for differential expression and pathways</li>
+<li>Got more than just one dataset? <code>iSEEhub</code> and <code>iSEEindex</code>
+</li>
+<li>
+<code>iSEEfier</code>: starting things up in a breeze</li>
 </ul>
+</div>
+<div class="section level2">
+<h2 id="need-help">Need help?<a class="anchor" aria-label="anchor" href="#need-help"></a>
+</h2>
+<p>If you encounter a problem while running <code>iUSEiSEE</code>, please open an <a href="https://github.com/iSEE/iUSEiSEE/issues" class="external-link">issue</a> and describe the problem. Make sure to provide a reproducible example, including your session info.</p>
+</div>
+<div class="section level2">
+<h2 id="how-to-contribute">How to contribute<a class="anchor" aria-label="anchor" href="#how-to-contribute"></a>
+</h2>
+<p>If you would like to contribute to <code>iUSEiSEE</code>, you can do so by sending a pull request to this repository. For large changes, we encourage you to first open an issue to discuss the intended contribution.</p>
+</div>
+<div class="section level2">
+<h2 id="code-of-conduct">Code of conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
+</h2>
+<p>Please note that the <code>iSEE</code> project (including <code>iUSEiSEE</code>) is released with a <a href="CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 </div>
 </div>
 
@@ -142,8 +160,8 @@
     <div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/imbeimainz/iUSEiSEE/" class="external-link">Browse source code</a></li>
-<li><a href="https://github.com/imbeimainz/iUSEiSEE/issues" class="external-link">Report a bug</a></li>
+<li><a href="https://github.com/iSEE/iUSEiSEE/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/iSEE/iUSEiSEE/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
@@ -155,6 +173,12 @@
 </ul>
 </div>
 
+<div class="community">
+<h2 data-toc-skip>Community</h2>
+<ul class="list-unstyled">
+<li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
+</ul>
+</div>
 
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
@@ -166,11 +190,11 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Federico Marini <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-3252-7758" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Kevin Rue-Albrecht <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-3899-3872" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Charlotte Soneson <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-3833-2169" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Aaron Lun <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-3564-4813" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Najla Abassi <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-8357-0938" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Federico Marini <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-3252-7758" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
+<li>Kevin Rue-Albrecht <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-3899-3872" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
+<li>Charlotte Soneson <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-3833-2169" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
+<li>Aaron Lun <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-3564-4813" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
+<li>Najla Abassi <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-8357-0938" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 </ul>
 </div>
 
@@ -187,16 +211,16 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
       </footer>
 </div>
 
-  
 
 
-  
+
+
 
   </body>
 </html>

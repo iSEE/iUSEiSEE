@@ -68,10 +68,11 @@ Participants will be encouraged to follow along in the live coding parts of the 
 
 The following material is available in the `vignettes` folder:
 
-* [Preparation](01_preparation.Rmd) - instructions for installing the required packages and downloading the example data
-* [Overview of iSEE](02_iSEE_overview.Rmd) - a detailed overview of `r Biocpkg("iSEE")` and its functionality
-* [The iSEE cookbook](03_iSEE_quickrecipes.Rmd) - a set of self-contained recipes with simple-to-advanced tasks one can complete within `r Biocpkg("iSEE")`
-* [Bonus advanced content around iSEE](04_bonus_content.Rmd) - some additional content, focused on some advanced or more specific tasks to carry out with `r Biocpkg("iSEE")`
+* [Preparation](d01_preparation.Rmd) - instructions for installing the required packages and downloading the example data
+* [Overview of iSEE](d02_iSEE_overview.Rmd) - a detailed overview of `r Biocpkg("iSEE")` and its functionality
+* [The iSEE cookbook](d03_iSEE_quickrecipes.Rmd) - a set of self-contained recipes with simple-to-advanced tasks one can complete within `r Biocpkg("iSEE")`
+* [Bonus advanced content around iSEE](d04_bonus_content.Rmd) - some additional content, focused on some advanced or more specific tasks to carry out with `r Biocpkg("iSEE")`
+* [Extending iSEE](d05_extending_iSEE.Rmd) - material focused on extending `r Biocpkg("iSEE")` by creating new panel classes
 
 # Workshop goals and objectives
 

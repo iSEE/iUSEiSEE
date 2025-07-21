@@ -8,7 +8,7 @@ output:
       toc_float: yes
       number_sections: true
 vignette: >
-  %\VignetteIndexEntry{04. Bonus content}
+  %\VignetteIndexEntry{05. Extending iSEE}
   %\VignettePackage{iUSEiSEE}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}

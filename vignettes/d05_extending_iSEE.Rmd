@@ -1,0 +1,316 @@
+---
+title: "Extending iSEE"
+author: "Federico Marini^[marinif@uni-mainz.de], Kevin Rue-Albrecht^[kevinrue67@gmail.com], Charlotte soneson^[charlottesoneson@gmail.com], Aaron Lun^[infinite.monkeys.with.keyboards@gmail.com], Najla Abassi^[abassina@uni-mainz.de]"
+output: 
+    html_document:
+      theme: cosmo
+      toc: yes
+      toc_float: yes
+      number_sections: true
+vignette: >
+  %\VignetteIndexEntry{05. Extending iSEE}
+  %\VignettePackage{iUSEiSEE}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+bibliography: iUSEiSEErefs.bib
+---
+
+<img src="iSEE.png" align="right" alt="" width="120" />
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  cache = FALSE,
+  collapse = TRUE,
+  comment = "#>",
+  crop = NA
+)
+suppressPackageStartupMessages({
+  library("BiocStyle")
+  library("iSEE")
+})
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+```{r, eval=!exists("SCREENSHOT"), include=FALSE}
+SCREENSHOT <- function(x, ...) knitr::include_graphics(x)
+```
+
+# Writing iSEE extensions
+
+In this vignette, we illustrate how to:
+
+* Extend an existing panel class into a new panel class
+* Derive a new panel class from an existing panel
+
+# Load example data
+
+```{r}
+library("iSEE")
+
+sce <- readRDS(system.file("datasets", "sce_pbmc3k.RDS", package = "iUSEiSEE"))
+```
+
+# Philosophy
+
+`r BiocStyle::Biocpkg("iSEE")` panels are implemented as S4 classes that store the state of each panel in designated slots, and most of the functionality is implemented as S4 methods that describe various behavioural aspects of each panel class.
+
+As a result, new classes can be created simply by inheritance from existing classes, overwriting methods to produce a different behaviour.
+
+# Deriving an S4 class
+
+In this demo, let us create a new class called `ReducedDimensionHexagonPlot`, that inherits from the existing class `ReducedDimensionPlot()` (implemented in the `r BiocStyle::Biocpkg("iSEE")` package).
+
+The objective is to produce a panel that displays the same information as the original `ReducedDimensionPlot()` panel, but summarising data points into hexagonal bins.
+
+One major motivation for this functionality is that arbitrarily large data sets comprising many data points may be summarised into a modest number of hexagonal bins, providing a boost in speed when rendering the plot.
+
+However, this is not without caveats:
+
+* Summarising can take many forms (e.g., counting, averaging).
+* The ideal number of bins may be different for different data sets.
+
+To proceed, the new class needs at least one additional slot to store the number of hexagonal bins to create (i.e., a resolution for the plot).
+
+```{r}
+setClass("ReducedDimensionHexagonPlot", contains="ReducedDimensionPlot", 
+         slots=c(BinResolution = "numeric"))
+```
+
+To properly initialise instances of the new class, the new slot must be populated with a default value in the event that users do not specify a bin resolution.
+
+For this, we need to create a new method for the generic `initialize()` and the new class.
+We set the default resolution to 100 hexagonal bins along each axis.
+
+```{r}
+setMethod("initialize", "ReducedDimensionHexagonPlot", function(.Object, ...) {
+  args <- list(...)
+  
+  args <- .emptyDefault(args, "BinResolution", 20)
+  
+  do.call(callNextMethod, c(list(.Object), args))
+})
+```
+
+# Creating a constructor function
+
+It is best practice to give users a function to create objects a particular class.
+Traditionally, the function is named identically to the class.
+
+In this example, the function passes all its arguments to the `new()` function.
+This is standard practice in `r BiocStyle::Biocpkg("iSEE")`, where the arguments for constructor functions are typically the values of the various slots that describe the initial state of the panel.
+
+```{r}
+ReducedDimensionHexagonPlot <- function(...) {
+  new("ReducedDimensionHexagonPlot", ...)
+}
+```
+
+At this point, we can already demonstrate that we have a functional new panel class... that is a carbon copy of the parent class it inherits from!
+
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
+app <- iSEE(sce, initial = list(
+  ReducedDimensionHexagonPlot(PanelWidth = 6L),
+  ReducedDimensionPlot(PanelWidth = 6L)
+))
+```
+
+```{r, echo=FALSE}
+SCREENSHOT("images/05-hex-initial.png", delay = 10)
+```
+
+
+How can we even tell which is which?!
+
+# Changing the public panel name
+
+The generic `.fullName()` declares the label shown in the interface, at the top of each panel.
+
+Let us create a method for the new class, that gives it a different name, highlighting the hexagonal binning in the plot.
+
+```{r}
+setMethod(".fullName", "ReducedDimensionHexagonPlot", 
+          function(x) "Hexagonal reduced dimension plot")
+```
+
+Let's launch the app to see the effect
+
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
+app <- iSEE(sce, initial = list(
+  ReducedDimensionHexagonPlot(PanelWidth = 6L),
+  ReducedDimensionPlot(PanelWidth = 6L)
+))
+```
+
+```{r, echo=FALSE}
+SCREENSHOT("images/05-hex-name.png", delay = 10)
+```
+
+
+# Changing the background panel colour
+
+Similarly, the generic `.panelColor()` declares the background colour of the panel header (as well as the colour of brushes for compatible panels).
+
+Let us create a method for the new class, that gives it a different colour.
+
+```{r}
+setMethod(".panelColor", "ReducedDimensionHexagonPlot", function(x) "#991717")
+```
+
+Let's launch the app to see the effect
+
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
+app <- iSEE(sce, initial = list(
+  ReducedDimensionHexagonPlot(PanelWidth = 6L),
+  ReducedDimensionPlot(PanelWidth = 6L)
+))
+```
+
+```{r, echo=FALSE}
+SCREENSHOT("images/05-hex-color.png", delay = 10)
+```
+
+
+# Altering the user interface
+
+At this point, there is still no component in the user interface to control the resolution value store in the new slot.
+
+A number of S4 methods control the interface elements displayed in the various groups of parameters located under each panel.
+
+Here, we are discussing a parameter that will control the *size* of bins.
+Moreover, we are about to replace data points by hexagonal bins, meaning that the visual parameters controlling the size of data points are about to become useless.
+
+Thus, the generic `.defineVisualSizeInterface()` is the natural choice to use for replacing the size parameters of the parent `ReducedDimensionHexagonPlot()` class by a new HTML element that displays a numeric input allowing users to change the hexagonal bin resolution.
+
+```{r}
+setMethod(".defineVisualSizeInterface", "ReducedDimensionHexagonPlot", function(x) {
+  plot_name <- .getEncodedName(x)
+  
+  tagList(
+    .numericInput.iSEE(x, "BinResolution", label="Bin resolution:",
+                       min=1, value=x[["BinResolution"]], step = 1)
+  )
+})
+```
+
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
+app <- iSEE(sce, initial = list(
+  ReducedDimensionHexagonPlot(PanelWidth = 6L, VisualBoxOpen = TRUE, VisualChoices = "Size"),
+  ReducedDimensionPlot(PanelWidth = 6L, VisualBoxOpen = TRUE, VisualChoices = "Size")
+))
+```
+
+```{r, echo=FALSE}
+SCREENSHOT("images/05-hex-visual.png", delay = 10)
+```
+
+
+# Altering the panel output
+
+Time for the most exciting and challenging task: making the panel produce a different type of plot!
+
+To this end, the generic `.generateDotPlot()` is key.
+Given a panel state, axis labels, and an environment that contains the `SummarizedExperiment()` object and possibly other relevant values such as incoming selections, 
+
+```{r}
+setMethod(".generateDotPlot", "ReducedDimensionHexagonPlot", function(x, labels, envir) {
+  plot_cmds <- list()
+  plot_cmds[["ggplot"]] <- "ggplot() +"
+  color_lab <- "Count"
+  new_aes <- .buildAes()
+  plot_cmds[["hex"]] <- sprintf(
+    "ggplot2::geom_hex(%s, bins = %i, plot.data) +",
+    new_aes,
+    as.integer(x[["BinResolution"]])
+  )
+  plot_cmds[["theme_base"]] <- "theme_bw()"
+  
+  list(plot=.textEval(plot_cmds, envir), commands=plot_cmds)
+})
+```
+
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
+app <- iSEE(sce, initial = list(
+  ReducedDimensionHexagonPlot(PanelWidth = 6L, VisualBoxOpen = TRUE, VisualChoices = "Size"),
+  ReducedDimensionPlot(PanelWidth = 6L, VisualBoxOpen = TRUE, VisualChoices = "Size")
+))
+```
+
+```{r, echo=FALSE}
+SCREENSHOT("images/05-hex-output.png", delay = 10)
+```
+
+
+# Adding reactivity
+
+At this point, if users change the bin resolution using the newly added interface element, they will notice that nothing seems to happen.
+
+That is because we have not yet added a Shiny observer responding to this particular event.
+
+The `.createObservers()` generic is invoked to create observers for all the instances of each panel class added to the user interface.
+
+The `.createProtectedParameterObservers()` function provides a convenient way to create observers responding to events that change the data being plotted and potentially break active multiple selections, if any.
+This function automatically ensures that any change of value in the interface element is updated in the panel state and triggers re-rendering of the panel plot.
+
+```{r}
+setMethod(".createObservers", "ReducedDimensionHexagonPlot", function(x, se, input, session, pObjects, rObjects) {
+    callNextMethod()
+
+    plot_name <- .getEncodedName(x)
+
+    .createProtectedParameterObservers(plot_name,
+        fields=c("BinResolution"),
+        input=input, pObjects=pObjects, rObjects=rObjects)
+
+    invisible(NULL)
+})
+```
+
+With the new observer in place, we can launch the app one more time, to toy with the bin resolution and watch the panel plot being re-rendered each time.
+
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
+app <- iSEE(sce, initial = list(
+  ReducedDimensionHexagonPlot(PanelWidth = 6L, VisualBoxOpen = TRUE, VisualChoices = "Size"),
+  ReducedDimensionPlot(PanelWidth = 6L)
+))
+```
+
+```{r, echo=FALSE}
+SCREENSHOT("images/05-hex-reactivity.png", delay = 10)
+```
+
+# Further work
+
+At this point, there are many more aspects of the plotting behaviour that we should test and adjust, making sure that all the choices of parameters presented to end users are sensible, and that all combinations of parameters are handled without error.
+
+However, that work represents many hours of careful testing and implementation that is far beyond the scope of this short package demo.
+
+Adventurous souls may be interested in a more mature implementation of the `ReducedDimensionHexPlot()` panel class, implemented in the `r BiocStyle::Biocpkg("iSEEhex")` package.
+Source code can be found on GitHub on [this page](https://github.com/iSEE/iSEEhex/blob/main/R/ReducedDimensionHexPlot.R).
+
+# Additional resources
+
+The book [Extending iSEE](https://isee.github.io/iSEE-book/) is the original effort from developers to provide guidance for writing `r BiocStyle::Biocpkg("iSEE")` extensions using example use cases for illustration.
+
+The more recent [iSEETheBook](https://isee.github.io/iSEETheBook/) launched a new effort to provide a comprehensive view of the ecosystem for all three major groups of users:
+
+* End users interacting with the graphical user interface in their web browser.
+* Developers of scripted web-applications using `r BiocStyle::Biocpkg("iSEE")` to showcase data sets.
+* Developers of extensions contributing new functionality and packages to the `r BiocStyle::Biocpkg("iSEE")` ecosystem.
+
+The [iSEE website](https://isee.github.io/) is the place to watch for links to additional resources.
+
+# Session info {-}
+
+<details>
+<summary><b>
+Session info
+</b></summary>
+```{r}
+sessionInfo()
+```
+</details>
+
+

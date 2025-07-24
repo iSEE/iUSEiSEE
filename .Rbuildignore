@@ -11,3 +11,4 @@ _pkgdown.yml
 ^pkgdown$
 ^vignettes/sce_merged_allsets.RDS
 ^inst/datasets/sce_pbmc3k_old.RDS
+CODE_OF_CONDUCT.md

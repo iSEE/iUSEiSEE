@@ -12,8 +12,8 @@ This package provides the material for a fully fledged one-day workshop on the i
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://imbeimainz.github.io/iUSEiSEE/}
-  \item Report bugs at \url{https://github.com/imbeimainz/iUSEiSEE/issues}
+  \item \url{https://iSEE.github.io/iUSEiSEE/}
+  \item Report bugs at \url{https://github.com/iSEE/iUSEiSEE/issues}
 }
 
 }

@@ -1,9 +1,9 @@
-url: https://imbeimainz.github.io/iUSEiSEE
+url: https://iSEE.github.io/iUSEiSEE
 
 template:
-  params:
-    bootswatch: cosmo
-    #ganalytics: UA-99999999-9
+  bootstrap: 5
+  bootswatch: cosmo
+  #ganalytics: UA-99999999-9
 
 home:
   title: "iUSEiSEE"
@@ -13,7 +13,7 @@ home:
 navbar:
   right:
    - icon: fa-github
-     href: https://github.com/imbeimainz/iUSEiSEE
+     href: https://github.com/iSEE/iUSEiSEE
   components:
     home:
       icon: fas fa-home fa-lg
@@ -23,20 +23,22 @@ navbar:
       href: reference/index.html
     github:
       icon: fab fa-github fa-lg
-      href: https://github.com/imbeimainz/iUSEiSEE/
+      href: https://github.com/iSEE/iUSEiSEE/
     articles:
       text: Workshop sessions
       menu:
       - text: 00. About this workshop
-        href: articles/about_this_workshop_00.html
-      - text: 01. iUSEiSEE in a glance
-        href: articles/iUSEiSEE_01.html
-      - text: 02. An overview on iSEE
-        href: articles/iSEE_overview_02.html
+        href: articles/d00_about_this_workshop.html
+      - text: 01. Preparation
+        href: articles/d01_preparation.html
+      - text: 02. An overview of iSEE
+        href: articles/d02_iSEE_overview.html
       - text: 03. The iSEE cookbook
-        href: articles/iSEE_quickrecipes_03.html
+        href: articles/d03_iSEE_quickrecipes.html
       - text: 04. Bonus iSEE content
-        href: articles/bonus_content_04.html
+        href: articles/d04_bonus_content.html
+      - text: 05. Extending iSEE
+        href: articles/d05_extending_iSEE.html
 
 
 

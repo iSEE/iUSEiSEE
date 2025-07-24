@@ -72,7 +72,7 @@ Abassi<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-cont
 </h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/iSEE/iUSEiSEE/blob/update-2025/vignettes/d04_bonus_content.Rmd" class="external-link"><code>vignettes/d04_bonus_content.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/iSEE/iUSEiSEE/blob/main/vignettes/d04_bonus_content.Rmd" class="external-link"><code>vignettes/d04_bonus_content.Rmd</code></a></small>
       <div class="d-none name"><code>d04_bonus_content.Rmd</code></div>
     </div>
 
@@ -103,7 +103,7 @@ package.</p>
 <code class="sourceCode R"><span><span class="va">macrophage_location</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"datasets"</span>, <span class="st">"sce_macrophage_readytouse.RDS"</span>,</span>
 <span>                                   package <span class="op">=</span> <span class="st">"iUSEiSEE"</span><span class="op">)</span></span>
 <span><span class="va">macrophage_location</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpjcRSiP/temp_libpath1147479bdca5/iUSEiSEE/datasets/sce_macrophage_readytouse.RDS"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpwKgIu6/temp_libpath67033657d0a3/iUSEiSEE/datasets/sce_macrophage_readytouse.RDS"</span></span>
 <span></span>
 <span><span class="va">sce_macrophage</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="va">macrophage_location</span><span class="op">)</span></span>
 <span></span>
@@ -260,9 +260,9 @@ linked between each other without running the app with
 <code class="sourceCode R"><span><span class="co"># display a network visualization for the panels</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/iSEEfier/man/view_initial_network.html" class="external-link">view_initial_network</a></span><span class="op">(</span><span class="va">initial_1</span>, plot_format <span class="op">=</span> <span class="st">"igraph"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="d04_bonus_content_files/figure-html/unnamed-chunk-13-2.png" width="700"></p>
-<pre><code><span><span class="co">#&gt; IGRAPH 14fa8e8 DN-- 14 4 -- </span></span>
+<pre><code><span><span class="co">#&gt; IGRAPH 3999cd9 DN-- 14 4 -- </span></span>
 <span><span class="co">#&gt; + attr: name (v/c), color (v/c)</span></span>
-<span><span class="co">#&gt; + edges from 14fa8e8 (vertex names):</span></span>
+<span><span class="co">#&gt; + edges from 3999cd9 (vertex names):</span></span>
 <span><span class="co">#&gt; [1] ReducedDimensionPlot1-&gt;ColumnDataPlot1  </span></span>
 <span><span class="co">#&gt; [2] ReducedDimensionPlot2-&gt;ColumnDataPlot1  </span></span>
 <span><span class="co">#&gt; [3] ReducedDimensionPlot3-&gt;ColumnDataPlot1  </span></span>
@@ -271,9 +271,9 @@ linked between each other without running the app with
 interactive widget provided by <code>visNetwork</code>:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/iSEEfier/man/view_initial_network.html" class="external-link">view_initial_network</a></span><span class="op">(</span><span class="va">initial_1</span>, plot_format <span class="op">=</span> <span class="st">"visNetwork"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; IGRAPH 7bc710b DN-- 14 4 -- </span></span>
+<span><span class="co">#&gt; IGRAPH 24e6c9c DN-- 14 4 -- </span></span>
 <span><span class="co">#&gt; + attr: name (v/c), color (v/c)</span></span>
-<span><span class="co">#&gt; + edges from 7bc710b (vertex names):</span></span>
+<span><span class="co">#&gt; + edges from 24e6c9c (vertex names):</span></span>
 <span><span class="co">#&gt; [1] ReducedDimensionPlot1-&gt;ColumnDataPlot1  </span></span>
 <span><span class="co">#&gt; [2] ReducedDimensionPlot2-&gt;ColumnDataPlot1  </span></span>
 <span><span class="co">#&gt; [3] ReducedDimensionPlot3-&gt;ColumnDataPlot1  </span></span>
@@ -391,7 +391,7 @@ portal</li>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sce_location</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"datasets"</span>, <span class="st">"sce_pbmc3k.RDS"</span>, package <span class="op">=</span> <span class="st">"iUSEiSEE"</span><span class="op">)</span></span>
 <span><span class="va">sce_location</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpjcRSiP/temp_libpath1147479bdca5/iUSEiSEE/datasets/sce_pbmc3k.RDS"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpwKgIu6/temp_libpath67033657d0a3/iUSEiSEE/datasets/sce_pbmc3k.RDS"</span></span>
 <span><span class="va">sce</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="va">sce_location</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">initial_for_tour</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
@@ -519,7 +519,7 @@ follow along, download the data and unpack in a folder named
 <span><span class="co">#&gt;  [13] S4Arrays_1.8.1          BiocBaseUtils_1.10.0    curl_6.4.0             </span></span>
 <span><span class="co">#&gt;  [16] SparseArray_1.8.0       sass_0.4.10             bslib_0.9.0            </span></span>
 <span><span class="co">#&gt;  [19] htmlwidgets_1.6.4       desc_1.4.3              fontawesome_0.5.3      </span></span>
-<span><span class="co">#&gt;  [22] httr2_1.2.0             listviewer_4.0.0        cachem_1.1.0           </span></span>
+<span><span class="co">#&gt;  [22] httr2_1.2.1             listviewer_4.0.0        cachem_1.1.0           </span></span>
 <span><span class="co">#&gt;  [25] igraph_2.1.4            mime_0.13               lifecycle_1.0.4        </span></span>
 <span><span class="co">#&gt;  [28] iterators_1.0.14        pkgconfig_2.0.3         colourpicker_1.3.0     </span></span>
 <span><span class="co">#&gt;  [31] Matrix_1.7-3            R6_2.6.1                fastmap_1.2.0          </span></span>

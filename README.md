@@ -2,7 +2,7 @@
 
 # iUSEiSEE
 
-The `iSEE` package is a flexible, powerful and extendible application to explore any dataset stored in a `SummarizedExperiment` object.
+The `iSEE` package is a flexible, powerful and extensible application to explore any dataset stored in a `SummarizedExperiment` object.
 In turn, any dataset that can be shaped into one or more numerical matrices ("rectangular" datasets) can easily be put into a `SummarizedExperiment` object.
 This includes many types of bulk, single cell and spatially resolved biological data, as well as many non-biological data types. 
 
@@ -11,8 +11,11 @@ This includes many types of bulk, single cell and spatially resolved biological 
 
 ## How to install
 
+To follow this workshop, first install R and RStudio, e.g. following the instructions [here](https://carpentries-incubator.github.io/bioc-intro/). 
+Next, within an R session, the workshop package and all required dependencies can be installed from GitHub as follows:
+
 ```
-library("remotes")
+install.packages("remotes")
 remotes::install_github("iSEE/iUSEiSEE", 
                         dependencies = TRUE, 
                         build_vignettes = TRUE)
@@ -20,21 +23,20 @@ remotes::install_github("iSEE/iUSEiSEE",
 
 ## How to run this workshop
 
-- Open the `iUSEiSEE.Rproj` project file in RStudio
-- Navigate to the `vignettes` folder
-- Make sure the datasets are included in the `datasets` subfolder (if using Seurat or AnnData)
+- Clone the [GitHub repository](https://github.com/iSEE/iUSEiSEE) to a local folder on your computer. 
+- Open the `iUSEiSEE.Rproj` project file in RStudio.
+- Navigate to the `vignettes` folder.
 - Open the individual R Markdown files and execute their content live!
 
 ## Schedule
 
-* Short presentation of `iSEE`
-* Installation of the dependencies and tech check
-* Retrieval of the data and inspection of the processing steps so far
-* Overview of `iSEE`: panel by panel, learning Data + Visual + Selection parameters
-* Hands-on practice using the recipes from the `iSEE` cookbook
-* Extension packages from the `iSEE` universe: `iSEE` for differential expression and pathways
-* Got more than just one dataset? `iSEEhub` and `iSEEindex`
-* `iSEEfier`: starting things up in a breeze
+* Installation of the dependencies and tech check.
+* Retrieval and inspection of example data.
+* Overview of `iSEE`: panel by panel, learning Data + Visual + Selection parameters.
+* Hands-on practice using the recipes from the `iSEE` cookbook.
+* Exploring extension packages from the `iSEE` universe: `iSEEde` and `iSEEpathways` for differential expression and pathways, `iSEEhub` and `iSEEindex` for managing multiple datasets.
+* Easy generation of initial configurations with `iSEEfier`.
+* Definition of a new, custom panel type.
 
 ## Need help?
 

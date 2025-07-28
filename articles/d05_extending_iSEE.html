@@ -67,12 +67,12 @@
       <h1>Extending iSEE</h1>
                         <h4 data-toc-skip class="author">Federico
 Marini<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="mailto:marinif@uni-mainz.de" class="email"&gt;marinif@uni-mainz.de&lt;/a&gt;&lt;/p&gt;'><sup>1</sup></a>,
-Kevin Rue-Albrecht<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="mailto:kevinrue67@gmail.com" class="email"&gt;kevinrue67@gmail.com&lt;/a&gt;&lt;/p&gt;'><sup>2</sup></a>, Charlotte soneson<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="mailto:charlottesoneson@gmail.com" class="email"&gt;charlottesoneson@gmail.com&lt;/a&gt;&lt;/p&gt;'><sup>3</sup></a>, Aaron Lun<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="mailto:infinite.monkeys.with.keyboards@gmail.com" class="email"&gt;infinite.monkeys.with.keyboards@gmail.com&lt;/a&gt;&lt;/p&gt;'><sup>4</sup></a>, Najla
+Kevin Rue-Albrecht<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="mailto:kevinrue67@gmail.com" class="email"&gt;kevinrue67@gmail.com&lt;/a&gt;&lt;/p&gt;'><sup>2</sup></a>, Charlotte Soneson<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="mailto:charlottesoneson@gmail.com" class="email"&gt;charlottesoneson@gmail.com&lt;/a&gt;&lt;/p&gt;'><sup>3</sup></a>, Aaron Lun<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="mailto:infinite.monkeys.with.keyboards@gmail.com" class="email"&gt;infinite.monkeys.with.keyboards@gmail.com&lt;/a&gt;&lt;/p&gt;'><sup>4</sup></a>, Najla
 Abassi<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="mailto:abassina@uni-mainz.de" class="email"&gt;abassina@uni-mainz.de&lt;/a&gt;&lt;/p&gt;'><sup>5</sup></a>
 </h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/iSEE/iUSEiSEE/blob/main/vignettes/d05_extending_iSEE.Rmd" class="external-link"><code>vignettes/d05_extending_iSEE.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/iSEE/iUSEiSEE/blob/more-updates/vignettes/d05_extending_iSEE.Rmd" class="external-link"><code>vignettes/d05_extending_iSEE.Rmd</code></a></small>
       <div class="d-none name"><code>d05_extending_iSEE.Rmd</code></div>
     </div>
 
@@ -94,7 +94,9 @@ Abassi<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-cont
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://isee.github.io/iSEE/" class="external-link">"iSEE"</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">sce</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"datasets"</span>, <span class="st">"sce_pbmc3k.RDS"</span>, package <span class="op">=</span> <span class="st">"iUSEiSEE"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">sce</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"datasets"</span>, <span class="st">"sce_pbmc3k.RDS"</span>, package <span class="op">=</span> <span class="st">"iUSEiSEE"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="philosophy">Philosophy<a class="anchor" aria-label="anchor" href="#philosophy"></a>
@@ -140,7 +142,7 @@ be populated with a default value in the event that users do not specify
 a bin resolution.</p>
 <p>For this, we need to create a new method for the generic
 <code><a href="https://rdrr.io/r/methods/new.html" class="external-link">initialize()</a></code> and the new class. We set the default
-resolution to 100 hexagonal bins along each axis.</p>
+resolution to 20 hexagonal bins along each axis.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/methods/setMethod.html" class="external-link">setMethod</a></span><span class="op">(</span><span class="st">"initialize"</span>, <span class="st">"ReducedDimensionHexagonPlot"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">.Object</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">args</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span>
@@ -172,7 +174,7 @@ from!</p>
 <span>  <span class="fu">ReducedDimensionHexagonPlot</span><span class="op">(</span>PanelWidth <span class="op">=</span> <span class="fl">6L</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="https://isee.github.io/iSEE/reference/ReducedDimensionPlot-class.html" class="external-link">ReducedDimensionPlot</a></span><span class="op">(</span>PanelWidth <span class="op">=</span> <span class="fl">6L</span><span class="op">)</span></span>
 <span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="images/05-hex-initial.png" width="992"></p>
+<p><img src="images/05-hex-initial.png" width="977"></p>
 <p>How can we even tell which is which?!</p>
 </div>
 <div class="section level2">
@@ -191,7 +193,7 @@ name, highlighting the hexagonal binning in the plot.</p>
 <span>  <span class="fu">ReducedDimensionHexagonPlot</span><span class="op">(</span>PanelWidth <span class="op">=</span> <span class="fl">6L</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="https://isee.github.io/iSEE/reference/ReducedDimensionPlot-class.html" class="external-link">ReducedDimensionPlot</a></span><span class="op">(</span>PanelWidth <span class="op">=</span> <span class="fl">6L</span><span class="op">)</span></span>
 <span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="images/05-hex-name.png" width="992"></p>
+<p><img src="images/05-hex-name.png" width="977"></p>
 </div>
 <div class="section level2">
 <h2 id="changing-the-background-panel-colour">Changing the background panel colour<a class="anchor" aria-label="anchor" href="#changing-the-background-panel-colour"></a>
@@ -209,7 +211,7 @@ colour.</p>
 <span>  <span class="fu">ReducedDimensionHexagonPlot</span><span class="op">(</span>PanelWidth <span class="op">=</span> <span class="fl">6L</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="https://isee.github.io/iSEE/reference/ReducedDimensionPlot-class.html" class="external-link">ReducedDimensionPlot</a></span><span class="op">(</span>PanelWidth <span class="op">=</span> <span class="fl">6L</span><span class="op">)</span></span>
 <span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="images/05-hex-color.png" width="992"></p>
+<p><img src="images/05-hex-color.png" width="977"></p>
 </div>
 <div class="section level2">
 <h2 id="altering-the-user-interface">Altering the user interface<a class="anchor" aria-label="anchor" href="#altering-the-user-interface"></a>
@@ -241,7 +243,7 @@ resolution.</p>
 <span>  <span class="fu">ReducedDimensionHexagonPlot</span><span class="op">(</span>PanelWidth <span class="op">=</span> <span class="fl">6L</span>, VisualBoxOpen <span class="op">=</span> <span class="cn">TRUE</span>, VisualChoices <span class="op">=</span> <span class="st">"Size"</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="https://isee.github.io/iSEE/reference/ReducedDimensionPlot-class.html" class="external-link">ReducedDimensionPlot</a></span><span class="op">(</span>PanelWidth <span class="op">=</span> <span class="fl">6L</span>, VisualBoxOpen <span class="op">=</span> <span class="cn">TRUE</span>, VisualChoices <span class="op">=</span> <span class="st">"Size"</span><span class="op">)</span></span>
 <span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="images/05-hex-visual.png" width="992"></p>
+<p><img src="images/05-hex-visual.png" width="977"></p>
 </div>
 <div class="section level2">
 <h2 id="altering-the-panel-output">Altering the panel output<a class="anchor" aria-label="anchor" href="#altering-the-panel-output"></a>
@@ -272,7 +274,7 @@ values such as incoming selections,</p>
 <span>  <span class="fu">ReducedDimensionHexagonPlot</span><span class="op">(</span>PanelWidth <span class="op">=</span> <span class="fl">6L</span>, VisualBoxOpen <span class="op">=</span> <span class="cn">TRUE</span>, VisualChoices <span class="op">=</span> <span class="st">"Size"</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="https://isee.github.io/iSEE/reference/ReducedDimensionPlot-class.html" class="external-link">ReducedDimensionPlot</a></span><span class="op">(</span>PanelWidth <span class="op">=</span> <span class="fl">6L</span>, VisualBoxOpen <span class="op">=</span> <span class="cn">TRUE</span>, VisualChoices <span class="op">=</span> <span class="st">"Size"</span><span class="op">)</span></span>
 <span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="images/05-hex-output.png" width="992"></p>
+<p><img src="images/05-hex-output.png" width="977"></p>
 </div>
 <div class="section level2">
 <h2 id="adding-reactivity">Adding reactivity<a class="anchor" aria-label="anchor" href="#adding-reactivity"></a>
@@ -311,7 +313,7 @@ re-rendered each time.</p>
 <span>  <span class="fu">ReducedDimensionHexagonPlot</span><span class="op">(</span>PanelWidth <span class="op">=</span> <span class="fl">6L</span>, VisualBoxOpen <span class="op">=</span> <span class="cn">TRUE</span>, VisualChoices <span class="op">=</span> <span class="st">"Size"</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="https://isee.github.io/iSEE/reference/ReducedDimensionPlot-class.html" class="external-link">ReducedDimensionPlot</a></span><span class="op">(</span>PanelWidth <span class="op">=</span> <span class="fl">6L</span><span class="op">)</span></span>
 <span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="images/05-hex-reactivity.png" width="992"></p>
+<p><img src="images/05-hex-reactivity.png" width="977"></p>
 </div>
 <div class="section level2">
 <h2 id="further-work">Further work<a class="anchor" aria-label="anchor" href="#further-work"></a>
@@ -383,7 +385,7 @@ to watch for links to additional resources.</p>
 <span><span class="co">#&gt; other attached packages:</span></span>
 <span><span class="co">#&gt;  [1] iSEE_2.20.0                 SingleCellExperiment_1.30.1</span></span>
 <span><span class="co">#&gt;  [3] SummarizedExperiment_1.38.1 Biobase_2.68.0             </span></span>
-<span><span class="co">#&gt;  [5] GenomicRanges_1.60.0        GenomeInfoDb_1.44.0        </span></span>
+<span><span class="co">#&gt;  [5] GenomicRanges_1.60.0        GenomeInfoDb_1.44.1        </span></span>
 <span><span class="co">#&gt;  [7] IRanges_2.42.0              S4Vectors_0.46.0           </span></span>
 <span><span class="co">#&gt;  [9] BiocGenerics_0.54.0         generics_0.1.4             </span></span>
 <span><span class="co">#&gt; [11] MatrixGenerics_1.20.0       matrixStats_1.5.0          </span></span>
@@ -416,7 +418,7 @@ to watch for links to additional resources.</p>
 <span><span class="co">#&gt; [70] cli_3.6.5               textshaping_1.0.1       S4Arrays_1.8.1         </span></span>
 <span><span class="co">#&gt; [73] viridisLite_0.4.2       ComplexHeatmap_2.24.1   dplyr_1.1.4            </span></span>
 <span><span class="co">#&gt; [76] gtable_0.3.6            rintrojs_0.3.4          sass_0.4.10            </span></span>
-<span><span class="co">#&gt; [79] digest_0.6.37           SparseArray_1.8.0       ggrepel_0.9.6          </span></span>
+<span><span class="co">#&gt; [79] digest_0.6.37           SparseArray_1.8.1       ggrepel_0.9.6          </span></span>
 <span><span class="co">#&gt; [82] rjson_0.2.23            htmlwidgets_1.6.4       farver_2.1.2           </span></span>
 <span><span class="co">#&gt; [85] htmltools_0.5.8.1       pkgdown_2.1.3           lifecycle_1.0.4        </span></span>
 <span><span class="co">#&gt; [88] httr_1.4.7              shinyWidgets_0.9.0      GlobalOptions_0.1.2    </span></span>

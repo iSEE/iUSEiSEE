@@ -63,23 +63,24 @@
 <div class="section level1">
 <div class="page-header"><h1 id="iuseisee">iUSEiSEE<a class="anchor" aria-label="anchor" href="#iuseisee"></a>
 </h1></div>
-<p>The <code>iSEE</code> package is a flexible, powerful and extendible application to explore any dataset stored in a <code>SummarizedExperiment</code> object. In turn, any dataset that can be shaped into one or more numerical matrices (“rectangular” datasets) can easily be put into a <code>SummarizedExperiment</code> object. This includes many types of bulk, single cell and spatially resolved biological data, as well as many non-biological data types.</p>
+<p>The <code>iSEE</code> package is a flexible, powerful and extensible application to explore any dataset stored in a <code>SummarizedExperiment</code> object. In turn, any dataset that can be shaped into one or more numerical matrices (“rectangular” datasets) can easily be put into a <code>SummarizedExperiment</code> object. This includes many types of bulk, single cell and spatially resolved biological data, as well as many non-biological data types.</p>
 <p><code>iSEE</code> enables a multitude of panels to gain in-depth insight in your data; it does so combining interactivity and reproducibility, and provides an ideal tool for deeper dives into your data.</p>
 <div class="section level2">
 <h2 id="how-to-install">How to install<a class="anchor" aria-label="anchor" href="#how-to-install"></a>
 </h2>
-<pre><code><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://remotes.r-lib.org" class="external-link">"remotes"</a></span><span class="op">)</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"iSEE/iUSEiSEE"</span>,</span>
-<span>                        dependencies <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                        build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre>
+<p>To follow this workshop, first install R and RStudio, e.g. following the instructions <a href="https://carpentries-incubator.github.io/bioc-intro/" class="external-link">here</a>. Next, within an R session, the workshop package and all required dependencies can be installed from GitHub as follows:</p>
+<pre><code><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"iSEE/iUSEiSEE"</span>,</span>
+<span>                     dependencies <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                     build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="how-to-run-this-workshop">How to run this workshop<a class="anchor" aria-label="anchor" href="#how-to-run-this-workshop"></a>
 </h2>
 <ul>
-<li>Open the <code>iUSEiSEE.Rproj</code> project file in RStudio</li>
-<li>Navigate to the <code>vignettes</code> folder</li>
-<li>Make sure the datasets are included in the <code>datasets</code> subfolder (if using Seurat or AnnData)</li>
+<li>Clone the <a href="https://github.com/iSEE/iUSEiSEE" class="external-link">GitHub repository</a> to a local folder on your computer.</li>
+<li>Open the <code>iUSEiSEE.Rproj</code> project file in RStudio.</li>
+<li>Navigate to the <code>vignettes</code> folder.</li>
 <li>Open the individual R Markdown files and execute their content live!</li>
 </ul>
 </div>
@@ -87,17 +88,13 @@
 <h2 id="schedule">Schedule<a class="anchor" aria-label="anchor" href="#schedule"></a>
 </h2>
 <ul>
-<li>Short presentation of <code>iSEE</code>
-</li>
-<li>Installation of the dependencies and tech check</li>
-<li>Retrieval of the data and inspection of the processing steps so far</li>
-<li>Overview of <code>iSEE</code>: panel by panel, learning Data + Visual + Selection parameters</li>
-<li>Hands-on practice using the recipes from the <code>iSEE</code> cookbook</li>
-<li>Extension packages from the <code>iSEE</code> universe: <code>iSEE</code> for differential expression and pathways</li>
-<li>Got more than just one dataset? <code>iSEEhub</code> and <code>iSEEindex</code>
-</li>
-<li>
-<code>iSEEfier</code>: starting things up in a breeze</li>
+<li>Installation of the dependencies and tech check.</li>
+<li>Retrieval and inspection of example data.</li>
+<li>Overview of <code>iSEE</code>: panel by panel, learning Data + Visual + Selection parameters.</li>
+<li>Hands-on practice using the recipes from the <code>iSEE</code> cookbook.</li>
+<li>Exploring extension packages from the <code>iSEE</code> universe: <code>iSEEde</code> and <code>iSEEpathways</code> for differential expression and pathways, <code>iSEEhub</code> and <code>iSEEindex</code> for managing multiple datasets.</li>
+<li>Easy generation of initial configurations with <code>iSEEfier</code>.</li>
+<li>Definition of a new, custom panel type.</li>
 </ul>
 </div>
 <div class="section level2">

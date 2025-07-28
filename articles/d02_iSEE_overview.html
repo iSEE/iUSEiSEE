@@ -67,12 +67,12 @@
       <h1>An overview of iSEE</h1>
                         <h4 data-toc-skip class="author">Federico
 Marini<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="mailto:marinif@uni-mainz.de" class="email"&gt;marinif@uni-mainz.de&lt;/a&gt;&lt;/p&gt;'><sup>1</sup></a>,
-Kevin Rue-Albrecht<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="mailto:kevinrue67@gmail.com" class="email"&gt;kevinrue67@gmail.com&lt;/a&gt;&lt;/p&gt;'><sup>2</sup></a>, Charlotte soneson<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="mailto:charlottesoneson@gmail.com" class="email"&gt;charlottesoneson@gmail.com&lt;/a&gt;&lt;/p&gt;'><sup>3</sup></a>, Aaron Lun<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="mailto:infinite.monkeys.with.keyboards@gmail.com" class="email"&gt;infinite.monkeys.with.keyboards@gmail.com&lt;/a&gt;&lt;/p&gt;'><sup>4</sup></a>, Najla
+Kevin Rue-Albrecht<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="mailto:kevinrue67@gmail.com" class="email"&gt;kevinrue67@gmail.com&lt;/a&gt;&lt;/p&gt;'><sup>2</sup></a>, Charlotte Soneson<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="mailto:charlottesoneson@gmail.com" class="email"&gt;charlottesoneson@gmail.com&lt;/a&gt;&lt;/p&gt;'><sup>3</sup></a>, Aaron Lun<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="mailto:infinite.monkeys.with.keyboards@gmail.com" class="email"&gt;infinite.monkeys.with.keyboards@gmail.com&lt;/a&gt;&lt;/p&gt;'><sup>4</sup></a>, Najla
 Abassi<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="mailto:abassina@uni-mainz.de" class="email"&gt;abassina@uni-mainz.de&lt;/a&gt;&lt;/p&gt;'><sup>5</sup></a>
 </h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/iSEE/iUSEiSEE/blob/main/vignettes/d02_iSEE_overview.Rmd" class="external-link"><code>vignettes/d02_iSEE_overview.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/iSEE/iUSEiSEE/blob/more-updates/vignettes/d02_iSEE_overview.Rmd" class="external-link"><code>vignettes/d02_iSEE_overview.Rmd</code></a></small>
       <div class="d-none name"><code>d02_iSEE_overview.Rmd</code></div>
     </div>
 
@@ -90,7 +90,7 @@ instance as described in the next code block at the start of the <a href="#defau
 <p>Note that in the default configuration, the panels do not look
 exactly like the ones shown in the screenshots that you will see below.
 For example, data points are not immediately colored, and the default
-annotation variables displayed by each panel may differ. The <a href="03_iSEE_quickrecipes.html">hands-on recipes</a> workshop of this
+annotation variables displayed by each panel may differ. The <a href="d03_iSEE_quickrecipes.html">hands-on recipes</a> workshop of this
 workshop will demonstrate how to modify the content of the panels, and
 how they are displayed.</p>
 <p>Note that for simplicity, we typically refer to a
@@ -118,10 +118,9 @@ panel of each built-in class for which the relevant information is
 available in the <code>SummarizedExperiment</code> object.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://isee.github.io/iSEE/" class="external-link">"iSEE"</a></span><span class="op">)</span></span>
-<span><span class="va">sce_location</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"datasets"</span>, <span class="st">"sce_pbmc3k.RDS"</span>, package <span class="op">=</span> <span class="st">"iUSEiSEE"</span><span class="op">)</span></span>
-<span><span class="va">sce_location</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpwKgIu6/temp_libpath67033657d0a3/iUSEiSEE/datasets/sce_pbmc3k.RDS"</span></span>
-<span><span class="va">sce</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="va">sce_location</span><span class="op">)</span></span>
+<span><span class="va">sce</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span></span>
+<span>  file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"datasets"</span>, <span class="st">"sce_pbmc3k.RDS"</span>, package <span class="op">=</span> <span class="st">"iUSEiSEE"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
 <span><span class="va">app</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://isee.github.io/iSEE/reference/iSEE.html" class="external-link">iSEE</a></span><span class="op">(</span><span class="va">sce</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/runApp.html" class="external-link">runApp</a></span><span class="op">(</span><span class="va">app</span><span class="op">)</span></span></code></pre></div>
@@ -139,7 +138,11 @@ generated by external software packages into a
 package can read quantifications from the 10x Genomics CellRanger
 pipeline for single-cell RNA-seq data, and the <em><a href="https://bioconductor.org/packages/3.21/tximeta" class="external-link">tximeta</a></em>
 package can be used to read data from transcript quantification
-pipelines into a <code>SummarizedExperiment</code> object.</p>
+pipelines into a <code>SummarizedExperiment</code> object. In addition,
+<code>SummarizedExperiment</code> objects can be generated by converting
+other object types, such as <code>Seurat</code> or <code>AnnData</code>
+objects - see the <a href="d04_bonus_content.html#interoperability">interoperability</a>
+section for more information.</p>
 <p>While we will not make explicit use of it in this workshop, we note
 that it is also possible to call <code><a href="https://isee.github.io/iSEE/reference/iSEE.html" class="external-link">iSEE()</a></code> without providing a
 <code>SummarizedExperiment</code> object. In that case, the user will be
@@ -165,12 +168,12 @@ perspective. There are 8 standard panel types; 6 plot panels and 2 table
 panels, all showcased in the figure shown at the start of the <a href="#default-app">previous section</a>. In the default configuration,
 one panel of each type is included when launching the <em><a href="https://bioconductor.org/packages/3.21/iSEE" class="external-link">iSEE</a></em> user
 interface. However, users are free to rearrange, resize, remove or add
-panels freely, as demonstrated in the separate vignette of <a href="03_iSEE_quickrecipes.html">workshop recipes</a>. We provide a
+panels freely, as demonstrated in the separate vignette of <a href="d03_iSEE_quickrecipes.html">workshop recipes</a>. We provide a
 brief overview of each panel type in the following subsections.</p>
 <p>In addition to the 8 standard panel types included in <em><a href="https://bioconductor.org/packages/3.21/iSEE" class="external-link">iSEE</a></em>, users
 can create custom panels (both plots and tables). Moreover, the <em><a href="https://bioconductor.org/packages/3.21/iSEEu" class="external-link">iSEEu</a></em> (iSEE
 universe) package contains additional panel types. The creation and
-configuration of custom panels is also demonstrated in a series of <a href="03_iSEE_quickrecipes.html">workshop advanced recipes</a>.</p>
+configuration of custom panels is also demonstrated in a series of <a href="d03_iSEE_quickrecipes.html">workshop advanced recipes</a>.</p>
 <p>Specifically, <em><a href="https://bioconductor.org/packages/3.21/iSEE" class="external-link">iSEE</a></em> panels
 are implemented as a hierarchy of S4 classes. Only <em>concrete</em>
 classes (orange) may be instantiated as panels in the user interface;
@@ -289,7 +292,8 @@ rendering, and to control how legends are displayed.</p>
 controls to transfer selections of points (features or samples) between
 panels.</p>
 <p>We demonstrate examples of point transmission in the separate
-vignette of <a href="03_iSEE_quickrecipes.html">workshop recipes</a></p>
+vignette of <a href="d03_iSEE_quickrecipes.html">workshop
+recipes</a></p>
 <p><img src="images/02-isee-reduceddimensionplot-selectionparameters.png" width="100%"></p>
 </div>
 </div>
@@ -378,8 +382,8 @@ reports any active point transmission between panels in the app.</p>
 listing all the current panels in the app. Checkboxes allow users to
 select any subset of panels to export. Finally, clicking the
 <code>Download</code> button in that modal will prompt the app to save
-plots to PDF files, tables to CSV files, package the set of files in a
-ZIP archive that users can download and save on their computer.</p>
+plots to PDF files, tables to CSV files, and package the set of files in
+a ZIP archive that users can download and save on their computer.</p>
 <p><img src="images/panel-download.png" width="100%"></p>
 </div>
 <div class="section level3">
@@ -486,10 +490,6 @@ will go into more details for many of them.</p>
 <li>Try to add and remove panels, and resize and reorder the existing
 ones.</li>
 <li>Remember to click on <code>Apply settings</code> afterwards.</li>
-<li>See how to export the <code>initial</code> configuration of
-panels.</li>
-<li>Relaunch the application, now with the additional argument
-<code>initial</code> provided.</li>
 </ul>
 </li>
 <li>Multiple panels of the same type:
@@ -557,9 +557,8 @@ display the same view as the second panel.</li>
 the top-right corner, and select ‘Display panel settings’.</li>
 <li>Copy all the code shown in the pop-up window.</li>
 <li>Close the app and paste this code in your R session.</li>
-<li>This defines the ‘initial’ list that we have composed manually in
-the examples above. Then launch a new instance using the following
-code.</li>
+<li>This defines the ‘initial’ list. Then launch a new instance adding
+<code>initial = initial</code> to the <code>iSEE</code> call.</li>
 <li>Note how the app starts in the same configuration as it was before
 closing. Of course, it is still possible to continue exploring the data
 interactively - we have only changed the starting configuration.</li>
@@ -616,7 +615,8 @@ in the <em><a href="https://bioconductor.org/packages/3.21/iSEEhex" class="exter
 package - demonstrates an alternative to the downsampling strategy, by
 summarizing data points into hexagonal bins.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">app</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://isee.github.io/iSEE/reference/iSEE.html" class="external-link">iSEE</a></span><span class="op">(</span><span class="va">sce</span>, initial <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/iSEE/iSEEhex" class="external-link">"iSEEhex"</a></span><span class="op">)</span></span>
+<span><span class="va">app</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://isee.github.io/iSEE/reference/iSEE.html" class="external-link">iSEE</a></span><span class="op">(</span><span class="va">sce</span>, initial <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://isee.github.io/iSEE/reference/ReducedDimensionPlot-class.html" class="external-link">ReducedDimensionPlot</a></span><span class="op">(</span>PanelWidth <span class="op">=</span> <span class="fl">6L</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/iSEEhex/man/ReducedDimensionHexPlot-class.html" class="external-link">ReducedDimensionHexPlot</a></span><span class="op">(</span>PanelWidth <span class="op">=</span> <span class="fl">6L</span><span class="op">)</span></span>
 <span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -648,14 +648,15 @@ expression plots for interactive data exploration.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/runApp.html" class="external-link">runApp</a></span><span class="op">(</span><span class="va">app</span><span class="op">)</span></span></code></pre></div>
 <p><img src="images/02-isee-iseeu-modegating.png" width="100%"></p>
-<p>Interestingly, iSEEu also has a set of extra panels that can come in
-handy in different situations. For example,
-<code><a href="https://rdrr.io/pkg/iSEEu/man/AggregatedDotPlot.html" class="external-link">iSEEu::AggregatedDotPlot</a></code> implements an aggregated dot plot
-where each feature/group combination is represented by a dot. The color
-of the dot scales with the mean assay value across all samples for a
-given group, while the size of the dot scales with the proportion of
-non-zero values across samples in that group. This can be an alternative
-to a heatmap, and an example can be seen in the chunks below:</p>
+<p><em><a href="https://bioconductor.org/packages/3.21/iSEEu" class="external-link">iSEEu</a></em> also
+has a set of extra panels that can come in handy in different
+situations. For example, <code><a href="https://rdrr.io/pkg/iSEEu/man/AggregatedDotPlot.html" class="external-link">iSEEu::AggregatedDotPlot</a></code>
+implements an aggregated dot plot where each feature/group combination
+is represented by a dot. The color of the dot scales with the mean assay
+value across all samples for a given group, while the size of the dot
+scales with the proportion of non-zero values across samples in that
+group. This can be an alternative to a heatmap, and an example can be
+seen in the chunks below:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">app</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://isee.github.io/iSEE/reference/iSEE.html" class="external-link">iSEE</a></span><span class="op">(</span></span>
 <span>  <span class="va">sce</span>, </span>
@@ -705,7 +706,7 @@ can be found on the iSEE website: <a href="https://isee.github.io/panels.html" c
 <span><span class="co">#&gt;  [1] iSEEu_1.20.0                iSEEhex_1.10.0             </span></span>
 <span><span class="co">#&gt;  [3] iSEE_2.20.0                 SingleCellExperiment_1.30.1</span></span>
 <span><span class="co">#&gt;  [5] SummarizedExperiment_1.38.1 Biobase_2.68.0             </span></span>
-<span><span class="co">#&gt;  [7] GenomicRanges_1.60.0        GenomeInfoDb_1.44.0        </span></span>
+<span><span class="co">#&gt;  [7] GenomicRanges_1.60.0        GenomeInfoDb_1.44.1        </span></span>
 <span><span class="co">#&gt;  [9] IRanges_2.42.0              S4Vectors_0.46.0           </span></span>
 <span><span class="co">#&gt; [11] BiocGenerics_0.54.0         generics_0.1.4             </span></span>
 <span><span class="co">#&gt; [13] MatrixGenerics_1.20.0       matrixStats_1.5.0          </span></span>
@@ -739,7 +740,7 @@ can be found on the iSEE website: <a href="https://isee.github.io/panels.html" c
 <span><span class="co">#&gt; [73] textshaping_1.0.1        S4Arrays_1.8.1           viridisLite_0.4.2       </span></span>
 <span><span class="co">#&gt; [76] ComplexHeatmap_2.24.1    dplyr_1.1.4              gtable_0.3.6            </span></span>
 <span><span class="co">#&gt; [79] rintrojs_0.3.4           sass_0.4.10              digest_0.6.37           </span></span>
-<span><span class="co">#&gt; [82] SparseArray_1.8.0        ggrepel_0.9.6            rjson_0.2.23            </span></span>
+<span><span class="co">#&gt; [82] SparseArray_1.8.1        ggrepel_0.9.6            rjson_0.2.23            </span></span>
 <span><span class="co">#&gt; [85] htmlwidgets_1.6.4        farver_2.1.2             memoise_2.0.1           </span></span>
 <span><span class="co">#&gt; [88] htmltools_0.5.8.1        pkgdown_2.1.3            lifecycle_1.0.4         </span></span>
 <span><span class="co">#&gt; [91] httr_1.4.7               shinyWidgets_0.9.0       GlobalOptions_0.1.2     </span></span>

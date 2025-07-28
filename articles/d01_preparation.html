@@ -66,12 +66,12 @@
       <h1>Preparation</h1>
                         <h4 data-toc-skip class="author">Federico
 Marini<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="mailto:marinif@uni-mainz.de" class="email"&gt;marinif@uni-mainz.de&lt;/a&gt;&lt;/p&gt;'><sup>1</sup></a>,
-Kevin Rue-Albrecht<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="mailto:kevinrue67@gmail.com" class="email"&gt;kevinrue67@gmail.com&lt;/a&gt;&lt;/p&gt;'><sup>2</sup></a>, Charlotte soneson<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="mailto:charlottesoneson@gmail.com" class="email"&gt;charlottesoneson@gmail.com&lt;/a&gt;&lt;/p&gt;'><sup>3</sup></a>, Aaron Lun<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="mailto:infinite.monkeys.with.keyboards@gmail.com" class="email"&gt;infinite.monkeys.with.keyboards@gmail.com&lt;/a&gt;&lt;/p&gt;'><sup>4</sup></a>, Najla
+Kevin Rue-Albrecht<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="mailto:kevinrue67@gmail.com" class="email"&gt;kevinrue67@gmail.com&lt;/a&gt;&lt;/p&gt;'><sup>2</sup></a>, Charlotte Soneson<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="mailto:charlottesoneson@gmail.com" class="email"&gt;charlottesoneson@gmail.com&lt;/a&gt;&lt;/p&gt;'><sup>3</sup></a>, Aaron Lun<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="mailto:infinite.monkeys.with.keyboards@gmail.com" class="email"&gt;infinite.monkeys.with.keyboards@gmail.com&lt;/a&gt;&lt;/p&gt;'><sup>4</sup></a>, Najla
 Abassi<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="mailto:abassina@uni-mainz.de" class="email"&gt;abassina@uni-mainz.de&lt;/a&gt;&lt;/p&gt;'><sup>5</sup></a>
 </h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/iSEE/iUSEiSEE/blob/main/vignettes/d01_preparation.Rmd" class="external-link"><code>vignettes/d01_preparation.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/iSEE/iUSEiSEE/blob/more-updates/vignettes/d01_preparation.Rmd" class="external-link"><code>vignettes/d01_preparation.Rmd</code></a></small>
       <div class="d-none name"><code>d01_preparation.Rmd</code></div>
     </div>
 
@@ -81,12 +81,14 @@ Abassi<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-cont
 <div class="section level2">
 <h2 id="installing-and-loading-the-required-packages">Installing and loading the required packages<a class="anchor" aria-label="anchor" href="#installing-and-loading-the-required-packages"></a>
 </h2>
-<p>To run the content presented in this demo, run this following chunk
-in your R session. This will install the workshop package as well as all
-required dependencies.</p>
+<p>To run the content presented in this demo, make sure to first run
+this following chunk in your R session. This will install the workshop
+package as well as all required dependencies.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://bioconductor.github.io/BiocManager/" class="external-link">"BiocManager"</a></span><span class="op">)</span></span>
-<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"iSEE/iUSEiSEE"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"iSEE/iUSEiSEE"</span>, </span>
+<span>                     dependencies <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>                     build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>Next, we load the packages that will be used during the demo.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st">"SingleCellExperiment"</span><span class="op">)</span></span>
@@ -94,6 +96,7 @@ required dependencies.</p>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st">"TENxPBMCData"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/iSEE/iSEEu" class="external-link">"iSEEu"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/iSEE/iSEEhex" class="external-link">"iSEEhex"</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/iSEE/iSEEde" class="external-link">"iSEEde"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/iSEE/iSEEpathways" class="external-link">"iSEEpathways"</a></span><span class="op">)</span></span>
@@ -132,6 +135,10 @@ included in the package. You can load the dataset as follows:</p>
 <span><span class="co">#&gt; reducedDimNames(3): PCA TSNE UMAP</span></span>
 <span><span class="co">#&gt; mainExpName: NULL</span></span>
 <span><span class="co">#&gt; altExpNames(0):</span></span></code></pre></div>
+<p>This dataset has already been processed following established
+principles for single-cell analysis with Bioconductor. To see how the
+processing was done, consult the <a href="https://github.com/iSEE/iUSEiSEE/blob/main/inst/create_datasets.Rmd#L1" class="external-link">script</a>
+provided with the workflow package.</p>
 </div>
 <div class="section level2">
 <h2 class="unnumbered" id="session-info">Session info<a class="anchor" aria-label="anchor" href="#session-info"></a>
@@ -164,18 +171,18 @@ included in the package. You can load the dataset as follows:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; other attached packages:</span></span>
 <span><span class="co">#&gt;  [1] iUSEiSEE_1.0.0              iSEEindex_1.6.0            </span></span>
-<span><span class="co">#&gt;  [3] iSEEhub_1.10.0              ExperimentHub_2.16.0       </span></span>
-<span><span class="co">#&gt;  [5] AnnotationHub_3.16.0        BiocFileCache_2.16.0       </span></span>
+<span><span class="co">#&gt;  [3] iSEEhub_1.10.0              ExperimentHub_2.16.1       </span></span>
+<span><span class="co">#&gt;  [5] AnnotationHub_3.16.1        BiocFileCache_2.16.1       </span></span>
 <span><span class="co">#&gt;  [7] dbplyr_2.5.0                iSEEpathways_1.6.0         </span></span>
 <span><span class="co">#&gt;  [9] iSEEde_1.6.0                iSEEu_1.20.0               </span></span>
 <span><span class="co">#&gt; [11] iSEEhex_1.10.0              TENxPBMCData_1.26.0        </span></span>
 <span><span class="co">#&gt; [13] HDF5Array_1.36.0            h5mread_1.0.1              </span></span>
 <span><span class="co">#&gt; [15] rhdf5_2.52.1                DelayedArray_0.34.1        </span></span>
-<span><span class="co">#&gt; [17] SparseArray_1.8.0           S4Arrays_1.8.1             </span></span>
+<span><span class="co">#&gt; [17] SparseArray_1.8.1           S4Arrays_1.8.1             </span></span>
 <span><span class="co">#&gt; [19] abind_1.4-8                 Matrix_1.7-3               </span></span>
 <span><span class="co">#&gt; [21] iSEE_2.20.0                 SingleCellExperiment_1.30.1</span></span>
 <span><span class="co">#&gt; [23] SummarizedExperiment_1.38.1 Biobase_2.68.0             </span></span>
-<span><span class="co">#&gt; [25] GenomicRanges_1.60.0        GenomeInfoDb_1.44.0        </span></span>
+<span><span class="co">#&gt; [25] GenomicRanges_1.60.0        GenomeInfoDb_1.44.1        </span></span>
 <span><span class="co">#&gt; [27] IRanges_2.42.0              S4Vectors_0.46.0           </span></span>
 <span><span class="co">#&gt; [29] BiocGenerics_0.54.0         generics_0.1.4             </span></span>
 <span><span class="co">#&gt; [31] MatrixGenerics_1.20.0       matrixStats_1.5.0          </span></span>
@@ -210,7 +217,7 @@ included in the package. You can load the dataset as follows:</p>
 <span><span class="co">#&gt;  [76] BiocVersion_3.21.1      foreach_1.5.2           pillar_1.11.0          </span></span>
 <span><span class="co">#&gt;  [79] limma_3.64.1            later_1.4.2             rintrojs_0.3.4         </span></span>
 <span><span class="co">#&gt;  [82] circlize_0.4.16         splines_4.5.1           dplyr_1.1.4            </span></span>
-<span><span class="co">#&gt;  [85] lattice_0.22-7          bit_4.6.0               paws.common_0.8.4      </span></span>
+<span><span class="co">#&gt;  [85] lattice_0.22-7          bit_4.6.0               paws.common_0.8.5      </span></span>
 <span><span class="co">#&gt;  [88] tidyselect_1.2.1        ComplexHeatmap_2.24.1   locfit_1.5-9.12        </span></span>
 <span><span class="co">#&gt;  [91] scuttle_1.18.0          Biostrings_2.76.0       miniUI_0.1.2           </span></span>
 <span><span class="co">#&gt;  [94] knitr_1.50              gridExtra_2.3           edgeR_4.6.3            </span></span>

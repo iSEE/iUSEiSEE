@@ -35,9 +35,9 @@ suppressPackageStartupMessages({
 
 The `r Biocpkg("iSEE")` Bioconductor package [@Rue-Albrecht2018-isee] is a flexible, powerful and extensible application to explore any dataset stored in a `r Biocpkg("SummarizedExperiment")` object, including single cell and spatially resolved data, but also bulk data (such as transcriptomics and proteomics) and many types of non-biological data.
 
-`r Biocpkg("iSEE")` enables a multitude of panels to gain in-depth insight in your data; it does so combining interactivity and reproducibility, and providing an ideal companion to other tools for deeper dives into data.
+`r Biocpkg("iSEE")` enables a multitude of panels to gain in-depth insight in your data; it does so combining interactivity and reproducibility, and provides an ideal companion to other tools for deeper dives into data.
 
-This package provides an overview of the functionality of the `r Biocpkg("iSEE")` package. 
+This workshop provides an overview of the functionality of the `r Biocpkg("iSEE")` package. 
 The material is equally suitable for use in a "masterclass-style" workshop as for self-study.
 
 # Pre-requisites
@@ -46,9 +46,9 @@ Most of the examples in this workshop will center around bulk and single-cell RN
 For this reason, a certain background knowledge about these types of data and the questions that are typically addressed with them can be helpful to get the most out of the content. 
 More precisely, the following pre-requisities are useful:
 
-* Familiarity with bulk or single-cell sequencing data (ideally scRNA-seq)
-* Familiarity with the `r Biocpkg("SummarizedExperiment")`/`r Biocpkg("SingleCellExperiment")` class, or alternatively the `r CRANpkg("Seurat")` or AnnData frameworks - basically, any of the widely used ecosystem for working with/storing/processing single cell data
-* Familiarity with single-cell data visualizations and representations
+* Familiarity with bulk or single-cell sequencing data (ideally scRNA-seq).
+* Familiarity with the `r Biocpkg("SummarizedExperiment")`/`r Biocpkg("SingleCellExperiment")` class, or alternatively the `r CRANpkg("Seurat")` or [_AnnData_](https://pypi.org/project/anndata/) frameworks - basically, any of the widely used ecosystem for working with/storing/processing single-cell data.
+* Familiarity with single-cell data visualizations and representations.
 
 # Participation
 
@@ -68,29 +68,29 @@ Participants will be encouraged to follow along in the live coding parts of the 
 
 The following material is available in the `vignettes` folder:
 
-* [Preparation](d01_preparation.Rmd) - instructions for installing the required packages and downloading the example data
-* [Overview of iSEE](d02_iSEE_overview.Rmd) - a detailed overview of `r Biocpkg("iSEE")` and its functionality
-* [The iSEE cookbook](d03_iSEE_quickrecipes.Rmd) - a set of self-contained recipes with simple-to-advanced tasks one can complete within `r Biocpkg("iSEE")`
-* [Bonus advanced content around iSEE](d04_bonus_content.Rmd) - some additional content, focused on some advanced or more specific tasks to carry out with `r Biocpkg("iSEE")`
-* [Extending iSEE](d05_extending_iSEE.Rmd) - material focused on extending `r Biocpkg("iSEE")` by creating new panel classes
+* [Preparation](d01_preparation.html) - instructions for installing the required packages and downloading the example data.
+* [Overview of iSEE](d02_iSEE_overview.html) - a detailed overview of `r Biocpkg("iSEE")` and its functionality.
+* [The iSEE cookbook](d03_iSEE_quickrecipes.html) - a set of self-contained recipes with simple-to-advanced tasks one can complete within `r Biocpkg("iSEE")`.
+* [Bonus advanced content around iSEE](d04_bonus_content.html) - some additional content, focused on some advanced or more specific tasks to carry out with `r Biocpkg("iSEE")`.
+* [Extending iSEE](d05_extending_iSEE.html) - material focused on extending `r Biocpkg("iSEE")` by creating new panel classes.
 
 # Workshop goals and objectives
 
 ## Learning goals
 
-* Outline the features of `r Biocpkg("iSEE")`, built upon the R/Shiny framework
-* Utilize interactive GUI components and layouts to efficiently extract information from biological data sets
-* Describe how to construct interactive apps and custom panels
-* Demonstrate how `r Biocpkg("iSEE")` and related packages can smoothly be integrated into and enhance existing workflows for the datasets at hand
+* Outline the features of `r Biocpkg("iSEE")`, built upon the R/Shiny framework.
+* Utilize interactive GUI components and layouts to efficiently extract information from biological data sets.
+* Describe how to construct interactive apps and custom panels.
+* Demonstrate how `r Biocpkg("iSEE")` and related packages can smoothly be integrated into and enhance existing workflows for the datasets at hand.
 
 ## Learning objectives
 
-* Set up a local environment for running `r Biocpkg("iSEE")` apps
-* Interact with components of the `r Biocpkg("iSEE")` user interface to visually inspect and discuss various datasets
-* Identify and locate configurable aspects of `r Biocpkg("iSEE")` apps
-* Practice interactive visualization over a single-cell RNA-sequencing workflow
-* Imagine use cases and future developments for interactive visualization as part of computational workflows
-* Design and create `r Biocpkg("iSEE")` instances for collections of datasets
+* Set up a local environment for running `r Biocpkg("iSEE")` apps.
+* Interact with components of the `r Biocpkg("iSEE")` user interface to visually inspect and discuss various datasets.
+* Identify and locate configurable aspects of `r Biocpkg("iSEE")` apps.
+* Practice interactive visualization over a single-cell RNA-sequencing workflow.
+* Imagine use cases and future developments for interactive visualization as part of computational workflows.
+* Design and create `r Biocpkg("iSEE")` instances for collections of datasets.
 
 # Additional resources {#additional-resources}
 

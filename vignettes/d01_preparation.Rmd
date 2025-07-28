@@ -82,6 +82,9 @@ sce <- readRDS(
 sce
 ```
 
+This dataset has already been processed following established principles for single-cell analysis with Bioconductor. 
+To see how the processing was done, consult the [script](https://github.com/iSEE/iUSEiSEE/blob/main/inst/create_datasets.Rmd#L1) provided with the workflow package. 
+
 # Session info {-}
 
 <details>

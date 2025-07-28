@@ -15,10 +15,10 @@ To follow this workshop, first install R and RStudio, e.g. following the instruc
 Next, within an R session, the workshop package and all required dependencies can be installed from GitHub as follows:
 
 ```
-install.packages("remotes")
-remotes::install_github("iSEE/iUSEiSEE", 
-                        dependencies = TRUE, 
-                        build_vignettes = TRUE)
+install.packages("BiocManager")
+BiocManager::install("iSEE/iUSEiSEE", 
+                     dependencies = TRUE, 
+                     build_vignettes = TRUE)
 ```
 
 ## How to run this workshop

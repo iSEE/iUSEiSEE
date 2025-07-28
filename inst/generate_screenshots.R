@@ -15,6 +15,6 @@ SCREENSHOT <- function(x, delay=10, zoom=1, vwidth=992, vheight=744) {
 # ...set working directory to package root directory and run
 #    (replacing fname with the vignette file name):
 dir.create("vignettes/images", recursive=TRUE, showWarning=FALSE)
-fname <- "vignettes/05_extending_iSEE.Rmd"
+fname <- "vignettes/d05_extending_iSEE.Rmd"
 rmarkdown::render(fname, run_pandoc=FALSE)
 

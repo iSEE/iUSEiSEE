@@ -45,17 +45,16 @@ This vignette contains some additional examples of things that can be done using
 
 # iSEEde and iSEEpathways
 
-`r Biocpkg("iSEEde")` and `r Biocpkg("iSEEpathways")` and ideal companion packages for exploring differential expression results in (e.g.) bulk RNA-seq data.
+`r Biocpkg("iSEEde")` and `r Biocpkg("iSEEpathways")` are ideal companion packages for exploring differential expression results in (e.g.) bulk RNA-seq data.
 
 We will use the `macrophage` dataset (derived from the work of [@Alasoo2018]), for which we have already run a differential expression analysis using `DESeq2` [@Love2014]. 
-The processed dataset is provided with the workshop package.
+The processed dataset is provided with the workshop package, and the processing code can be found in the accompanying [script](https://github.com/iSEE/iUSEiSEE/blob/main/inst/create_datasets.Rmd#L330).
 
 ```{r}
-macrophage_location <- system.file("datasets", "sce_macrophage_readytouse.RDS",
-                                   package = "iUSEiSEE")
-macrophage_location
-
-sce_macrophage <- readRDS(macrophage_location)
+sce_macrophage <- readRDS(
+  system.file("datasets", "sce_macrophage_readytouse.RDS",
+              package = "iUSEiSEE")
+)
 
 library("iSEE")
 library("iSEEde")
@@ -67,7 +66,8 @@ library("GO.db")
 
 `r Biocpkg("iSEEde")` and `r Biocpkg("iSEEpathways")` are two new Bioconductor packages that provide `r Biocpkg("iSEE")` panels specifically aimed towards exploration of differential expression and pathway analysis results. 
 More precisely, `r Biocpkg("iSEEde")` provides the `VolcanoPlot`, `MAPlot`, `LogFCLogFCPlot` and `DETable` panels. 
-These panels can be configured to extract data that was added via the `embedContrastResults()` function above. 
+These panels can be configured to extract data that was added via the `embedContrastResults()` function (see the processing script).
+
 Let's look at an example:
 
 ```{r}
@@ -135,18 +135,12 @@ SCREENSHOT("images/04-isee-de-setup2.png", delay = 30)
 # iSEEfier
 
 Let's say we are interested in visualizing the expression of a list of specific marker genes in one view, or maybe we created different initial states separately, but would like to visualize them in the same instance. 
-As we previously learned, we can do a lot of these tasks by running the command:
+As we previously learned, we can do a lot of these tasks by launching the default interface with `iSEE(sce)`, and adding/removing panels as desired. 
+This can involve multiple manual steps (selecting the gene of interest, color by a specific `colData` column, ...), or the execution of multiple lines of setup code.
+The `r Biocpkg("iSEEfier")` package streamlines the process of starting (or if you will, firing up) an `iSEE` instance with a small chunk of code, avoiding the tedious way of setting up every `iSEE` panel individually.
 
-```{r, eval=FALSE}
-# don't run
-iSEE(sce)
-```
-
-Then, add/remove the panels to our need. 
-This can involve multiple steps (selecting the gene of interest, color by a specific `colData`...), or probably even write multiple lines of code.
-For that we can use the `r Biocpkg("iSEEfier")` package, which streamlines the process of starting (or if you will, firing up) an `iSEE` instance with a small chunk of code, avoiding the tedious way of setting up every `iSEE` panel individually.
-
-In this section, we will illustrate a simple example of how to use `r Biocpkg("iSEEfier")`. We will use the same `pbmc3k` data we worked with during this workshop.
+In this section, we will illustrate a simple example of how to use `r Biocpkg("iSEEfier")`. 
+We will use the same `pbmc3k` data we worked with during this workshop.
 
 We start by loading the data:
 
@@ -181,7 +175,7 @@ initial_1 <- iSEEinit(sce,
                       add_markdown_panel = TRUE)
 ```
 
-The rest can be as easy as passing this initial to the `iSEE()` call:
+We can then pass the generated `initial_1` list as the `initial` argument in the `iSEE()` call:
 
 ```{r}
 app <- iSEE(sce, initial = initial_1)
@@ -200,7 +194,8 @@ For this, we used the argument `add_markdown_panel = TRUE`. It will display a `M
 We can check the initial's content, or how the included panels are linked between each other without running the app with `view_initial_tiles()` and `view_initial_network()`:
 
 ```{r}
-# display a graphical representation of the initial configuration, where the panels are identified by their corresponding colors
+# display a graphical representation of the initial configuration, 
+# where the panels are identified by their corresponding colors
 view_initial_tiles(initial = initial_1)
 # display a network visualization for the panels
 view_initial_network(initial_1, plot_format = "igraph")
@@ -212,14 +207,18 @@ Another alternative for network visualization would use the interactive widget p
 view_initial_network(initial_1, plot_format = "visNetwork")
 ```
 
-It is also possible to combine multiple initials into one:
+It is also possible to use `r Biocpkg("iSEEfier")` to combine multiple initial configurations into one:
 
 ```{r}
+# create a second initial configuration
 feature_list_2 <- c("CD74", "CD79B")
 initial_2 <- iSEEinit(sce,
                       features = feature_list_2,
                       clusters = cluster_1)
+
+# merge with the previous one
 merged_config <- glue_initials(initial_1, initial_2)
+
 # check out the content of merged_config
 view_initial_tiles(initial = merged_config)
 ```
@@ -302,9 +301,9 @@ Tours can be an essential tool to satisfy two needs:
 A simple example can be demonstrated with this configuration:
 
 ```{r}
-sce_location <- system.file("datasets", "sce_pbmc3k.RDS", package = "iUSEiSEE")
-sce_location
-sce <- readRDS(sce_location)
+sce <- readRDS(
+  system.file("datasets", "sce_pbmc3k.RDS", package = "iUSEiSEE")
+)
 
 initial_for_tour <- list(
   ReducedDimensionPlot(PanelWidth = 3L), 

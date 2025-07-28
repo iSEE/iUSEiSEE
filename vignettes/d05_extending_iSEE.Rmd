@@ -50,7 +50,9 @@ In this vignette, we illustrate how to:
 ```{r}
 library("iSEE")
 
-sce <- readRDS(system.file("datasets", "sce_pbmc3k.RDS", package = "iUSEiSEE"))
+sce <- readRDS(
+  system.file("datasets", "sce_pbmc3k.RDS", package = "iUSEiSEE")
+)
 ```
 
 # Philosophy
@@ -82,7 +84,7 @@ setClass("ReducedDimensionHexagonPlot", contains="ReducedDimensionPlot",
 To properly initialise instances of the new class, the new slot must be populated with a default value in the event that users do not specify a bin resolution.
 
 For this, we need to create a new method for the generic `initialize()` and the new class.
-We set the default resolution to 100 hexagonal bins along each axis.
+We set the default resolution to 20 hexagonal bins along each axis.
 
 ```{r}
 setMethod("initialize", "ReducedDimensionHexagonPlot", function(.Object, ...) {

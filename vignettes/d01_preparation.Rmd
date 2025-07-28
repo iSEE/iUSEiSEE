@@ -53,6 +53,7 @@ library("iSEE")
 library("TENxPBMCData")
 
 library("iSEEu")
+library("iSEEhex")
 
 library("iSEEde")
 library("iSEEpathways")

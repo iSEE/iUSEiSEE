@@ -72,7 +72,7 @@ Abassi<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-cont
 </h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/iSEE/iUSEiSEE/blob/more-updates/vignettes/d04_bonus_content.Rmd" class="external-link"><code>vignettes/d04_bonus_content.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/iSEE/iUSEiSEE/blob/main/vignettes/d04_bonus_content.Rmd" class="external-link"><code>vignettes/d04_bonus_content.Rmd</code></a></small>
       <div class="d-none name"><code>d04_bonus_content.Rmd</code></div>
     </div>
 
@@ -257,9 +257,9 @@ linked between each other without running the app with
 <code class="sourceCode R"><span><span class="co"># display a network visualization for the panels</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/iSEEfier/man/view_initial_network.html" class="external-link">view_initial_network</a></span><span class="op">(</span><span class="va">initial_1</span>, plot_format <span class="op">=</span> <span class="st">"igraph"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="d04_bonus_content_files/figure-html/unnamed-chunk-12-2.png" width="700"></p>
-<pre><code><span><span class="co">#&gt; IGRAPH 48356ef DN-- 14 4 -- </span></span>
+<pre><code><span><span class="co">#&gt; IGRAPH e6959ca DN-- 14 4 -- </span></span>
 <span><span class="co">#&gt; + attr: name (v/c), color (v/c)</span></span>
-<span><span class="co">#&gt; + edges from 48356ef (vertex names):</span></span>
+<span><span class="co">#&gt; + edges from e6959ca (vertex names):</span></span>
 <span><span class="co">#&gt; [1] ReducedDimensionPlot1-&gt;ColumnDataPlot1  </span></span>
 <span><span class="co">#&gt; [2] ReducedDimensionPlot2-&gt;ColumnDataPlot1  </span></span>
 <span><span class="co">#&gt; [3] ReducedDimensionPlot3-&gt;ColumnDataPlot1  </span></span>
@@ -268,9 +268,9 @@ linked between each other without running the app with
 interactive widget provided by <code>visNetwork</code>:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/iSEEfier/man/view_initial_network.html" class="external-link">view_initial_network</a></span><span class="op">(</span><span class="va">initial_1</span>, plot_format <span class="op">=</span> <span class="st">"visNetwork"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; IGRAPH 8e67e3f DN-- 14 4 -- </span></span>
+<span><span class="co">#&gt; IGRAPH bba5cc9 DN-- 14 4 -- </span></span>
 <span><span class="co">#&gt; + attr: name (v/c), color (v/c)</span></span>
-<span><span class="co">#&gt; + edges from 8e67e3f (vertex names):</span></span>
+<span><span class="co">#&gt; + edges from bba5cc9 (vertex names):</span></span>
 <span><span class="co">#&gt; [1] ReducedDimensionPlot1-&gt;ColumnDataPlot1  </span></span>
 <span><span class="co">#&gt; [2] ReducedDimensionPlot2-&gt;ColumnDataPlot1  </span></span>
 <span><span class="co">#&gt; [3] ReducedDimensionPlot3-&gt;ColumnDataPlot1  </span></span>
@@ -517,7 +517,7 @@ follow along, download the data and unpack in a folder named
 <span><span class="co">#&gt;   [4] magrittr_2.0.3          farver_2.1.2            rmarkdown_2.29         </span></span>
 <span><span class="co">#&gt;   [7] GlobalOptions_0.1.2     fs_1.6.6                ragg_1.4.0             </span></span>
 <span><span class="co">#&gt;  [10] vctrs_0.6.5             memoise_2.0.1           htmltools_0.5.8.1      </span></span>
-<span><span class="co">#&gt;  [13] S4Arrays_1.8.1          BiocBaseUtils_1.10.0    curl_6.4.0             </span></span>
+<span><span class="co">#&gt;  [13] S4Arrays_1.8.1          BiocBaseUtils_1.10.0    curl_7.0.0             </span></span>
 <span><span class="co">#&gt;  [16] SparseArray_1.8.1       sass_0.4.10             bslib_0.9.0            </span></span>
 <span><span class="co">#&gt;  [19] htmlwidgets_1.6.4       desc_1.4.3              fontawesome_0.5.3      </span></span>
 <span><span class="co">#&gt;  [22] httr2_1.2.1             listviewer_4.0.0        cachem_1.1.0           </span></span>
@@ -537,12 +537,12 @@ follow along, download the data and unpack in a folder named
 <span><span class="co">#&gt;  [64] promises_1.3.3          grid_4.5.1              cluster_2.1.8.1        </span></span>
 <span><span class="co">#&gt;  [67] gtable_0.3.6            XVector_0.48.0          stringr_1.5.1          </span></span>
 <span><span class="co">#&gt;  [70] BiocVersion_3.21.1      ggrepel_0.9.6           foreach_1.5.2          </span></span>
-<span><span class="co">#&gt;  [73] pillar_1.11.0           limma_3.64.1            later_1.4.2            </span></span>
+<span><span class="co">#&gt;  [73] pillar_1.11.0           limma_3.64.3            later_1.4.2            </span></span>
 <span><span class="co">#&gt;  [76] rintrojs_0.3.4          circlize_0.4.16         splines_4.5.1          </span></span>
 <span><span class="co">#&gt;  [79] dplyr_1.1.4             lattice_0.22-7          bit_4.6.0              </span></span>
 <span><span class="co">#&gt;  [82] paws.common_0.8.5       tidyselect_1.2.1        ComplexHeatmap_2.24.1  </span></span>
 <span><span class="co">#&gt;  [85] locfit_1.5-9.12         Biostrings_2.76.0       miniUI_0.1.2           </span></span>
-<span><span class="co">#&gt;  [88] knitr_1.50              edgeR_4.6.3             xfun_0.52              </span></span>
+<span><span class="co">#&gt;  [88] knitr_1.50              edgeR_4.6.3             xfun_0.53              </span></span>
 <span><span class="co">#&gt;  [91] shinydashboard_0.7.3    statmod_1.5.0           iSEEhex_1.10.0         </span></span>
 <span><span class="co">#&gt;  [94] DT_0.33                 stringi_1.8.7           visNetwork_2.1.2       </span></span>
 <span><span class="co">#&gt;  [97] UCSC.utils_1.4.0        yaml_2.3.10             shinyWidgets_0.9.0     </span></span>

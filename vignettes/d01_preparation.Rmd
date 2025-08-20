@@ -1,6 +1,6 @@
 ---
 title: "Preparation"
-author: "Federico Marini^[marinif@uni-mainz.de], Kevin Rue-Albrecht^[kevinrue67@gmail.com], Charlotte soneson^[charlottesoneson@gmail.com], Aaron Lun^[infinite.monkeys.with.keyboards@gmail.com], Najla Abassi^[abassina@uni-mainz.de]"
+author: "Federico Marini^[marinif@uni-mainz.de], Kevin Rue-Albrecht^[kevinrue67@gmail.com], Charlotte Soneson^[charlottesoneson@gmail.com], Aaron Lun^[infinite.monkeys.with.keyboards@gmail.com], Najla Abassi^[abassina@uni-mainz.de]"
 output: 
     html_document:
       theme: cosmo
@@ -35,12 +35,14 @@ suppressPackageStartupMessages({
 
 # Installing and loading the required packages
 
-To run the content presented in this demo, run this following chunk in your R session.
+To run the content presented in this demo, make sure to first run this following chunk in your R session.
 This will install the workshop package as well as all required dependencies.
 
 ```{r eval = FALSE}
-library("BiocManager")
-BiocManager::install("iSEE/iUSEiSEE", dependencies = TRUE, build_vignettes = TRUE)
+install.packages("BiocManager")
+BiocManager::install("iSEE/iUSEiSEE", 
+                     dependencies = TRUE, 
+                     build_vignettes = TRUE)
 ```
 
 Next, we load the packages that will be used during the demo. 
@@ -51,6 +53,7 @@ library("iSEE")
 library("TENxPBMCData")
 
 library("iSEEu")
+library("iSEEhex")
 
 library("iSEEde")
 library("iSEEpathways")
@@ -79,6 +82,9 @@ sce <- readRDS(
 
 sce
 ```
+
+This dataset has already been processed following established principles for single-cell analysis with Bioconductor. 
+To see how the processing was done, consult the [script](https://github.com/iSEE/iUSEiSEE/blob/main/inst/create_datasets.Rmd#L1) provided with the workflow package. 
 
 # Session info {-}
 

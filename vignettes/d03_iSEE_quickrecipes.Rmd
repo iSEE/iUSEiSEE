@@ -1,6 +1,6 @@
 ---
 title: "The iSEE cookbook"
-author: "Federico Marini^[marinif@uni-mainz.de], Kevin Rue-Albrecht^[kevinrue67@gmail.com], Charlotte soneson^[charlottesoneson@gmail.com], Aaron Lun^[infinite.monkeys.with.keyboards@gmail.com], Najla Abassi^[abassina@uni-mainz.de]"
+author: "Federico Marini^[marinif@uni-mainz.de], Kevin Rue-Albrecht^[kevinrue67@gmail.com], Charlotte Soneson^[charlottesoneson@gmail.com], Aaron Lun^[infinite.monkeys.with.keyboards@gmail.com], Najla Abassi^[abassina@uni-mainz.de]"
 output: 
     html_document:
       theme: cosmo
@@ -45,7 +45,7 @@ This vignette consists of a series of (independent) hands-on recipes, aimed at e
 Each recipe consists of a short task and a screen shot of the desired appearance of the app instance that should be created. 
 For each recipe, we provide a set of hints, as well as detailed instructions on how to solve the task both interactively (by clicking in the app) and programmatically (by directly setting up and launching the desired app instance).
 
-For a general overview of the default `iSEE` panels, we refer to the [overview vignette](iSEE_overview_02.html). 
+For a general overview of the default `iSEE` panels, we refer to the [overview vignette](d02_iSEE_overview.html). 
 For all the details about the panel classes and the associated slots, we refer to the help pages for the respective panel class (e.g., `?ReducedDimensionPlot`).
 
 # Prepare the session
@@ -56,15 +56,15 @@ Before starting with the recipes, we need to load the required packages and the 
 library("iSEE")
 library("iSEEu")
 
-sce_location <- system.file("datasets", "sce_pbmc3k.RDS", package = "iUSEiSEE")
-sce_location
-sce <- readRDS(sce_location)
+sce <- readRDS(
+  system.file("datasets", "sce_pbmc3k.RDS", package = "iUSEiSEE")
+)
 sce
 ```
 
 # The cookbook
 
-What follows is a list of 11 small self contained recipes, that each tries to address one specific aim - and provide accordingly a simple, targeted solution.
+What follows is a list of 11 small self-contained recipes, that each tries to address one specific aim - and provide accordingly a simple, targeted solution.
 
 ## Recipe 1: Panel organisation
 
@@ -76,7 +76,7 @@ Using the `pbmc3k` data set, create an app that contains only a reduced dimensio
 <li>Panels can be added, removed and resized via the `Organization` button in the top right corner of the app.</li>
 <li>To pre-specify the panels to be included in the app, use the `initial` argument to `iSEE()`.</li>
 <li>You can remind yourself of the list of slot names available for each panel class and their respective value using the `str()` function on any instance of a panel object, e.g. `str(ReducedDimensionPlot())`.</li>
-<li>For more information about the different types of panels, see the [overview vignette](iSEE_overview_02.html) or the help pages for the respective panel classes.</li>
+<li>For more information about the different types of panels, see the [overview vignette](d02_iSEE_overview.html) or the help pages for the respective panel classes.</li>
 </ul>
 </details>
 
@@ -443,7 +443,6 @@ shiny::runApp(app)
 <li>In the `ReducedDimensionPlot` panel, further click to expand the `Visual parameters` collapsible box, make sure that the `Color` checkbox is ticked. Under `Color by`, select `Column data`. In the dropdown menu that appears, type or select `Cluster`. </li>
 <li>In the `ReducedDimensionPlot` panel, click to expand the `Selection parameters` collapsible box.</li>
 <li>Under `Receive column selection from`, select `Feature assay plot 1`.</li>
-<li>Under `Selection effect`, make sure that `Transparent` is chosen.</li>
 </ul>
 </details>
 
@@ -468,7 +467,7 @@ app <- iSEE(sce, initial = list(
     PanelWidth = 6L, Type = "TSNE",
     ColorBy = "Column data",
     ColorByColumnData = "Cluster",
-    SelectionEffect = "Transparent",
+    ColumnSelectionRestrict = FALSE,
     ColumnSelectionSource = "FeatureAssayPlot1"
   )
 ))
@@ -513,9 +512,10 @@ shiny::runApp(app)
 <li>Under `Column of interest (Y-axis)`, type or select `labels_main`.</li>
 <li>Under `X-axis`, select `Column data`, and under `Column of interest (X-axis)`, select `Cluster`.</li>
 <li>In the `FeatureAssayPlot` panel, use the mouse to drag a rectangle around all points co-expressing `CD79A` and `CD74`.</li>
-<li>In the `ColumnDataPlot` panel, click to expand the `Selection parameters` collapsible box. </li>
+<li>In the `ColumnDataPlot` panel, click to expand the `Selection parameters` collapsible box.</li>
 <li>Under `Receive column selection from`, select `Feature assay plot 1`.</li>
-<li>Under `Selection effect`, make sure that `Color` is chosen.</li>
+<li>In the `ColumnDataPlot` panel, click to expand the `Visual parameters` collapsible box, make sure that the `Color` checkbox is ticked.</li>
+<li>Under `Color by:`, select `Column selection`.</li>
 </ul>
 </details>
 
@@ -540,7 +540,8 @@ app <- iSEE(sce, initial = list(
     YAxis = "labels_main",
     XAxisColumnData = "Cluster",
     ColumnSelectionSource = "FeatureAssayPlot1",
-    ColumnSelectionRestrict = FALSE
+    ColumnSelectionRestrict = FALSE,
+    ColorBy = "Column selection"
   )
 ))
 ```

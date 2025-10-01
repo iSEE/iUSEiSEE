@@ -1,4 +1,4 @@
-pandoc: 3.7.0.2
+pandoc: '3.8'
 pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
@@ -8,7 +8,7 @@ articles:
   d03_iSEE_quickrecipes: d03_iSEE_quickrecipes.html
   d04_bonus_content: d04_bonus_content.html
   d05_extending_iSEE: d05_extending_iSEE.html
-last_built: 2025-08-20T19:31Z
+last_built: 2025-10-01T21:55Z
 urls:
   reference: https://iSEE.github.io/iUSEiSEE/reference
   article: https://iSEE.github.io/iUSEiSEE/articles

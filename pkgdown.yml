@@ -8,7 +8,8 @@ articles:
   d03_iSEE_quickrecipes: d03_iSEE_quickrecipes.html
   d04_bonus_content: d04_bonus_content.html
   d05_extending_iSEE: d05_extending_iSEE.html
-last_built: 2025-10-01T21:55Z
+  d06_deploying_iSEE: d06_deploying_iSEE.html
+last_built: 2025-10-01T21:57Z
 urls:
   reference: https://iSEE.github.io/iUSEiSEE/reference
   article: https://iSEE.github.io/iUSEiSEE/articles

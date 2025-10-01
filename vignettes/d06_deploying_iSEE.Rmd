@@ -1,0 +1,324 @@
+---
+title: "Deploying iSEE"
+author: "Federico Marini^[marinif@uni-mainz.de], Kevin Rue-Albrecht^[kevinrue67@gmail.com], Charlotte Soneson^[charlottesoneson@gmail.com], Aaron Lun^[infinite.monkeys.with.keyboards@gmail.com], Najla Abassi^[abassina@uni-mainz.de]"
+output: 
+    html_document:
+      theme: cosmo
+      toc: yes
+      toc_float: yes
+      number_sections: true
+vignette: >
+  %\VignetteIndexEntry{06. Deploying iSEE}
+  %\VignettePackage{iUSEiSEE}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+bibliography: iUSEiSEErefs.bib
+---
+
+<img src="iSEE.png" align="right" alt="" width="120" />
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  cache = FALSE,
+  collapse = TRUE,
+  comment = "#>",
+  crop = NA
+)
+suppressPackageStartupMessages({
+  library("BiocStyle")
+  library("iSEE")
+})
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+```{r, eval=!exists("SCREENSHOT"), include=FALSE}
+SCREENSHOT <- function(x, ...) knitr::include_graphics(x)
+```
+
+# Introduction
+
+In this vignette, we illustrate how to deploy an instance of iSEE, dedicated to a dataset you want to display and explore with it.  
+This will assume you have some familiarity with 
+
+* the dataset you want to display with iSEE
+* the iSEE app, itself
+* the deployment of Shiny apps, either on a Shiny Server/Posit Connect instance, or on https://www.shinyapps.io/
+
+# Additional requirements
+
+On top of your dataset, you will need one of the following platforms for deploying your instance into the web: a Shiny Server, Posit Connect, or shinyapps.io 
+
+## Setting up a Shiny Server
+
+A Shiny Server (https://posit.co/download/shiny-server/) is a free solution to host any of your apps online. 
+
+To set up Shiny Server on your premises, you can refer to https://docs.posit.co/shiny-server/. If you are already familiar with it, and have a Shiny Server installed and running, you can consider jumping directly to https://docs.posit.co/shiny-server/#quick-start for a full dive in.
+
+Since this might be an easy and free option, we will cover this in the remainder of this document.
+
+<!-- ShinyProxy? Got not too much hands on experience here... -->
+
+If you have root access to the Shiny Server, it might be quite straightforward to install any required dependencies, be those Unix packages or R/Bioconductor packages. Keep in mind that the Shiny Server has to run on a Linux system, and a common distribution for that would be Ubuntu.
+
+In the simplest case, you can login to your Shiny Server and run the following commands to make sure you are all set.
+
+```{bash, eval=FALSE}
+# login via ssh
+ssh username@server
+
+# start R
+R
+```
+
+Within the R console
+
+```{r, eval=FALSE}
+# install Bioconductor
+install.packages("BiocManager")
+
+# install iSEE and its dependencies
+BiocManager::install("iSEE")
+# install also its suggested packages with...
+BiocManager::install("iSEE", dependencies =TRUE)
+
+# load the iSEE package
+library("iSEE")
+# run the app without any dataset pre-loaded
+iSEE()
+# keep in mind that the server might be a headless one, so it can be that no app 
+# is showing up as you commonly expect when you run this locally
+```
+
+## Using Posit Connect
+
+If your group/your institute/your company has access to an instance of Posit Connect, it might be even easier to deploy your applications.
+
+Posit Connect is an enterprise-level product, available at https://posit.co/products/enterprise/connect/. A very comprehensive user guide is available at https://docs.posit.co/connect/user/.
+
+If you use Posit Connect, you can still re-apply some of the content explained below for the deployment of your data with iSEE.
+
+## Using shinyapps.io
+
+Shinyapps.io is another service offered by Posit to share your Shiny applications online. A free tier is available for all, yet this might clash a bit with the specific requirements that serving a complex, fairly large dataset within iSEE entails - not because of iSEE, but rather for the fact that the dataset itself can be large/require more memory than what the free tier might offer.
+
+Similarly to Posit Connect, some concepts of the deployment are in common, and you might learn the essential ones to deploy your data within shinyapps.io.
+
+# Deploying an exemplary instance of iSEE on any dataset
+
+In this section, you will learn the necessary steps to get your data onto the server and deploy an app that explores it.
+
+Some preliminary operations we will need to do include:
+
+- creating the folder and the app script to run your iSEE instance
+- setting up the Shiny Server to know that a new app is ready to be displayed
+- checking the logs to monitor the app behavior
+
+Assuming you are already logged in into the Shiny Server, we will try to deploy a `my_iSEE` app by typing while in the root folder:
+
+```{bash, eval=FALSE}
+# navigate to...
+cd /srv/shiny-server
+# create a new folder named my_iSEE
+mkdir my_iSEE  
+# this will be the folder where to put the app.R file, which you can create with any editor
+touch my_iSEE/app.R
+```
+
+We will fill in the content of the `app.R` file as we go.
+
+## Got data?
+
+First things first - you'll need some data. iSEE will simply require *any* SummarizedExperiment or SingleCellExperiment (or any of its derivate classes).
+
+You will need essentially any command that gives you the `my_sce` object that you will need.
+
+```{r, eval=FALSE}
+library("SummarizedExperiment")
+library("SingleCellExperiment")
+library("iSEE")
+
+# if using an RDS file
+my_sce <- readRDS("path/to/that/sce.RDS")
+
+# if using an h5ad file
+my_sce <- zellkonverter::readH5AD("path/to/data.h5ad")
+
+# if serving an example dataset, this can also come from a function call, e.g.
+my_sce <- scRNAseq::ReprocessedAllenData()
+```
+
+Keep in mind that the lines to load the data will become an essential part of the `app.R` file.
+We will copy its content into it, once we assemble the final version of the file on the Shiny Server.
+
+## Setting up iSEE for that dataset
+
+This is the part that you can take care of on any machine, and possibly your laptop is the best setting to launch iSEE and configure it as you wish, with the panels you desire, with the preset values for any of the Data/Visual/Selection parameters.
+
+This can boil down to...
+
+```{r eval=FALSE}
+# as a starter...
+iSEE(my_sce) 
+```
+
+After navigating and changing configurations, do store the code to create the `initial` list-like object to start iSEE just the way you want it to look like. This can be done as described in the dedicated section of the [overview vignette](d02_iSEE_overview.html#display-panel-settings) by clicking on the Export -> Display panel settings button.  
+Once you have the code to create that `initial` configuration, you can test it by running
+
+```{r eval=FALSE}
+iSEE(my_sce, initial = initial)
+```
+
+This should give you the app in the exact status you wanted to start from.
+
+Do not forget to store the code to create *exactly* that `initial` object, and put that into the `app.R` file we are assembling.
+ 
+## Enhancing the experience of users with a tour
+
+An excellent way to guide viewers and users of the app is via a tour. See more in the dedicated section of the [overview vignette](d02_iSEE_overview.html#quick-tour).
+
+Typically, a tour can be saved as a `data.frame` object, that is created via a simple tabular text file, which contains at least two columns - `element` and `intro`, as expected by the `rintrojs` package. See more about this by checking the main help topic of the iSEE function, via `?iSEE`.
+
+Once the tour is prepared, you can read it in and run the app with this command:
+
+```{r eval=FALSE}
+my_tour <- read.delim("path/to/tsvfile.txt")
+iSEE(my_sce, initial = initial, tour = my_tour)
+```
+
+We are all set! The next step will bring all these ingredients onto the Shiny Server.
+
+## Transferring data and code to run the iSEE instance
+
+This step normally can be executed using the `scp` command.
+
+We will copy, one after the other, the dataset object, the `app.R`, and optionally the `tsvfile.txt` for the tour.
+
+```{bash eval=FALSE}
+# from your laptop, where all these files are
+scp sce.RDS app.R tsvfile.txt username@server:/srv/shiny-server/my_iSEE
+```
+
+As of now, this is more or less how your `app.R` could look like, in a very simplified form:
+
+```
+library("iSEE")
+
+my_sce <- readRDS("path/to/that/sce.RDS")
+
+initial <- list(
+  ReducedDimensionPlot(),
+  FeatureAssayPlot(),
+  RowDataTable()
+)
+
+my_tour <- read.delim("path/to/tsvfile.txt")
+
+iSEE(my_sce, initial = initial, tour = my_tour)
+```
+
+Keep in mind you can still refine and edit this file once it is on the Shiny Server, by simply using any text editor (vi, emacs, gedit, ...).
+
+Your directory structure should look like this:
+
+```
+root@shiny:/srv/shiny-server# tree my_iSEE/
+my_iSEE/
+└── app.R
+└── sce.RDS
+└── tsvfile.txt
+```
+
+Time to tell now the Shiny Server that a new app is ready to be served! You will need to edit the `/etc/shiny-server/shiny-server.conf` file and add these lines within the `server {}` settings:
+
+```
+server{
+  # ...
+  # whatever other content you had in this file
+  # ...
+  location /my_iSEE {
+    app_dir /srv/shiny-server/my_iSEE;
+    log_dir /var/log/shiny-server/my_iSEE;
+    directory_index off;
+    app_init_timeout 250;
+  }
+  # ...
+}
+```
+
+Specifically, this will also tell us where the log files will be stored. They can be easily inspected as the app is running by using the `tail` command.
+
+```{bash eval=FALSE}
+tail -f /var/log/shiny-server/my_iSEE-shiny-[date_time].log
+```
+
+Once you are done with this, you can restart the Shiny Server (not strictly necessary, but suggested to make sure all apps are ready to be served) with this command
+
+```{bash eval=FALSE}
+systemctl restart shiny-server.service 
+```
+
+## Start spreading the news
+
+If all went fine, you will be able to see your app served onto your Shiny Server at the address `[your server address]/my_iSEE`.
+
+Congratulations! Time to proudly spread the news about that precious URL.  
+Or well, if you have some further ideas on how the deployed app should look like, just play around with it, store the code to obtain the updated `initial` configuration, edit the content of the tour, or a mix of these things.
+
+## Providing information in your manuscript
+
+If you wanted to make your dataset available not just on the classical repositories such as GEO, but rather really ready-to-explore for the readers of your manuscript, well done thought!
+
+You can consider adding/updating the "Data Availability" section of your manuscript by putting a sentence on the line of 
+
+> We provide the annotated single-cell RNA-seq datasets via an interactive application, built with the iSEE package and available at http://shiny.imbei.uni-mainz.de:3838/iSEE_KDM6B_inhibition.
+
+This example is taken by a recent preprint where the authors have provided their datasets exactly in this manner. You can also consider citing iSEE in the main text - the info you will need is easy to be found.
+
+```{r}
+citation("iSEE")
+```
+
+# Deploying a collection of datasets via iSEEindex
+
+The concept of serving one dataset is at the core of the iSEE application.
+
+In some recent developments, we have created the `iSEEindex` package, that extends this idea to an entire  **collection** of datasets. 
+This leverages the possibility, within iSEE, to have a custom "landing page" - iSEEindex takes this to the next level, without too much additional overhead.
+
+To get familiar with how `ìSEEindex` works, we refer you to the documentation and vignettes of the package itself, accessible at https://bioconductor.org/packages/iSEEindex/.
+
+Adding up the concepts we have learned in this vignette to the info on how iSEEindex works, this can be translated into a couple of simple operations:
+
+* Data: You will need to transfer not just one file but all the files, possibly one for each dataset you want to serve
+
+* `initial` configurations: Again, ideally one per dataset. You might need a small script that specifically creates that object
+
+* Tour: Again, one tour per dataset. Ideal to guide readers through the many facets of a dataset - consider that your live, breathing version of the figure legend!
+
+A very good example of how to set up all this into one well-crafted file is the yaml example provided within the iSEEindex package, available at https://github.com/iSEE/iSEEindex/blob/devel/inst/example.yaml.
+
+If you would like to see how one such instance can look like, you can see the IFNresource in action at https://rehwinkellab.shinyapps.io/ifnresource/ [@Rigby2023].
+
+# Looking for some inspiration?
+
+The apps gallery on the iSEE website (https://isee.github.io/apps.html) is the place to watch for seeing some apps deployed in the wild.
+
+If you want to see the code underlying some of such instances - and more - you can check out the https://github.com/iSEE/iSEE_instances/ Github repository.
+
+Feel free to reach out (e.g. via email at marinif@uni-mainz.de) if you need some assistance in this process, or would like your data to be hosted upon our premises at the IMBEI.
+
+# Session info {-}
+
+<details>
+<summary><b>
+Session info
+</b></summary>
+```{r}
+sessionInfo()
+```
+</details>
+
+# References {-}

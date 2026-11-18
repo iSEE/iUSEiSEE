@@ -39,6 +39,8 @@ navbar:
         href: articles/d04_bonus_content.html
       - text: 05. Extending iSEE
         href: articles/d05_extending_iSEE.html
+      - text: 06. Deploying iSEE
+        href: articles/d06_deploying_iSEE.html
 
 
 

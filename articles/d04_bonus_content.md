@@ -192,9 +192,9 @@ and
 
 ![](d04_bonus_content_files/figure-html/unnamed-chunk-12-2.png)
 
-    #> IGRAPH 7381b5b DN-- 14 4 -- 
+    #> IGRAPH d9bf025 DN-- 14 4 -- 
     #> + attr: name (v/c), color (v/c)
-    #> + edges from 7381b5b (vertex names):
+    #> + edges from d9bf025 (vertex names):
     #> [1] ReducedDimensionPlot1->ColumnDataPlot1  
     #> [2] ReducedDimensionPlot2->ColumnDataPlot1  
     #> [3] ReducedDimensionPlot3->ColumnDataPlot1  
@@ -205,9 +205,9 @@ widget provided by `visNetwork`:
 
 \
 [`view_initial_network`](https://rdrr.io/pkg/iSEEfier/man/view_initial_network.html)`(``initial_1``, plot_format ``=`` ``"visNetwork"``)`\
-`#> IGRAPH 9fc74e7 DN-- 14 4 -- `\
+`#> IGRAPH 10f56ee DN-- 14 4 -- `\
 `#> + attr: name (v/c), color (v/c)`\
-`#> + edges from 9fc74e7 (vertex names):`\
+`#> + edges from 10f56ee (vertex names):`\
 `#> [1] ReducedDimensionPlot1->ColumnDataPlot1  `\
 `#> [2] ReducedDimensionPlot2->ColumnDataPlot1  `\
 `#> [3] ReducedDimensionPlot3->ColumnDataPlot1  `\

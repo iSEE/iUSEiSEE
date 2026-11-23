@@ -12,8 +12,8 @@
 <link rel="icon" sizes="any" href="../favicon.ico">
 <link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="About this workshop">
@@ -45,6 +45,7 @@
     <li><a class="dropdown-item" href="../articles/d03_iSEE_quickrecipes.html">03. The iSEE cookbook</a></li>
     <li><a class="dropdown-item" href="../articles/d04_bonus_content.html">04. Bonus iSEE content</a></li>
     <li><a class="dropdown-item" href="../articles/d05_extending_iSEE.html">05. Extending iSEE</a></li>
+    <li><a class="dropdown-item" href="../articles/d06_deploying_iSEE.html">06. Deploying iSEE</a></li>
   </ul>
 </li>
       </ul>
@@ -71,7 +72,7 @@ Abassi<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-cont
 </h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/iSEE/iUSEiSEE/blob/add-deploy-vignette/vignettes/d00_about_this_workshop.Rmd" class="external-link"><code>vignettes/d00_about_this_workshop.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/iSEE/iUSEiSEE/blob/main/vignettes/d00_about_this_workshop.Rmd" class="external-link"><code>vignettes/d00_about_this_workshop.Rmd</code></a></small>
       <div class="d-none name"><code>d00_about_this_workshop.Rmd</code></div>
     </div>
 
@@ -81,18 +82,18 @@ Abassi<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-cont
 <div class="section level2">
 <h2 id="description">Description<a class="anchor" aria-label="anchor" href="#description"></a>
 </h2>
-<p>The <em><a href="https://bioconductor.org/packages/3.21/iSEE" class="external-link">iSEE</a></em>
+<p>The <em><a href="https://bioconductor.org/packages/3.23/iSEE" class="external-link">iSEE</a></em>
 Bioconductor package <span class="citation">(Rue-Albrecht et al.
 2018)</span> is a flexible, powerful and extensible application to
-explore any dataset stored in a <em><a href="https://bioconductor.org/packages/3.21/SummarizedExperiment" class="external-link">SummarizedExperiment</a></em>
+explore any dataset stored in a <em><a href="https://bioconductor.org/packages/3.23/SummarizedExperiment" class="external-link">SummarizedExperiment</a></em>
 object, including single cell and spatially resolved data, but also bulk
 data (such as transcriptomics and proteomics) and many types of
 non-biological data.</p>
-<p><em><a href="https://bioconductor.org/packages/3.21/iSEE" class="external-link">iSEE</a></em> enables
+<p><em><a href="https://bioconductor.org/packages/3.23/iSEE" class="external-link">iSEE</a></em> enables
 a multitude of panels to gain in-depth insight in your data; it does so
 combining interactivity and reproducibility, and provides an ideal
 companion to other tools for deeper dives into data.</p>
-<p>This workshop provides an overview of the functionality of the <em><a href="https://bioconductor.org/packages/3.21/iSEE" class="external-link">iSEE</a></em>
+<p>This workshop provides an overview of the functionality of the <em><a href="https://bioconductor.org/packages/3.23/iSEE" class="external-link">iSEE</a></em>
 package. The material is equally suitable for use in a
 “masterclass-style” workshop as for self-study.</p>
 </div>
@@ -107,7 +108,7 @@ More precisely, the following pre-requisities are useful:</p>
 <ul>
 <li>Familiarity with bulk or single-cell sequencing data (ideally
 scRNA-seq).</li>
-<li>Familiarity with the <em><a href="https://bioconductor.org/packages/3.21/SummarizedExperiment" class="external-link">SummarizedExperiment</a></em>/<em><a href="https://bioconductor.org/packages/3.21/SingleCellExperiment" class="external-link">SingleCellExperiment</a></em>
+<li>Familiarity with the <em><a href="https://bioconductor.org/packages/3.23/SummarizedExperiment" class="external-link">SummarizedExperiment</a></em>/<em><a href="https://bioconductor.org/packages/3.23/SingleCellExperiment" class="external-link">SingleCellExperiment</a></em>
 class, or alternatively the <em><a href="https://CRAN.R-project.org/package=Seurat" class="external-link">Seurat</a></em> or <a href="https://pypi.org/project/anndata/" class="external-link"><em>AnnData</em></a> frameworks
 - basically, any of the widely used ecosystem for working
 with/storing/processing single-cell data.</li>
@@ -161,19 +162,19 @@ folder:</p>
 installing the required packages and downloading the example data.</li>
 <li>
 <a href="d02_iSEE_overview.html">Overview of iSEE</a> - a detailed
-overview of <em><a href="https://bioconductor.org/packages/3.21/iSEE" class="external-link">iSEE</a></em> and its
+overview of <em><a href="https://bioconductor.org/packages/3.23/iSEE" class="external-link">iSEE</a></em> and its
 functionality.</li>
 <li>
 <a href="d03_iSEE_quickrecipes.html">The iSEE cookbook</a> - a set
 of self-contained recipes with simple-to-advanced tasks one can complete
-within <em><a href="https://bioconductor.org/packages/3.21/iSEE" class="external-link">iSEE</a></em>.</li>
+within <em><a href="https://bioconductor.org/packages/3.23/iSEE" class="external-link">iSEE</a></em>.</li>
 <li>
 <a href="d04_bonus_content.html">Bonus advanced content around
 iSEE</a> - some additional content, focused on some advanced or more
-specific tasks to carry out with <em><a href="https://bioconductor.org/packages/3.21/iSEE" class="external-link">iSEE</a></em>.</li>
+specific tasks to carry out with <em><a href="https://bioconductor.org/packages/3.23/iSEE" class="external-link">iSEE</a></em>.</li>
 <li>
 <a href="d05_extending_iSEE.html">Extending iSEE</a> - material
-focused on extending <em><a href="https://bioconductor.org/packages/3.21/iSEE" class="external-link">iSEE</a></em> by
+focused on extending <em><a href="https://bioconductor.org/packages/3.23/iSEE" class="external-link">iSEE</a></em> by
 creating new panel classes.</li>
 </ul>
 </div>
@@ -184,12 +185,12 @@ creating new panel classes.</li>
 <h3 id="learning-goals">Learning goals<a class="anchor" aria-label="anchor" href="#learning-goals"></a>
 </h3>
 <ul>
-<li>Outline the features of <em><a href="https://bioconductor.org/packages/3.21/iSEE" class="external-link">iSEE</a></em>, built
+<li>Outline the features of <em><a href="https://bioconductor.org/packages/3.23/iSEE" class="external-link">iSEE</a></em>, built
 upon the R/Shiny framework.</li>
 <li>Utilize interactive GUI components and layouts to efficiently
 extract information from biological data sets.</li>
 <li>Describe how to construct interactive apps and custom panels.</li>
-<li>Demonstrate how <em><a href="https://bioconductor.org/packages/3.21/iSEE" class="external-link">iSEE</a></em> and
+<li>Demonstrate how <em><a href="https://bioconductor.org/packages/3.23/iSEE" class="external-link">iSEE</a></em> and
 related packages can smoothly be integrated into and enhance existing
 workflows for the datasets at hand.</li>
 </ul>
@@ -198,17 +199,17 @@ workflows for the datasets at hand.</li>
 <h3 id="learning-objectives">Learning objectives<a class="anchor" aria-label="anchor" href="#learning-objectives"></a>
 </h3>
 <ul>
-<li>Set up a local environment for running <em><a href="https://bioconductor.org/packages/3.21/iSEE" class="external-link">iSEE</a></em>
+<li>Set up a local environment for running <em><a href="https://bioconductor.org/packages/3.23/iSEE" class="external-link">iSEE</a></em>
 apps.</li>
-<li>Interact with components of the <em><a href="https://bioconductor.org/packages/3.21/iSEE" class="external-link">iSEE</a></em> user
+<li>Interact with components of the <em><a href="https://bioconductor.org/packages/3.23/iSEE" class="external-link">iSEE</a></em> user
 interface to visually inspect and discuss various datasets.</li>
-<li>Identify and locate configurable aspects of <em><a href="https://bioconductor.org/packages/3.21/iSEE" class="external-link">iSEE</a></em>
+<li>Identify and locate configurable aspects of <em><a href="https://bioconductor.org/packages/3.23/iSEE" class="external-link">iSEE</a></em>
 apps.</li>
 <li>Practice interactive visualization over a single-cell RNA-sequencing
 workflow.</li>
 <li>Imagine use cases and future developments for interactive
 visualization as part of computational workflows.</li>
-<li>Design and create <em><a href="https://bioconductor.org/packages/3.21/iSEE" class="external-link">iSEE</a></em>
+<li>Design and create <em><a href="https://bioconductor.org/packages/3.23/iSEE" class="external-link">iSEE</a></em>
 instances for collections of datasets.</li>
 </ul>
 </div>
@@ -216,7 +217,7 @@ instances for collections of datasets.</li>
 <div class="section level2">
 <h2 id="additional-resources">Additional resources<a class="anchor" aria-label="anchor" href="#additional-resources"></a>
 </h2>
-<p>A lot of materials have been developed, from the first use of <em><a href="https://bioconductor.org/packages/3.21/iSEE" class="external-link">iSEE</a></em> to
+<p>A lot of materials have been developed, from the first use of <em><a href="https://bioconductor.org/packages/3.23/iSEE" class="external-link">iSEE</a></em> to
 contributions of new panel classes in separate downstream packages.</p>
 <ul>
 <li>The iSEE website: <a href="https://isee.github.io/" class="external-link uri">https://isee.github.io/</a>
@@ -261,7 +262,7 @@ Lun. 2018. <span>“<span class="nocase">iSEE</span>: Interactive
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

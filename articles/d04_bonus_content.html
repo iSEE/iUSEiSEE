@@ -12,8 +12,8 @@
 <link rel="icon" sizes="any" href="../favicon.ico">
 <link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Bonus content">
@@ -45,6 +45,7 @@
     <li><a class="dropdown-item" href="../articles/d03_iSEE_quickrecipes.html">03. The iSEE cookbook</a></li>
     <li><a class="dropdown-item" href="../articles/d04_bonus_content.html">04. Bonus iSEE content</a></li>
     <li><a class="dropdown-item" href="../articles/d05_extending_iSEE.html">05. Extending iSEE</a></li>
+    <li><a class="dropdown-item" href="../articles/d06_deploying_iSEE.html">06. Deploying iSEE</a></li>
   </ul>
 </li>
       </ul>
@@ -72,7 +73,7 @@ Abassi<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-cont
 </h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/iSEE/iUSEiSEE/blob/add-deploy-vignette/vignettes/d04_bonus_content.Rmd" class="external-link"><code>vignettes/d04_bonus_content.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/iSEE/iUSEiSEE/blob/main/vignettes/d04_bonus_content.Rmd" class="external-link"><code>vignettes/d04_bonus_content.Rmd</code></a></small>
       <div class="d-none name"><code>d04_bonus_content.Rmd</code></div>
     </div>
 
@@ -89,8 +90,8 @@ interface.</p>
 <div class="section level2">
 <h2 id="iseede-and-iseepathways">iSEEde and iSEEpathways<a class="anchor" aria-label="anchor" href="#iseede-and-iseepathways"></a>
 </h2>
-<p><em><a href="https://bioconductor.org/packages/3.21/iSEEde" class="external-link">iSEEde</a></em> and
-<em><a href="https://bioconductor.org/packages/3.21/iSEEpathways" class="external-link">iSEEpathways</a></em>
+<p><em><a href="https://bioconductor.org/packages/3.23/iSEEde" class="external-link">iSEEde</a></em> and
+<em><a href="https://bioconductor.org/packages/3.23/iSEEpathways" class="external-link">iSEEpathways</a></em>
 are ideal companion packages for exploring differential expression
 results in (e.g.) bulk RNA-seq data.</p>
 <p>We will use the <code>macrophage</code> dataset (derived from the
@@ -113,11 +114,11 @@ processing code can be found in the accompanying <a href="https://github.com/iSE
 <span><span class="co">#&gt; </span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st">"GO.db"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span></code></pre></div>
-<p><em><a href="https://bioconductor.org/packages/3.21/iSEEde" class="external-link">iSEEde</a></em> and
-<em><a href="https://bioconductor.org/packages/3.21/iSEEpathways" class="external-link">iSEEpathways</a></em>
-are two new Bioconductor packages that provide <em><a href="https://bioconductor.org/packages/3.21/iSEE" class="external-link">iSEE</a></em> panels
+<p><em><a href="https://bioconductor.org/packages/3.23/iSEEde" class="external-link">iSEEde</a></em> and
+<em><a href="https://bioconductor.org/packages/3.23/iSEEpathways" class="external-link">iSEEpathways</a></em>
+are two new Bioconductor packages that provide <em><a href="https://bioconductor.org/packages/3.23/iSEE" class="external-link">iSEE</a></em> panels
 specifically aimed towards exploration of differential expression and
-pathway analysis results. More precisely, <em><a href="https://bioconductor.org/packages/3.21/iSEEde" class="external-link">iSEEde</a></em>
+pathway analysis results. More precisely, <em><a href="https://bioconductor.org/packages/3.23/iSEEde" class="external-link">iSEEde</a></em>
 provides the <code>VolcanoPlot</code>, <code>MAPlot</code>,
 <code>LogFCLogFCPlot</code> and <code>DETable</code> panels. These
 panels can be configured to extract data that was added via the
@@ -133,7 +134,7 @@ script).</p>
 <span>  <span class="fu">iSEEde</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/iSEEde/man/VolcanoPlot-class.html" class="external-link">VolcanoPlot</a></span><span class="op">(</span>ContrastName <span class="op">=</span> <span class="st">"IFNgTRUE.SL1344TRUE.DESeq2"</span><span class="op">)</span>,</span>
 <span>  <span class="fu">iSEEde</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/iSEEde/man/MAPlot-class.html" class="external-link">MAPlot</a></span><span class="op">(</span>ContrastName <span class="op">=</span> <span class="st">"IFNgTRUE.SL1344TRUE.DESeq2"</span><span class="op">)</span></span>
 <span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="images/04-isee-de-setup1.png" width="992"></p>
+<p><img src="images/04-isee-de-setup1.png" class="r-plt" alt="" width="992"></p>
 <!-- Possible actions: -->
 <!-- select some genes from any panel and pass the selection to others -->
 <!-- move panels around, add some, update configuration -->
@@ -163,7 +164,7 @@ panels.</p>
 <span>    PathwayId <span class="op">=</span> <span class="st">"GO:0046324"</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="images/04-isee-de-setup2.png" width="992"></p>
+<p><img src="images/04-isee-de-setup2.png" class="r-plt" alt="" width="992"></p>
 <!-- Possible actions: -->
 <!-- select a pathway from PAT1 -->
 <!-- transform vst data in heatmap, center -->
@@ -184,13 +185,13 @@ launching the default interface with <code>iSEE(sce)</code>, and
 adding/removing panels as desired. This can involve multiple manual
 steps (selecting the gene of interest, color by a specific
 <code>colData</code> column, …), or the execution of multiple lines of
-setup code. The <em><a href="https://bioconductor.org/packages/3.21/iSEEfier" class="external-link">iSEEfier</a></em>
+setup code. The <em><a href="https://bioconductor.org/packages/3.23/iSEEfier" class="external-link">iSEEfier</a></em>
 package streamlines the process of starting (or if you will, firing up)
 an <code>iSEE</code> instance with a small chunk of code, avoiding the
 tedious way of setting up every <code>iSEE</code> panel
 individually.</p>
 <p>In this section, we will illustrate a simple example of how to use
-<em><a href="https://bioconductor.org/packages/3.21/iSEEfier" class="external-link">iSEEfier</a></em>.
+<em><a href="https://bioconductor.org/packages/3.23/iSEEfier" class="external-link">iSEEfier</a></em>.
 We will use the same <code>pbmc3k</code> data we worked with during this
 workshop.</p>
 <p>We start by loading the data:</p>
@@ -236,7 +237,7 @@ create a customized initial configuration:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">app</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://isee.github.io/iSEE/reference/iSEE.html" class="external-link">iSEE</a></span><span class="op">(</span><span class="va">sce</span>, initial <span class="op">=</span> <span class="va">initial_1</span><span class="op">)</span></span></code></pre></div>
 <p>This is how it would look like:</p>
-<p><img src="images/04-isee-on-fier.png" width="100%"></p>
+<p><img src="images/04-isee-on-fier.png" class="r-plt" alt="" width="100%"></p>
 <p>While we are visualizing the expression of these genes, we might want
 to take some notes (gene X is more expressed in a certain cell
 type/cluster than some others, maybe we are trying to annotate the cells
@@ -252,14 +253,14 @@ linked between each other without running the app with
 <code class="sourceCode R"><span><span class="co"># display a graphical representation of the initial configuration, </span></span>
 <span><span class="co"># where the panels are identified by their corresponding colors</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/iSEEfier/man/view_initial_tiles.html" class="external-link">view_initial_tiles</a></span><span class="op">(</span>initial <span class="op">=</span> <span class="va">initial_1</span><span class="op">)</span></span></code></pre></div>
-<p><img src="d04_bonus_content_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
+<p><img src="d04_bonus_content_files/figure-html/unnamed-chunk-12-1.png" class="r-plt" alt="" width="700"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># display a network visualization for the panels</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/iSEEfier/man/view_initial_network.html" class="external-link">view_initial_network</a></span><span class="op">(</span><span class="va">initial_1</span>, plot_format <span class="op">=</span> <span class="st">"igraph"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="d04_bonus_content_files/figure-html/unnamed-chunk-12-2.png" width="700"></p>
-<pre><code><span><span class="co">#&gt; IGRAPH 65dba7a DN-- 14 4 -- </span></span>
+<p><img src="d04_bonus_content_files/figure-html/unnamed-chunk-12-2.png" class="r-plt" alt="" width="700"></p>
+<pre><code><span><span class="co">#&gt; IGRAPH 7381b5b DN-- 14 4 -- </span></span>
 <span><span class="co">#&gt; + attr: name (v/c), color (v/c)</span></span>
-<span><span class="co">#&gt; + edges from 65dba7a (vertex names):</span></span>
+<span><span class="co">#&gt; + edges from 7381b5b (vertex names):</span></span>
 <span><span class="co">#&gt; [1] ReducedDimensionPlot1-&gt;ColumnDataPlot1  </span></span>
 <span><span class="co">#&gt; [2] ReducedDimensionPlot2-&gt;ColumnDataPlot1  </span></span>
 <span><span class="co">#&gt; [3] ReducedDimensionPlot3-&gt;ColumnDataPlot1  </span></span>
@@ -268,14 +269,14 @@ linked between each other without running the app with
 interactive widget provided by <code>visNetwork</code>:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/iSEEfier/man/view_initial_network.html" class="external-link">view_initial_network</a></span><span class="op">(</span><span class="va">initial_1</span>, plot_format <span class="op">=</span> <span class="st">"visNetwork"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; IGRAPH c2850b4 DN-- 14 4 -- </span></span>
+<span><span class="co">#&gt; IGRAPH 9fc74e7 DN-- 14 4 -- </span></span>
 <span><span class="co">#&gt; + attr: name (v/c), color (v/c)</span></span>
-<span><span class="co">#&gt; + edges from c2850b4 (vertex names):</span></span>
+<span><span class="co">#&gt; + edges from 9fc74e7 (vertex names):</span></span>
 <span><span class="co">#&gt; [1] ReducedDimensionPlot1-&gt;ColumnDataPlot1  </span></span>
 <span><span class="co">#&gt; [2] ReducedDimensionPlot2-&gt;ColumnDataPlot1  </span></span>
 <span><span class="co">#&gt; [3] ReducedDimensionPlot3-&gt;ColumnDataPlot1  </span></span>
 <span><span class="co">#&gt; [4] ReducedDimensionPlot4-&gt;FeatureAssayPlot4</span></span></code></pre></div>
-<p>It is also possible to use <em><a href="https://bioconductor.org/packages/3.21/iSEEfier" class="external-link">iSEEfier</a></em>
+<p>It is also possible to use <em><a href="https://bioconductor.org/packages/3.23/iSEEfier" class="external-link">iSEEfier</a></em>
 to combine multiple initial configurations into one:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># create a second initial configuration</span></span>
@@ -299,7 +300,7 @@ to combine multiple initial configurations into one:</p>
 <span></span>
 <span><span class="co"># check out the content of merged_config</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/iSEEfier/man/view_initial_tiles.html" class="external-link">view_initial_tiles</a></span><span class="op">(</span>initial <span class="op">=</span> <span class="va">merged_config</span><span class="op">)</span></span></code></pre></div>
-<p><img src="d04_bonus_content_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
+<p><img src="d04_bonus_content_files/figure-html/unnamed-chunk-14-1.png" class="r-plt" alt="" width="700"></p>
 <p><code><a href="https://rdrr.io/pkg/iSEEfier/man/iSEEfier-pkg.html" class="external-link">?iSEEfier</a></code> is always your friend whenever you need
 further documentation on the package/a certain function and how to use
 it.</p>
@@ -310,9 +311,9 @@ it.</p>
 <div class="section level3">
 <h3 id="iseehub-iseeing-the-experimenthub-datasets">iSEEhub: <code>iSEE</code>ing the ExperimentHub datasets<a class="anchor" aria-label="anchor" href="#iseehub-iseeing-the-experimenthub-datasets"></a>
 </h3>
-<p>The <em><a href="https://bioconductor.org/packages/3.21/iSEEhub" class="external-link">iSEEhub</a></em>
-package provides a custom landing page for an <em><a href="https://bioconductor.org/packages/3.21/iSEE" class="external-link">iSEE</a></em>
-application interfacing with the Bioconductor <em><a href="https://bioconductor.org/packages/3.21/ExperimentHub" class="external-link">ExperimentHub</a></em>.
+<p>The <em><a href="https://bioconductor.org/packages/3.23/iSEEhub" class="external-link">iSEEhub</a></em>
+package provides a custom landing page for an <em><a href="https://bioconductor.org/packages/3.23/iSEE" class="external-link">iSEE</a></em>
+application interfacing with the Bioconductor <em><a href="https://bioconductor.org/packages/3.23/ExperimentHub" class="external-link">ExperimentHub</a></em>.
 The landing page allows users to browse the ExperimentHub, select a data
 set, download and cache it, and import it directly into an iSEE app.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -330,7 +331,7 @@ set, download and cache it, and import it directly into an iSEE app.</p>
 <span></span>
 <span><span class="va">ehub</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ExperimentHub/man/ExperimentHub-class.html" class="external-link">ExperimentHub</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">app</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/iSEEhub/man/iSEEhub.html" class="external-link">iSEEhub</a></span><span class="op">(</span><span class="va">ehub</span><span class="op">)</span></span></code></pre></div>
-<p><img src="images/04-iseehub.png" width="992"></p>
+<p><img src="images/04-iseehub.png" class="r-plt" alt="" width="992"></p>
 <!-- Possible actions: -->
 <!-- select a dataset from DuoClustering -->
 <!-- start iSEE on that -->
@@ -339,7 +340,7 @@ set, download and cache it, and import it directly into an iSEE app.</p>
 <h3 id="iseeindex-one-instance-of-isee-to-explore-them-all">iSEEindex: one instance of <code>iSEE</code> to explore them
 all<a class="anchor" aria-label="anchor" href="#iseeindex-one-instance-of-isee-to-explore-them-all"></a>
 </h3>
-<p><em><a href="https://bioconductor.org/packages/3.21/iSEEindex" class="external-link">iSEEindex</a></em>
+<p><em><a href="https://bioconductor.org/packages/3.23/iSEEindex" class="external-link">iSEEindex</a></em>
 provides an interface to <strong>any</strong> collection of data sets
 within a single iSEE web-application.<br>
 The main functionality of this package is to define a custom landing
@@ -354,15 +355,15 @@ example:</p>
 <span><span class="va">bfc</span> <span class="op">&lt;-</span> <span class="fu">BiocFileCache</span><span class="op">(</span>cache <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">dataset_fun</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">yaml</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/yaml/man/read_yaml.html" class="external-link">read_yaml</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"iSEEindex"</span>, <span class="st">"example.yaml"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">yaml</span><span class="fu">::</span><span class="fu"><a href="https://yaml.r-lib.org/reference/read_yaml.html" class="external-link">read_yaml</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"iSEEindex"</span>, <span class="st">"example.yaml"</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="va">x</span><span class="op">$</span><span class="va">datasets</span></span>
 <span><span class="op">}</span></span>
 <span><span class="va">initial_fun</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">yaml</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/yaml/man/read_yaml.html" class="external-link">read_yaml</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"iSEEindex"</span>, <span class="st">"example.yaml"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">yaml</span><span class="fu">::</span><span class="fu"><a href="https://yaml.r-lib.org/reference/read_yaml.html" class="external-link">read_yaml</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"iSEEindex"</span>, <span class="st">"example.yaml"</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="va">x</span><span class="op">$</span><span class="va">initial</span></span>
 <span><span class="op">}</span></span>
 <span><span class="va">app</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/iSEEindex/man/iSEEindex.html" class="external-link">iSEEindex</a></span><span class="op">(</span><span class="va">bfc</span>, <span class="va">dataset_fun</span>, <span class="va">initial_fun</span><span class="op">)</span></span></code></pre></div>
-<p><img src="images/04-iseeindex.png" width="992"></p>
+<p><img src="images/04-iseeindex.png" class="r-plt" alt="" width="992"></p>
 <p>A more elaborate example (referring to the work in <span class="citation">(Rigby et al. 2023)</span>) is available at <a href="https://rehwinkellab.shinyapps.io/ifnresource/" class="external-link">https://rehwinkellab.shinyapps.io/ifnresource/</a>.
 The source can be found at <a href="https://github.com/kevinrue/IFNresource" class="external-link">https://github.com/kevinrue/IFNresource</a>.</p>
 <!-- Possible actions: -->
@@ -426,12 +427,12 @@ of that step (<code>intro</code>).</p>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">app</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://isee.github.io/iSEE/reference/iSEE.html" class="external-link">iSEE</a></span><span class="op">(</span><span class="va">sce</span>, initial <span class="op">=</span> <span class="va">initial_for_tour</span>, tour <span class="op">=</span> <span class="va">tour</span><span class="op">)</span></span></code></pre></div>
-<p><img src="images/04-isee-simpletour.png" width="992"></p>
+<p><img src="images/04-isee-simpletour.png" class="r-plt" alt="" width="992"></p>
 </div>
 <div class="section level2">
 <h2 id="interoperability">Interoperability<a class="anchor" aria-label="anchor" href="#interoperability"></a>
 </h2>
-<p>As we have seen throughout this workshop, <em><a href="https://bioconductor.org/packages/3.21/iSEE" class="external-link">iSEE</a></em> works
+<p>As we have seen throughout this workshop, <em><a href="https://bioconductor.org/packages/3.23/iSEE" class="external-link">iSEE</a></em> works
 on <code>SummarizedExperiment</code> objects, or derivatives thereof.
 However, especially if you are working with single-cell data you may
 already have your dataset available in another format (such as a
@@ -474,9 +475,9 @@ follow along, download the data and unpack in a folder named
 <details><summary><b> Session info </b>
 </summary><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; R version 4.5.1 (2025-06-13)</span></span>
+<span><span class="co">#&gt; R version 4.6.1 (2026-06-24)</span></span>
 <span><span class="co">#&gt; Platform: x86_64-pc-linux-gnu</span></span>
-<span><span class="co">#&gt; Running under: Ubuntu 24.04.3 LTS</span></span>
+<span><span class="co">#&gt; Running under: Ubuntu 24.04.5 LTS</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Matrix products: default</span></span>
 <span><span class="co">#&gt; BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 </span></span>
@@ -498,63 +499,62 @@ follow along, download the data and unpack in a folder named
 <span><span class="co">#&gt; [8] base     </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; other attached packages:</span></span>
-<span><span class="co">#&gt;  [1] iSEEindex_1.6.0             iSEEhub_1.10.0             </span></span>
-<span><span class="co">#&gt;  [3] ExperimentHub_2.16.1        AnnotationHub_3.16.1       </span></span>
-<span><span class="co">#&gt;  [5] BiocFileCache_2.16.2        dbplyr_2.5.1               </span></span>
-<span><span class="co">#&gt;  [7] iSEEfier_1.4.0              GO.db_3.21.0               </span></span>
-<span><span class="co">#&gt;  [9] org.Hs.eg.db_3.21.0         AnnotationDbi_1.70.0       </span></span>
-<span><span class="co">#&gt; [11] iSEEpathways_1.6.0          iSEEde_1.6.0               </span></span>
-<span><span class="co">#&gt; [13] iSEE_2.20.0                 SingleCellExperiment_1.30.1</span></span>
-<span><span class="co">#&gt; [15] SummarizedExperiment_1.38.1 Biobase_2.68.0             </span></span>
-<span><span class="co">#&gt; [17] GenomicRanges_1.60.0        GenomeInfoDb_1.44.3        </span></span>
-<span><span class="co">#&gt; [19] IRanges_2.42.0              S4Vectors_0.46.0           </span></span>
-<span><span class="co">#&gt; [21] BiocGenerics_0.54.0         generics_0.1.4             </span></span>
-<span><span class="co">#&gt; [23] MatrixGenerics_1.20.0       matrixStats_1.5.0          </span></span>
-<span><span class="co">#&gt; [25] BiocStyle_2.36.0           </span></span>
+<span><span class="co">#&gt;  [1] iSEEindex_1.10.0            iSEEhub_1.14.0             </span></span>
+<span><span class="co">#&gt;  [3] ExperimentHub_3.2.2         AnnotationHub_4.2.2        </span></span>
+<span><span class="co">#&gt;  [5] BiocFileCache_3.2.0         dbplyr_2.6.0               </span></span>
+<span><span class="co">#&gt;  [7] iSEEfier_1.8.0              GO.db_3.23.1               </span></span>
+<span><span class="co">#&gt;  [9] org.Hs.eg.db_3.23.1         AnnotationDbi_1.74.0       </span></span>
+<span><span class="co">#&gt; [11] iSEEpathways_1.10.0         iSEEde_1.10.0              </span></span>
+<span><span class="co">#&gt; [13] iSEE_2.24.0                 SingleCellExperiment_1.34.0</span></span>
+<span><span class="co">#&gt; [15] SummarizedExperiment_1.42.0 Biobase_2.72.0             </span></span>
+<span><span class="co">#&gt; [17] GenomicRanges_1.64.0        Seqinfo_1.2.0              </span></span>
+<span><span class="co">#&gt; [19] IRanges_2.46.0              S4Vectors_0.50.3           </span></span>
+<span><span class="co">#&gt; [21] BiocGenerics_0.58.1         generics_0.1.4             </span></span>
+<span><span class="co">#&gt; [23] MatrixGenerics_1.24.0       matrixStats_1.5.0          </span></span>
+<span><span class="co">#&gt; [25] BiocStyle_2.40.0           </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
-<span><span class="co">#&gt;   [1] RColorBrewer_1.1-3      jsonlite_2.0.0          shape_1.4.6.1          </span></span>
-<span><span class="co">#&gt;   [4] magrittr_2.0.4          farver_2.1.2            rmarkdown_2.30         </span></span>
-<span><span class="co">#&gt;   [7] GlobalOptions_0.1.2     fs_1.6.6                ragg_1.5.0             </span></span>
-<span><span class="co">#&gt;  [10] vctrs_0.6.5             memoise_2.0.1           htmltools_0.5.8.1      </span></span>
-<span><span class="co">#&gt;  [13] S4Arrays_1.8.1          BiocBaseUtils_1.10.0    curl_7.0.0             </span></span>
-<span><span class="co">#&gt;  [16] SparseArray_1.8.1       sass_0.4.10             bslib_0.9.0            </span></span>
-<span><span class="co">#&gt;  [19] htmlwidgets_1.6.4       desc_1.4.3              fontawesome_0.5.3      </span></span>
-<span><span class="co">#&gt;  [22] httr2_1.2.1             listviewer_4.0.0        cachem_1.1.0           </span></span>
-<span><span class="co">#&gt;  [25] igraph_2.1.4            mime_0.13               lifecycle_1.0.4        </span></span>
-<span><span class="co">#&gt;  [28] iterators_1.0.14        pkgconfig_2.0.3         colourpicker_1.3.0     </span></span>
-<span><span class="co">#&gt;  [31] Matrix_1.7-4            R6_2.6.1                fastmap_1.2.0          </span></span>
-<span><span class="co">#&gt;  [34] GenomeInfoDbData_1.2.14 shiny_1.11.1            clue_0.3-66            </span></span>
-<span><span class="co">#&gt;  [37] digest_0.6.37           colorspace_2.1-2        paws.storage_0.9.0     </span></span>
-<span><span class="co">#&gt;  [40] DESeq2_1.48.2           textshaping_1.0.3       RSQLite_2.4.3          </span></span>
-<span><span class="co">#&gt;  [43] filelock_1.0.3          urltools_1.7.3.1        httr_1.4.7             </span></span>
-<span><span class="co">#&gt;  [46] abind_1.4-8             mgcv_1.9-3              compiler_4.5.1         </span></span>
-<span><span class="co">#&gt;  [49] bit64_4.6.0-1           withr_3.0.2             doParallel_1.0.17      </span></span>
-<span><span class="co">#&gt;  [52] S7_0.2.0                BiocParallel_1.42.2     DBI_1.2.3              </span></span>
-<span><span class="co">#&gt;  [55] shinyAce_0.4.4          hexbin_1.28.5           rappdirs_0.3.3         </span></span>
-<span><span class="co">#&gt;  [58] DelayedArray_0.34.1     rjson_0.2.23            tools_4.5.1            </span></span>
-<span><span class="co">#&gt;  [61] vipor_0.4.7             httpuv_1.6.16           glue_1.8.0             </span></span>
-<span><span class="co">#&gt;  [64] nlme_3.1-168            promises_1.3.3          grid_4.5.1             </span></span>
-<span><span class="co">#&gt;  [67] cluster_2.1.8.1         gtable_0.3.6            XVector_0.48.0         </span></span>
-<span><span class="co">#&gt;  [70] stringr_1.5.2           BiocVersion_3.21.1      ggrepel_0.9.6          </span></span>
-<span><span class="co">#&gt;  [73] foreach_1.5.2           pillar_1.11.1           limma_3.64.3           </span></span>
-<span><span class="co">#&gt;  [76] later_1.4.4             rintrojs_0.3.4          circlize_0.4.16        </span></span>
-<span><span class="co">#&gt;  [79] splines_4.5.1           dplyr_1.1.4             lattice_0.22-7         </span></span>
-<span><span class="co">#&gt;  [82] bit_4.6.0               paws.common_0.8.5       tidyselect_1.2.1       </span></span>
-<span><span class="co">#&gt;  [85] ComplexHeatmap_2.24.1   locfit_1.5-9.12         Biostrings_2.76.0      </span></span>
-<span><span class="co">#&gt;  [88] miniUI_0.1.2            knitr_1.50              edgeR_4.6.3            </span></span>
-<span><span class="co">#&gt;  [91] xfun_0.53               shinydashboard_0.7.3    statmod_1.5.0          </span></span>
-<span><span class="co">#&gt;  [94] iSEEhex_1.10.0          DT_0.34.0               stringi_1.8.7          </span></span>
-<span><span class="co">#&gt;  [97] visNetwork_2.1.4        UCSC.utils_1.4.0        yaml_2.3.10            </span></span>
-<span><span class="co">#&gt; [100] shinyWidgets_0.9.0      evaluate_1.0.5          codetools_0.2-20       </span></span>
-<span><span class="co">#&gt; [103] tibble_3.3.0            BiocManager_1.30.26     cli_3.6.5              </span></span>
-<span><span class="co">#&gt; [106] xtable_1.8-4            systemfonts_1.3.0       jquerylib_0.1.4        </span></span>
-<span><span class="co">#&gt; [109] iSEEu_1.20.0            Rcpp_1.1.0              triebeard_0.4.1        </span></span>
-<span><span class="co">#&gt; [112] png_0.1-8               parallel_4.5.1          pkgdown_2.1.3          </span></span>
-<span><span class="co">#&gt; [115] ggplot2_4.0.0           blob_1.2.4              viridisLite_0.4.2      </span></span>
-<span><span class="co">#&gt; [118] scales_1.4.0            purrr_1.1.0             crayon_1.5.3           </span></span>
-<span><span class="co">#&gt; [121] GetoptLong_1.0.5        rlang_1.1.6             KEGGREST_1.48.1        </span></span>
-<span><span class="co">#&gt; [124] shinyjs_2.1.0</span></span></code></pre></div>
+<span><span class="co">#&gt;   [1] RColorBrewer_1.1-3    jsonlite_2.0.0        shape_1.4.6.1        </span></span>
+<span><span class="co">#&gt;   [4] magrittr_2.0.5        farver_2.1.2          rmarkdown_2.32       </span></span>
+<span><span class="co">#&gt;   [7] GlobalOptions_0.1.4   fs_2.1.0              ragg_1.5.2           </span></span>
+<span><span class="co">#&gt;  [10] vctrs_0.7.3           memoise_2.0.1         htmltools_0.5.9      </span></span>
+<span><span class="co">#&gt;  [13] S4Arrays_1.12.1       BiocBaseUtils_1.14.2  curl_8.1.0           </span></span>
+<span><span class="co">#&gt;  [16] SparseArray_1.12.3    sass_0.4.10           bslib_0.12.0         </span></span>
+<span><span class="co">#&gt;  [19] htmlwidgets_1.6.4     desc_1.4.3            fontawesome_0.5.3    </span></span>
+<span><span class="co">#&gt;  [22] httr2_1.3.0           listviewer_4.0.0      cachem_1.1.0         </span></span>
+<span><span class="co">#&gt;  [25] igraph_2.3.4          mime_0.13             lifecycle_1.0.5      </span></span>
+<span><span class="co">#&gt;  [28] iterators_1.0.14      pkgconfig_2.0.3       colourpicker_1.3.0   </span></span>
+<span><span class="co">#&gt;  [31] Matrix_1.7-6          R6_2.6.1              fastmap_1.2.0        </span></span>
+<span><span class="co">#&gt;  [34] shiny_1.14.0          clue_0.3-68           digest_0.6.39        </span></span>
+<span><span class="co">#&gt;  [37] colorspace_2.1-4      paws.storage_0.11.0   DESeq2_1.52.0        </span></span>
+<span><span class="co">#&gt;  [40] textshaping_1.0.5     RSQLite_3.53.3        filelock_1.0.3       </span></span>
+<span><span class="co">#&gt;  [43] urltools_1.7.3.1      httr_1.4.9            abind_1.4-8          </span></span>
+<span><span class="co">#&gt;  [46] mgcv_1.9-4            compiler_4.6.1        bit64_4.8.6          </span></span>
+<span><span class="co">#&gt;  [49] withr_3.0.3           doParallel_1.0.17     S7_0.2.2             </span></span>
+<span><span class="co">#&gt;  [52] BiocParallel_1.46.0   DBI_1.3.0             shinyAce_0.4.4       </span></span>
+<span><span class="co">#&gt;  [55] hexbin_1.28.6         rappdirs_0.3.4        DelayedArray_0.38.2  </span></span>
+<span><span class="co">#&gt;  [58] rjson_0.2.23          tools_4.6.1           vipor_0.4.7          </span></span>
+<span><span class="co">#&gt;  [61] otel_0.2.0            httpuv_1.6.17         glue_1.8.1           </span></span>
+<span><span class="co">#&gt;  [64] nlme_3.1-171          promises_1.5.0        grid_4.6.1           </span></span>
+<span><span class="co">#&gt;  [67] cluster_2.1.8.3       gtable_0.3.6          XVector_0.52.0       </span></span>
+<span><span class="co">#&gt;  [70] stringr_1.6.0         BiocVersion_3.23.1    ggrepel_0.9.8        </span></span>
+<span><span class="co">#&gt;  [73] foreach_1.5.2         pillar_1.11.1         limma_3.68.5         </span></span>
+<span><span class="co">#&gt;  [76] later_1.4.8           rintrojs_0.3.4        circlize_0.4.18      </span></span>
+<span><span class="co">#&gt;  [79] splines_4.6.1         dplyr_1.2.1           lattice_0.23-1       </span></span>
+<span><span class="co">#&gt;  [82] bit_4.6.0             paws.common_0.9.0     tidyselect_1.2.1     </span></span>
+<span><span class="co">#&gt;  [85] ComplexHeatmap_2.28.0 locfit_1.5-9.12       Biostrings_2.80.2    </span></span>
+<span><span class="co">#&gt;  [88] miniUI_0.1.2          knitr_1.52            edgeR_4.10.7         </span></span>
+<span><span class="co">#&gt;  [91] xfun_0.62             shinydashboard_0.7.3  statmod_1.5.2        </span></span>
+<span><span class="co">#&gt;  [94] iSEEhex_1.14.0        DT_0.34.0             stringi_1.8.9        </span></span>
+<span><span class="co">#&gt;  [97] visNetwork_2.1.4      yaml_2.3.12           shinyWidgets_0.9.1   </span></span>
+<span><span class="co">#&gt; [100] evaluate_1.0.5        codetools_0.2-20      tibble_3.3.1         </span></span>
+<span><span class="co">#&gt; [103] BiocManager_1.30.27   cli_3.6.6             xtable_1.8-8         </span></span>
+<span><span class="co">#&gt; [106] systemfonts_1.3.2     jquerylib_0.1.4       iSEEu_1.24.0         </span></span>
+<span><span class="co">#&gt; [109] Rcpp_1.1.2            triebeard_0.4.1       png_0.1-9            </span></span>
+<span><span class="co">#&gt; [112] parallel_4.6.1        pkgdown_2.2.1         ggplot2_4.0.3        </span></span>
+<span><span class="co">#&gt; [115] blob_1.3.0            viridisLite_0.4.3     scales_1.4.0         </span></span>
+<span><span class="co">#&gt; [118] purrr_1.2.2           crayon_1.5.3          GetoptLong_1.1.1     </span></span>
+<span><span class="co">#&gt; [121] rlang_1.3.0           KEGGREST_1.52.2       shinyjs_2.1.1</span></span></code></pre></div>
 </details>
 </div>
 <div class="section level2">
@@ -591,7 +591,7 @@ to type I interferons</span>.”</span> <em>bioRxiv</em>, 1–68.
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>
